@@ -711,8 +711,17 @@ function detail(d){
   </div>`;
 }
 let lastFocus = null;
+/* 휴대폰 뒤로가기: 열린 창(상세·비교·필터)만 닫고 페이지에 머무름 */
+function pushLayer(name){ if(!(history.state && history.state.layer===name)) history.pushState({layer:name}, ""); }
+function popLayer(name){ if(history.state && history.state.layer===name) history.back(); }
+addEventListener("popstate", ()=>{
+  const s = history.state && history.state.layer;
+  if(s!=="dlg" && $("#dlg").open) $("#dlg").close();
+  if(s!=="dlg" && s!=="cmp" && $("#cmp").open) $("#cmp").close();
+  if(s!=="sheet" && $("#filters").classList.contains("open")) sheet(false);
+});
 function openDetail(id){
-  if(!$("#dlg").open) lastFocus = document.activeElement;
+  if(!$("#dlg").open){ lastFocus = document.activeElement; pushLayer("dlg"); }
   const d = DATA.find(x=>x.id===id); if(!d) return;
   $("#dlgIn").innerHTML = detail(d);
   const box = $("#dlgIn"), gal = box.querySelector(".gal");
@@ -727,7 +736,7 @@ function openCompare(){
   <div style="padding:20px 16px 16px"><h2 style="font-size:18px;margin-bottom:12px">나란히 비교</h2>
   <div class="tablebox"><table style="min-width:${180*xs.length+90}px"><thead><tr><th></th>${xs.map(d=>{return `<th style="cursor:default;text-align:center"><div style="width:100px;aspect-ratio:5/6;margin:0 auto 6px;border-radius:8px;overflow:hidden;background:#fff">${photo(d)}</div>${esc(d.brand)}<br><span style="color:var(--fg)">${esc(d.name)}</span></th>`}).join("")}</tr></thead>
   <tbody>${rows.map(([t,f])=>`<tr><td style="color:var(--muted);white-space:nowrap">${t}</td>${xs.map(d=>`<td>${f(d)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div>`;
-  lastFocus = document.activeElement; $("#cmp").showModal();
+  lastFocus = document.activeElement; pushLayer("cmp"); $("#cmp").showModal();
 }
 function syncTrayH(){ document.documentElement.style.setProperty("--tray-h", compare.length ? $("#tray").offsetHeight + "px" : "0px"); }
 addEventListener("resize", syncTrayH);
@@ -776,7 +785,7 @@ document.addEventListener("click", e=>{
   for(const [k, sel] of Object.entries(HINT_GROUPS)) if(!seenHints.has(k) && e.target.closest(sel)) hideHint(k);
 }, true);
 document.addEventListener("input", e=>{ for(const [k, sel] of Object.entries(HINT_GROUPS)) if(!seenHints.has(k) && e.target.closest(sel)) hideHint(k); }, true);
-function sheet(open){ $("#filters").classList.toggle("open", open); document.querySelector(".fsheet-bg").hidden = !open; document.querySelector(".fopen").setAttribute("aria-expanded", open); document.body.classList.toggle("sheet-open", open); }
+function sheet(open){ if(open) pushLayer("sheet"); else popLayer("sheet"); $("#filters").classList.toggle("open", open); document.querySelector(".fsheet-bg").hidden = !open; document.querySelector(".fopen").setAttribute("aria-expanded", open); document.body.classList.toggle("sheet-open", open); }
 document.addEventListener("click", e=>{
   if(e.target.closest(".fopen")) sheet(true);
   else if(e.target.closest(".fclose,.fdone,.fsheet-bg")) sheet(false);
@@ -822,7 +831,7 @@ document.addEventListener("click", e=>{
 document.addEventListener("keydown", e=>{ if((e.key==="Enter" || e.key===" ") && e.target.matches("thead th[data-k]")){ e.preventDefault(); e.target.click(); } });
 ["#dlg","#cmp"].forEach(s=>{
   $(s).addEventListener("click", e=>{ if(e.target===e.currentTarget) e.currentTarget.close(); });
-  $(s).addEventListener("close", ()=>{ if(lastFocus && document.contains(lastFocus)) lastFocus.focus(); lastFocus = null; });
+  $(s).addEventListener("close", ()=>{ popLayer(s.slice(1)); if(lastFocus && document.contains(lastFocus)) lastFocus.focus(); lastFocus = null; });
 });
 function openFromHash(){ const m = /^#c-(.+)$/.exec(location.hash); if(m && DATA.some(d=>d.id===m[1])){ document.getElementById("c-"+m[1])?.scrollIntoView(); openDetail(m[1]); } }
 addEventListener("hashchange", openFromHash);
