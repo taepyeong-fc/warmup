@@ -210,6 +210,23 @@ tr.picked td:first-child{box-shadow:inset 3px 0 0 var(--flood)}
 .range-ends{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted)}
 .step{width:40px;border:1px solid var(--line);background:var(--surface-2);border-radius:8px;font-size:18px;cursor:pointer}
 .presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px}
+.how-col{display:flex;flex-direction:column;gap:10px}
+.how-h{display:flex;flex-direction:column;gap:6px}
+.how-h h3{margin:0}
+.how-k{align-self:flex-start;font-size:13px;font-weight:700;border-radius:999px;padding:4px 12px;color:#fff}
+.how-k.ready{background:#111}
+.how-k.custom{background:var(--pitch-fill)}
+.how-pt{margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:2px}
+.vendor{border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.v-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.v-top b{font-size:15px}
+.ask{flex:none;font-size:12px;font-weight:700;color:var(--pitch-ink);background:var(--pitch-soft);border-radius:999px;padding:2px 9px}
+.vendor p{margin:0;font-size:14px}
+.vendor a{font-size:14px;font-weight:600;color:var(--pitch-ink);align-self:flex-start;padding:6px 0}
+.how-q{margin-top:12px;color:rgba(234,242,247,.85)}
+.tag.stock{background:var(--surface-2);color:var(--muted)}
+.tag.stock.risk{background:var(--pitch-soft);color:var(--pitch-ink);font-weight:700}
 .guide{display:grid;grid-template-columns:1fr;gap:14px}
 .notice{border-left:4px solid var(--pitch)}
 .notice h3{display:flex;align-items:center;gap:8px}
@@ -366,7 +383,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
   #tbl td.col-name{grid-column:1/-1;font-size:16px;font-weight:700;padding-bottom:6px;border-bottom:1px solid var(--line)}
   #tbl td.col-name::before{display:none}
   #tbl td.col-price{text-align:left;font-size:17px;font-weight:700}
-  #tbl td.col-pockets,#tbl td.col-sizes{grid-column:1/-1}
+  #tbl td.col-pockets,#tbl td.col-sizes,#tbl td.col-set{grid-column:1/-1}
   #tbl .col-material,#tbl .col-fit{display:none}
   .field input,.field select{font-size:16px;min-height:44px}
   .step{width:48px;font-size:22px}
@@ -393,6 +410,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
       <a href="#overview">개요</a>
       <a href="#candidates">후보 보기</a>
       <a href="#table">한눈에 비교</a>
+      <a href="#how">주문 방식</a>
       <a href="#guide">구매 안내</a>
       <a href="#order">단체 주문</a>
     </nav>
@@ -418,7 +436,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
 
 
   <section id="candidates">
-    <div class="sec-h"><span class="eyebrow">Candidates</span><h2>후보 목록</h2><p>후보 모델을 판매처 사진과 함께 소개합니다. ‘상하 세트’와 ‘자켓만’ 중 원하는 구성을 선택하시기 바랍니다. 사진을 누르면 상세 정보를, 색상 원을 누르면 해당 색상 사진을 확인할 수 있습니다. ‘비교 담기’로 최대 3종을 나란히 비교할 수 있습니다.</p></div>
+    <div class="sec-h"><span class="eyebrow">Ready-made · 기성품</span><h2>후보 목록</h2><p>후보 모델을 판매처 사진과 함께 소개합니다. ‘상하 세트’와 ‘자켓만’ 중 원하는 구성을 선택하시기 바랍니다. 사진을 누르면 상세 정보를, 색상 원을 누르면 해당 색상 사진을 확인할 수 있습니다. ‘비교 담기’로 최대 3종을 나란히 비교할 수 있습니다.</p></div>
     <div class="mode" role="group" aria-label="구성 선택"><button type="button" data-mode="set" aria-pressed="true">상하 세트</button><button type="button" data-mode="top" aria-pressed="false">자켓만</button></div>
     <p class="mode-note" id="modeNote"></p>
     <div class="hint" data-hint="filter" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span><b>필터</b> 버튼을 눌러서 가격·후드·보온·찜 조건을 바꿀 수 있습니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
@@ -466,6 +484,28 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
     <div class="tablebox"><table id="tbl"></table></div>
   </section>
 
+  <section id="how">
+    <div class="sec-h"><span class="eyebrow">How to order</span><h2>주문 방식</h2><p>위 후보는 모두 판매처에서 이미 만들어 파는 기성품입니다. 팀 색상과 로고를 넣어 새로 만드는 주문 제작 방식도 있으며, 두 방식을 나누어 정리했습니다. 가격과 재고는 모두 업체 문의를 통해 확인해야 합니다(2026-11-02 조사 기준).</p></div>
+    <div class="how">
+      <div class="panel how-col">
+        <div class="how-h"><span class="how-k ready">기성품</span><h3>브랜드 세트를 단체로 구매</h3></div>
+        <ul class="how-pt"><li>위 후보 13종 그대로 구매하고, 등번호·이름·엠블럼은 마킹으로 추가</li><li>1벌부터 구매 가능, 마킹 3~7일</li><li>색상·사이즈는 판매처 재고에 따라 제한</li><li>마킹한 옷은 교환·환불 불가</li></ul>
+        <div class="vendor"><div class="v-top"><b>사커붐</b><span class="ask">문의 필요</span></div><p>후보 대부분의 판매처. 단체견적 게시판에서 마킹 포함 견적과 재고 확인. 공개 단가 없음.</p><a href="https://soccerboom.co.kr/" target="_blank" rel="noopener">사이트 열기</a></div>
+        <div class="vendor"><div class="v-top"><b>카포스토어</b><span class="ask">문의 필요</span></div><p>나이키·아디다스·미즈노·푸마 공식 온라인 판매처라고 소개. 마킹 3~7일, 추가 주문은 5장부터, 정품 마킹이 아닌 커스텀 마킹. 마킹 비용은 별도 문의.</p><a href="https://www.capostore.co.kr/main/html.php?htmid=proc%2Fmarking.html" target="_blank" rel="noopener">마킹 안내 보기</a></div>
+        <div class="vendor"><div class="v-top"><b>삼성스포츠</b><span class="ask">문의 필요</span></div><p>단체 트레이닝 세트 67,000원(S~4XL, 자체 상품). 학교·동호회 단체 주문 전문.</p><a href="https://www.samsungsp.com/goods/goods_list.php?cateCd=006006" target="_blank" rel="noopener">세트 목록 보기</a></div>
+      </div>
+      <div class="panel how-col">
+        <div class="how-h"><span class="how-k custom">주문 제작</span><h3>팀 디자인으로 새로 제작</h3></div>
+        <ul class="how-pt"><li>팀 색상·로고·이름을 원단에 직접 인쇄(승화전사)</li><li>보통 5벌부터, 같은 디자인 추가 주문은 1벌도 가능</li><li>시안 확정 후 1~4주 소요</li><li>화면과 실물 색이 다를 수 있어 샘플 확인 권장</li><li>공개 가격은 대부분 상의만 있어, 상하 세트 가격은 견적 필요</li></ul>
+        <div class="vendor"><div class="v-top"><b>에스그래픽스 (S.G.F.W.)</b><span class="ask">문의 필요</span></div><p>축구팀 맞춤 트레이닝. 니트 풀집업 56,000원, 우븐(바람막이) 풀집업 68,000원, 후드 풀집업 76,000원(부가세 별도, 이벤트가). 5벌부터. 트레이닝 하의 가격은 공개되어 있지 않음.</p><a href="https://sgraphicsfw.com/price" target="_blank" rel="noopener">가격표 보기</a></div>
+        <div class="vendor"><div class="v-top"><b>팀매니아</b><span class="ask">문의 필요</span></div><p>승화전사 하프집업 트레이닝 제작. 시안 확정 후 제작 4주, 소량 샘플 가능. 가격 비공개.</p><a href="https://www.teammania.co.kr/shop_view/75" target="_blank" rel="noopener">상품 보기</a></div>
+        <div class="vendor"><div class="v-top"><b>포런</b><span class="ask">문의 필요</span></div><p>승화전사 단체복 전문. 제작 영업일 7일, 20벌 이상 벌당 9,000원 할인. 트레이닝 제작 단가는 문의.</p><a href="https://fourrun.co.kr/" target="_blank" rel="noopener">사이트 열기</a></div>
+        <div class="vendor"><div class="v-top"><b>KIRI SOCCER</b><span class="ask">문의 필요</span></div><p>웹에서 커스텀 유니폼을 꾸미고 견적을 받는 방식. 가격 비공개.</p><a href="https://kirinco.net/sports" target="_blank" rel="noopener">사이트 열기</a></div>
+      </div>
+    </div>
+    <p class="note how-q">문의 시 함께 보내면 좋은 정보: 인원과 사이즈별 수량, 자켓·하의 구성, 기모 여부, 로고 파일(AI 또는 고해상도 PNG), 받고 싶은 날짜.</p>
+  </section>
+
   <section id="guide">
     <div class="sec-h"><span class="eyebrow">Shopping guide</span><h2>구매 안내</h2><p>주문 전 사이즈, 로고 마킹, 교환 조건을 확인하시기 바랍니다.</p></div>
     <div class="guide">
@@ -501,7 +541,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
           <details class="nt"><summary><span class="nt-k">마킹</span><b>마킹 단가는 견적으로만 나옵니다</b></summary><p>후보 판매처 모두 단가를 공개하지 않습니다. 사커붐은 단체견적 게시판, 외부 업체(예: 팀메이커, 1장부터·시안 확정 후 2영업일)도 가능합니다. 로고는 AI 파일이나 고해상도 PNG로 준비하세요.</p></details>
           <details class="nt"><summary><span class="nt-k">세트</span><b>상하 세트는 구성 방식이 후보마다 다릅니다</b></summary><p>대부분은 같은 라인의 자켓과 하의를 따로 사서 두 가격을 더한 금액입니다. 조마·켈미는 판매처의 세트 상품 가격이며, 나이키 파크26·아디다스 3S 트랙수트·3S 플리스는 상하 한 벌로만 판매됩니다. 갈렉스는 같은 라인 하의가 없어 같은 브랜드의 기모 팬츠를 짝지었습니다. 하의는 허리 사이즈로 따로 고르셔야 합니다.</p></details>
           <details class="nt"><summary><span class="nt-k">가격</span><b>표시 가격은 할인·쿠폰가입니다</b></summary><p>네파는 무신사 쿠폰 적용가, 갈렉스는 타임특가입니다. 행사가 끝나면 오를 수 있으니 주문 당일 링크에서 다시 확인하세요.</p></details>
-          <details class="nt"><summary><span class="nt-k">재고</span><b>사이즈가 일부만 남은 후보가 있습니다</b></summary><p>푸마 팀라이즈는 L~2XL, 갈렉스는 M·L만 남았습니다. 회원 사이즈를 모은 뒤 전원 분이 있는지 확인하세요.</p></details>
+          <details class="nt"><summary><span class="nt-k">재고</span><b>20벌 이상 재고는 판매처 문의가 필요합니다</b></summary><p>사커붐과 무신사는 재고 수량을 공개하지 않습니다. 푸마 팀라이즈(자켓 L~2XL만 남음)와 갈렉스(M·L만 남음)는 20벌이 모이지 않을 수 있습니다. 회원 사이즈를 모은 뒤 사이즈별 수량을 판매처에 문의하시기 바랍니다.</p></details>
           <details class="nt"><summary><span class="nt-k">배송</span><b>배송비·교환 조건은 판매처마다 다릅니다</b></summary><p>사커붐과 무신사 상품 페이지의 배송·반품 안내를 따릅니다.</p></details>
         </div>
       </div>
@@ -620,6 +660,15 @@ function cost(d, jp){
 }
 function pool(){ return DATA.filter(d => mode === "set" || !d.setOnly); }
 function setTag(d){ return d.set ? SET_KIND[d.set.kind] : "하의 없음"; }
+/* 20벌 재고: 사커붐·무신사 모두 재고 수량을 공개하지 않음(2026-11-02 확인). 품절 사이즈가 이미 있는 후보만 '부족 가능'으로 표시 */
+const STOCK = {
+  "puma-teamrise":{risk:true, note:"자켓은 XS~M이 이미 품절되어 L·XL·2XL만 남았습니다. 20벌이 모이지 않을 수 있습니다."},
+  "galex-hood-padding":{risk:true, note:"M·L 두 사이즈만 남은 타임특가 상품입니다. 20벌이 모이지 않을 수 있습니다."},
+  "nike-academy25-track":{note:"블랙 하의 XS가 품절입니다. 그 밖의 사이즈는 판매 중이나 수량은 공개되지 않습니다."}
+};
+const STOCK_ASK = "판매처가 재고 수량을 공개하지 않습니다. 20벌 이상 가능한지 판매처에 문의해야 합니다.";
+function stockTag(d){ const s = STOCK[d.id]; return s && s.risk ? `<span class="tag stock risk">⚠ 20벌 안 될 수 있음</span>` : `<span class="tag stock">20벌 재고 문의 필요</span>`; }
+function stockNote(d){ const s = STOCK[d.id]; return s ? s.note + (s.risk ? "" : " " + STOCK_ASK) : STOCK_ASK; }
 const SIZE_NAME = {85:"XS",90:"S",95:"M",100:"L",105:"XL",110:"2XL",115:"3XL",120:"4XL"};
 /* 상품 사진은 판매처 서버에서 바로 불러옴. 못 불러오면 안내 문구로 대신함 */
 function photo(d, cls){
@@ -670,7 +719,7 @@ function renderGrid(){
         <span class="brand-l">${esc(d.brand)}</span>
         <h3 data-open="${d.id}">${esc(d.name)}</h3>
         ${priceBlock(d)}${splitLine(d)}<span class="seller">${esc(d.seller)}</span>${ratingLine(d)}
-        <div class="tags">${mode==="set"||d.setOnly?`<span class="tag set ${d.set?d.set.kind:"none"}">${setTag(d)}</span>`:""}<span class="tag">${hoodLabel(d)}</span>${d.warmth>=2?'<span class="tag logo">겨울용</span>':""}<span class="tag">${esc(d.sizes.split(" ")[0])}</span></div>
+        <div class="tags">${stockTag(d)}${mode==="set"||d.setOnly?`<span class="tag set ${d.set?d.set.kind:"none"}">${setTag(d)}</span>`:""}<span class="tag">${hoodLabel(d)}</span>${d.warmth>=2?'<span class="tag logo">겨울용</span>':""}<span class="tag">${esc(d.sizes.split(" ")[0])}</span></div>
         ${warmBar(d.warmth)}
         <div class="dots" role="group" aria-label="판매 색상 ${d.colors.length}가지">${swatches(d)}<span class="sw-name">${d.colors.length>1?`${d.colors.length}색 · 눌러서 보기`:esc(d.colors[0].name)}</span></div>
         <div class="actions">
@@ -694,6 +743,7 @@ const COLS = [
   {k:"logo", t:"로고", v:d=>logoShort(d), h:d=>`<span class="tag" title="${esc(d.logoNote)}">${logoShort(d)}</span>`, nw:1},
   {k:"rating", t:"후기", v:d=>(RATING[d.id]||{}).count||0, h:d=>{const r=RATING[d.id]; return r&&r.count?`★${r.score.toFixed(1)} (${r.count})`:"없음";}, nw:1},
   {k:"sizes", t:"사이즈", v:d=>d.sizes, h:d=>esc(d.sizes)},
+  {k:"stock", t:"20벌 재고", v:d=>STOCK[d.id]&&STOCK[d.id].risk?0:1, h:d=>stockTag(d), nw:1},
 ];
 let tsort = {k:"price", dir:1};
 function renderTable(){
@@ -788,6 +838,7 @@ function detail(d){
       <dt>핏</dt><dd>${esc(d.fit)}</dd>
       <dt>사이즈</dt><dd>${esc(d.sizes)}</dd>
       <dt>로고</dt><dd>${esc(d.logoNote)}</dd>
+      <dt>20벌 재고</dt><dd>${stockTag(d)}<br>${esc(stockNote(d))}</dd>
       <dt>단체 주문</dt><dd>${esc(d.groupOrder)}</dd>
       <dt>확인</dt><dd>${esc(d.seller)}, ${esc(d.checked||CHECKED)} 기준</dd>
     </dl>
@@ -826,7 +877,7 @@ function openDetail(id){
 }
 function openCompare(){
   const xs = compare.map(id=>DATA.find(d=>d.id===id)).filter(Boolean);
-  const rows = [["가격",d=>`<b class="num">${won(cost(d).sale)}</b>${splitLine(d)}`],["하의",d=>d.set && d.set.kind!=="one" ? `${setTag(d)}<br>${esc(d.set.name)}` : setTag(d)],["후드",d=>hoodLabel(d)],["주머니",d=>esc(d.pockets)],["보온",d=>"●".repeat(d.warmth)+"○".repeat(3-d.warmth)],["소재",d=>esc(d.material)],["핏",d=>esc(d.fit)],["로고",d=>esc(d.logoNote)],["단체",d=>esc(d.groupOrder)],["좋은 점",d=>d.pros.map(esc).join("<br>")],["아쉬운 점",d=>d.cons.map(esc).join("<br>")]];
+  const rows = [["가격",d=>`<b class="num">${won(cost(d).sale)}</b>${splitLine(d)}`],["하의",d=>d.set && d.set.kind!=="one" ? `${setTag(d)}<br>${esc(d.set.name)}` : setTag(d)],["후드",d=>hoodLabel(d)],["주머니",d=>esc(d.pockets)],["보온",d=>"●".repeat(d.warmth)+"○".repeat(3-d.warmth)],["소재",d=>esc(d.material)],["핏",d=>esc(d.fit)],["로고",d=>esc(d.logoNote)],["20벌 재고",d=>stockTag(d)],["단체",d=>esc(d.groupOrder)],["좋은 점",d=>d.pros.map(esc).join("<br>")],["아쉬운 점",d=>d.cons.map(esc).join("<br>")]];
   $("#cmpIn").innerHTML = `<button class="close" data-close aria-label="닫기">×</button>
   <div style="padding:20px 16px 16px"><h2 style="font-size:18px;margin-bottom:12px">나란히 비교</h2>
   <div class="tablebox"><table style="min-width:${180*xs.length+90}px"><thead><tr><th></th>${xs.map(d=>{return `<th style="cursor:default;text-align:center"><div style="width:100px;aspect-ratio:5/6;margin:0 auto 6px;border-radius:8px;overflow:hidden;background:#fff">${photo(d)}</div>${esc(d.brand)}<br><span style="color:var(--fg)">${esc(d.name)}</span></th>`}).join("")}</tr></thead>
