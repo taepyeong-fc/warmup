@@ -490,7 +490,6 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
           <div class="presets" role="group" aria-label="인원 빠른 선택"><button type="button" class="chip" data-people="10" aria-pressed="false">10명</button><button type="button" class="chip" data-people="15" aria-pressed="false">15명</button><button type="button" class="chip" data-people="20" aria-pressed="true">20명</button><button type="button" class="chip" data-people="25" aria-pressed="false">25명</button><button type="button" class="chip" data-people="30" aria-pressed="false">30명</button><button type="button" class="chip" data-people="40" aria-pressed="false">40명</button></div>
         </div>
         <div class="field"><label for="oLogo">로고 인쇄·자수 1벌당 (원)</label><input id="oLogo" type="number" min="0" step="500" value="5000" inputmode="numeric"></div>
-        <div class="field"><label for="oSupport">회비 지원 총액 (원)</label><input id="oSupport" type="number" min="0" step="10000" value="0" inputmode="numeric"></div>
         <p class="note" id="oLogoNote"></p>
       </div>
       <div class="panel">
@@ -498,7 +497,6 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
         <div class="total">
           <div class="row"><span>옷값</span><b id="tCloth">–</b></div>
           <div class="row"><span>로고</span><b id="tLogo">–</b></div>
-          <div class="row"><span>회비 지원</span><b id="tSupport">–</b></div>
           <div class="row"><span>총액</span><b class="big" id="tTotal">–</b></div>
         </div>
         <p class="note">판매처 할인가 기준 추정치입니다. 단체 할인, 배송비, 마킹비는 견적을 통해 확인하시기 바랍니다.</p>
@@ -764,11 +762,9 @@ function renderOrder(){
   if(!sel.options.length) sel.innerHTML = [...DATA].sort((a,b)=>a.price-b.price).map(d=>`<option value="${d.id}">${esc(d.brand)} ${esc(d.name)} (${won(d.price)})</option>`).join("");
   const d = DATA.find(x=>x.id===sel.value); if(!d) return;
   document.querySelectorAll("[data-people]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.people === String(+$("#oPeople").value)));
-  const n = Math.min(200, Math.max(1, Math.round(+$("#oPeople").value)||1)), lg = Math.max(0, +$("#oLogo").value||0), sp = Math.max(0, +$("#oSupport").value||0);
-  const cloth = d.price*n, logo = lg*n, total = Math.max(0, cloth+logo-sp);
+  const n = Math.min(200, Math.max(1, Math.round(+$("#oPeople").value)||1)), lg = Math.max(0, +$("#oLogo").value||0);
+  const cloth = d.price*n, logo = lg*n, total = cloth+logo;
   $("#tCloth").textContent = won(cloth); $("#tLogo").textContent = won(logo);
-  const used = Math.min(sp, cloth+logo);
-  $("#tSupport").textContent = used ? "−"+won(used) + (sp > used ? " (입력액이 총액보다 많아 총액까지만 반영)" : "") : won(0);
   $("#tTotal").textContent = won(total);
   $("#oLogoNote").textContent = "이 후보의 로고 안내: " + (d.logoNote || "미확인");
 }
@@ -854,9 +850,8 @@ $("#chestRange").addEventListener("input", e=>{ $("#chest").value = e.target.val
 const smooth = matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 $("#toTop").addEventListener("click", ()=>scrollTo({top:0, behavior:smooth}));
 $("#toBottom").addEventListener("click", ()=>scrollTo({top:document.documentElement.scrollHeight, behavior:smooth}));
-["#oItem","#oPeople","#oLogo","#oSupport"].forEach(s=>$(s).addEventListener("input", renderOrder));
+["#oItem","#oPeople","#oLogo"].forEach(s=>$(s).addEventListener("input", renderOrder));
 $("#oLogo").addEventListener("change", ()=>{ const v = $("#oLogo"); if(+v.value < 0) v.value = 0; renderOrder(); });
-$("#oSupport").addEventListener("change", ()=>{ const v = $("#oSupport"); if(+v.value < 0) v.value = 0; renderOrder(); });
 $("#oPeople").addEventListener("change", ()=>{ const v = $("#oPeople"); v.value = Math.min(200, Math.max(1, Math.round(+v.value)||1)); renderOrder(); });
 
 /* 현재 섹션 탭 표시 */
