@@ -624,7 +624,7 @@ tabs[0].classList.add("on");
 function init(){
   const ps = DATA.map(d=>d.price);
   $("#statCount").textContent = DATA.length + "개";
-  $("#statRange").textContent = ps.length ? `${(Math.min(...ps)/10000).toFixed(1)}만~${(Math.max(...ps)/10000).toFixed(1)}만 원` : "–";
+  $("#statRange").textContent = ps.length ? `${(Math.min(...ps)/10000).toFixed(1)}만~${(Math.max(...ps)/10000).toFixed(1)}만원` : "–";
   $("#statLogo").textContent = DATA.filter(d=>d.warmth>=2).length + "개";
   $("#foot").innerHTML = `태평FC 회원 공유용 비교 페이지 · 가격·링크는 ${CHECKED} 확인 기준이며 쇼핑몰 사정에 따라 바뀔 수 있어요. 상품 사진은 각 판매처 페이지의 사진이며, 사진 속 색이 판매 색상 전부는 아닙니다.`;
   renderAll(); renderOrder(); renderSize();
