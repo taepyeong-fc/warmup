@@ -137,6 +137,20 @@ select.sort{border:1px solid var(--line);background:var(--surface);color:var(--f
 .tray .slot button{background:none;border:0;color:inherit;cursor:pointer;opacity:.7;padding:0 2px}
 .tray .go{background:var(--pitch);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer}
 
+/* 처음 보는 분을 위한 누르기 안내 */
+.hint{display:flex;align-items:center;gap:8px;position:relative;width:fit-content;max-width:100%;background:var(--pitch);color:#fff;font-size:14px;line-height:1.45;border-radius:12px;padding:8px 10px 8px 12px;margin:0 0 14px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.hint::after{content:"";position:absolute;left:22px;bottom:-7px;border:7px solid transparent;border-bottom:0;border-top-color:var(--pitch)}
+.hint.tight{margin:12px 0 0}
+.hint.tight::after{bottom:auto;top:-7px;border:7px solid transparent;border-top:0;border-bottom-color:var(--pitch)}
+.hint.below{margin:0 0 12px}
+.hint b{font-weight:700}
+.hint-hand{font-size:18px;flex:none}
+.hint-x{flex:none;margin-left:2px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,255,255,.2);color:#fff;font-size:16px;cursor:pointer}
+.hint[hidden]{display:none}
+@media (prefers-reduced-motion:no-preference){.hint-hand{animation:tap 1.4s ease-in-out infinite}@keyframes tap{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}}
+.sw-tip{font-size:12px;color:var(--pitch-ink);font-weight:600}
+.tsort{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:14px}
+.tsort > span{font-size:13px;color:rgba(234,242,247,.85);margin-right:2px}
 /* 표 */
 .tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
 table{border-collapse:collapse;width:100%;min-width:760px;font-size:14px}
@@ -149,7 +163,6 @@ tbody tr:last-child td{border-bottom:0}
 td.r{text-align:right}
 #tbl td{overflow-wrap:normal}
 #tbl td.nw{white-space:nowrap}
-@media (max-width:720px){#tbl{min-width:520px}#tbl .col-material,#tbl .col-fit,#tbl .col-logo{display:none}}
 tr.picked td:first-child{box-shadow:inset 3px 0 0 var(--flood)}
 
 /* 단체 주문 */
@@ -181,13 +194,13 @@ tr.picked td:first-child{box-shadow:inset 3px 0 0 var(--flood)}
 .nt p{margin:0;font-size:13px;color:var(--muted)}
 .guide .size-panel{grid-column:1/-1}
 .bul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14px}
-.size-find{display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:start;margin-bottom:12px}
+.size-find{display:grid;grid-template-columns:200px minmax(0,1fr);gap:16px;align-items:start;margin-bottom:12px}
 .size-find .field{margin:0}
 .size-rec{margin:0;font-size:15px}
 .size-rec b{font-size:24px;color:var(--pitch);margin-left:6px}
 .size-out .note{margin:2px 0 8px}
 .size-hits{display:flex;flex-wrap:wrap;gap:6px}
-.hit{border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer;color:var(--fg)}
+.hit{max-width:100%;text-align:left;border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer;color:var(--fg)}
 .hit.no{opacity:.7;background:transparent;color:var(--muted)}
 .hit.no::after{content:" · 없음"}
 .hit:not(.no)::after{content:" · 있음";color:var(--pitch);font-weight:600}
@@ -229,6 +242,39 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
   .dlg-top{grid-template-columns:110px 1fr}
   .pc{grid-template-columns:1fr}
   .count{margin-left:0;width:100%}
+}
+/* 휴대폰: 글씨와 누르는 칸을 키우고, 표는 후보별 카드로 */
+@media (max-width:720px){
+  body{font-size:16px}
+  .sec-h h2{font-size:24px}
+  .sec-h p{font-size:15px}
+  .chip{padding:8px 14px;font-size:15px;min-height:40px}
+  .fgroup > span{font-size:14px;width:100%}
+  .filters{gap:12px}
+  .count{font-size:14px}
+  .grid{grid-template-columns:1fr 1fr;gap:10px}
+  .card h3{font-size:15px}
+  .card .body{padding:10px 10px 12px}
+  .card .actions{flex-direction:column}
+  .card .actions .btn{min-height:40px;font-size:14px}
+  .sw{width:28px;height:28px}
+  .tablebox:has(#tbl){overflow:visible;background:transparent;border:0}
+  #tbl{min-width:0;display:block}
+  #tbl thead{display:none}
+  #tbl tbody{display:flex;flex-direction:column;gap:10px}
+  #tbl tr{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+  #tbl tr.picked{border-color:var(--flood)}
+  #tbl td{display:block;padding:0;border:0;font-size:15px}
+  #tbl td::before{content:attr(data-l);display:block;font-size:12px;color:var(--muted);font-weight:600}
+  #tbl td.col-name{grid-column:1/-1;font-size:16px;font-weight:700;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  #tbl td.col-name::before{display:none}
+  #tbl td.col-price{text-align:left;font-size:17px;font-weight:700}
+  #tbl td.col-pockets,#tbl td.col-sizes{grid-column:1/-1}
+  #tbl .col-material,#tbl .col-fit{display:none}
+  .field input,.field select{font-size:16px;min-height:44px}
+  .step{width:48px;font-size:22px}
+  .hint{font-size:15px}
+  footer{font-size:14px}
 }
 @media (prefers-reduced-motion:no-preference){
   .card{transition:transform .15s ease, box-shadow .15s ease}
@@ -275,7 +321,8 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
 
 
   <section id="candidates">
-    <div class="sec-h"><span class="eyebrow">Candidates</span><h2>후보 자켓</h2><p>사진을 누르면 자세히 볼 수 있어요. 색 점은 판매 중인 색상이고, ‘비교 담기’로 최대 3개를 나란히 볼 수 있어요.</p></div>
+    <div class="sec-h"><span class="eyebrow">Candidates</span><h2>후보 자켓</h2><p>후보 모델을 판매처 사진과 함께 소개합니다. 사진을 누르면 상세 정보를, 색상 원을 누르면 해당 색상 사진을 확인할 수 있습니다. ‘비교 담기’로 최대 3종을 나란히 비교할 수 있습니다.</p></div>
+    <div class="hint" data-hint="filter" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span>아래 버튼을 <b>눌러서</b> 조건을 바꿀 수 있습니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
     <div class="filters" role="group" aria-label="후보 거르기">
       <div class="fgroup" data-key="price"><span>가격</span>
         <button class="chip" data-v="all" aria-pressed="true">전체</button>
@@ -301,16 +348,19 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
       </div>
       <span class="count" id="count"></span>
     </div>
+    <div class="hint" data-hint="card" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span><b>사진을 누르면</b> 상세 정보, <b>색상 원을 누르면</b> 그 색 사진이 나옵니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
     <div class="grid" id="grid"></div>
   </section>
 
   <section id="table">
-    <div class="sec-h"><span class="eyebrow">At a glance</span><h2>한눈에 비교</h2><p>제목 칸을 누르면 그 기준으로 정렬돼요. ★는 내가 찜한 후보예요(이 기기에만 저장되고 다른 사람에게는 보이지 않아요).</p></div>
+    <div class="sec-h"><span class="eyebrow">At a glance</span><h2>한눈에 비교</h2><p>후보별 주요 사양을 한 표로 정리했습니다. 정렬 기준을 바꾸면 순서가 바뀌며, ★ 표시는 본인이 찜한 후보입니다(해당 기기에만 저장되며 다른 회원에게는 표시되지 않습니다).</p></div>
+    <div class="tsort" role="group" aria-label="표 정렬"><span>정렬</span><button type="button" class="chip" data-ts="price">가격순</button><button type="button" class="chip" data-ts="warmth">보온순</button><button type="button" class="chip" data-ts="name">이름순</button></div>
+    <div class="hint" data-hint="table" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span><b>정렬 버튼</b>을 누르면 순서가 바뀌고, <b>후보 이름</b>을 누르면 상세 정보가 열립니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
     <div class="tablebox"><table id="tbl"></table></div>
   </section>
 
   <section id="guide">
-    <div class="sec-h"><span class="eyebrow">Shopping guide</span><h2>구매 안내</h2><p>주문 전에 사이즈, 로고 마킹, 교환 조건을 확인해 주세요.</p></div>
+    <div class="sec-h"><span class="eyebrow">Shopping guide</span><h2>구매 안내</h2><p>주문 전 사이즈, 로고 마킹, 교환 조건을 확인하시기 바랍니다.</p></div>
     <div class="guide">
       <div class="panel size-panel">
         <h3>내 사이즈 찾기</h3>
@@ -318,7 +368,8 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
           <div class="field"><label for="chest">가슴둘레 (cm)</label>
             <div class="people"><button type="button" class="step" data-chest="-1" aria-label="1cm 줄이기">−</button><input id="chest" type="number" min="75" max="135" value="100" inputmode="numeric"><button type="button" class="step" data-chest="1" aria-label="1cm 늘리기">+</button></div>
             <input id="chestRange" class="range" type="range" min="80" max="125" step="1" value="100" aria-label="가슴둘레 슬라이더">
-            <div class="range-ends"><span>80</span><span>버튼이나 막대를 움직여 조절</span><span>125</span></div>
+            <div class="range-ends"><span>80</span><span>125</span></div>
+            <div class="hint tight" data-hint="size" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span><b>− + 버튼</b>을 누르거나 <b>빨간 점</b>을 밀어서 바꿀 수 있습니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
           </div>
           <div class="size-out" aria-live="polite">
             <p class="size-rec">추천 <b class="num" id="sizeRec">–</b></p>
@@ -333,7 +384,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
             <tr><td>가슴둘레</td><td class="num">83~87</td><td class="num">88~92</td><td class="num">93~97</td><td class="num">98~102</td><td class="num">103~107</td><td class="num">108~112</td><td class="num">113~117</td><td class="num">118~122</td></tr>
           </tbody>
         </table></div>
-        <p class="note">한국 표기 숫자는 대략 가슴둘레(cm)입니다. 브랜드와 핏마다 다르니 주문 전 상품 페이지의 실측 사이즈를 확인하세요.</p>
+        <p class="note">국내 표기 숫자는 가슴둘레(cm) 기준의 근사치입니다. 브랜드와 핏에 따라 차이가 있으므로 주문 전 상품 페이지의 실측 사이즈를 확인하시기 바랍니다.</p>
       </div>
       <div class="panel notice">
         <h3><span class="notice-ic" aria-hidden="true">!</span>주문 전 확인 사항</h3>
@@ -349,10 +400,11 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
   </section>
 
   <section id="order">
-    <div class="sec-h"><span class="eyebrow">Group order</span><h2>단체 주문 계산</h2><p>후보와 인원을 고르면 총액과 1인 부담을 바로 계산해요. 로고 인쇄비는 업체 견적에 맞게 고쳐 넣으세요.</p></div>
+    <div class="sec-h"><span class="eyebrow">Group order</span><h2>단체 주문 계산</h2><p>후보와 인원을 선택하면 총액과 1인 부담액이 자동으로 계산됩니다. 로고 비용은 업체 견적에 맞춰 수정하시기 바랍니다.</p></div>
     <div class="order">
       <div class="panel">
         <h3>조건</h3>
+        <div class="hint below" data-hint="order" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span>후보·인원·금액을 <b>눌러서</b> 바꾸면 예상 금액이 바로 바뀝니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
         <div class="field"><label for="oItem">후보</label><select id="oItem"></select></div>
         <div class="field"><label for="oPeople">인원 (명)</label>
           <div class="people"><button type="button" class="step" data-step="-1" aria-label="한 명 빼기">−</button><input id="oPeople" type="number" min="1" max="200" value="20" inputmode="numeric"><button type="button" class="step" data-step="1" aria-label="한 명 더하기">+</button></div>
@@ -371,7 +423,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
           <div class="row"><span>총액</span><b id="tTotal">–</b></div>
           <div class="row"><span>1인 부담</span><b class="big" id="tPer">–</b></div>
         </div>
-        <p class="note">판매처 할인가 기준 추정치이고, 1인 부담은 백 원 단위로 올림했어요. 단체 할인·배송비·마킹비는 견적으로 확인해 주세요.</p>
+        <p class="note">판매처 할인가 기준 추정치이며, 1인 부담액은 100원 단위로 올림하였습니다. 단체 할인, 배송비, 마킹비는 견적을 통해 확인하시기 바랍니다.</p>
       </div>
     </div>
   </section>
@@ -481,9 +533,10 @@ const COLS = [
 ];
 let tsort = {k:"price", dir:1};
 function renderTable(){
+  document.querySelectorAll("[data-ts]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.ts===tsort.k));
   const xs = [...DATA].sort((a,b)=>{ const c = COLS.find(c=>c.k===tsort.k); const x=c.v(a), y=c.v(b); return (x>y?1:x<y?-1:0)*tsort.dir; });
   $("#tbl").innerHTML = `<thead><tr>${COLS.map(c=>`<th class="col-${c.k}" data-k="${c.k}" role="button" aria-sort="${tsort.k===c.k?(tsort.dir>0?"ascending":"descending"):"none"}" tabindex="0">${c.t}</th>`).join("")}</tr></thead>
-  <tbody>${xs.map(d=>`<tr class="${picks.has(d.id)?"picked":""}">${COLS.map(c=>`<td class="col-${c.k} ${c.r?"r ":""}${c.nw?"nw":""}">${c.h(d)}</td>`).join("")}</tr>`).join("")}</tbody>`;
+  <tbody>${xs.map(d=>`<tr class="${picks.has(d.id)?"picked":""}">${COLS.map(c=>`<td class="col-${c.k} ${c.r?"r ":""}${c.nw?"nw":""}" data-l="${c.t}">${c.h(d)}</td>`).join("")}</tr>`).join("")}</tbody>`;
 }
 
 /* 색 견본: 누르면 그 색 사진(판매처 사진이 있을 때)으로 바꿈 */
@@ -507,7 +560,7 @@ function detail(d){
       <h2 id="dlgTitle" style="font-size:20px">${esc(d.name)}</h2>
       <div class="price">${won(d.price)}<small>${esc(d.priceNote||"")}</small></div>
       <div class="tags"><span class="tag">${hoodLabel(d)}</span>${warmBar(d.warmth)}</div>
-      <div class="sw-row">${swatches(d, true)}</div>
+      <div class="sw-row">${swatches(d, true)}</div>${d.colors.length>1?`<span class="sw-tip">👆 색상 원을 누르면 사진이 바뀝니다</span>`:""}
       <span class="sw-name" style="font-size:13px;color:var(--muted)">${esc(d.colors[0].name)}</span>
     </div>
   </div>
@@ -575,20 +628,31 @@ function renderOrder(){
 function renderSize(){
   const c = +$("#chest").value;
   $("#chestRange").value = Math.min(125, Math.max(80, c||100));
-  if(!c || c < 75 || c > 135){ $("#sizeRec").textContent = "–"; $("#sizeNote").textContent = "75~135 사이로 넣어 주세요."; $("#sizeHits").innerHTML = ""; return; }
-  if(c < 83 || c > 122){ $("#sizeRec").textContent = "–"; $("#sizeNote").textContent = c < 83 ? "가장 작은 표기(85, XS)보다 작아요. 상품 페이지의 실측 사이즈를 확인해 주세요." : "가장 큰 표기(120, 4XL)보다 커요. 상품 페이지의 실측 사이즈를 확인해 주세요."; $("#sizeHits").innerHTML = ""; return; }
+  if(!c || c < 75 || c > 135){ $("#sizeRec").textContent = "–"; $("#sizeNote").textContent = "75~135 사이의 값을 입력해 주십시오."; $("#sizeHits").innerHTML = ""; return; }
+  if(c < 83 || c > 122){ $("#sizeRec").textContent = "–"; $("#sizeNote").textContent = c < 83 ? "최소 표기(85, XS)보다 작습니다. 상품 페이지의 실측 사이즈를 확인하시기 바랍니다." : "최대 표기(120, 4XL)보다 큽니다. 상품 페이지의 실측 사이즈를 확인하시기 바랍니다."; $("#sizeHits").innerHTML = ""; return; }
   const s = Math.min(120, Math.max(85, Math.round(c/5)*5));
   $("#sizeRec").textContent = `${s}(${SIZE_NAME[s]})`;
   const xs = [...DATA].sort((a,b)=>a.price-b.price);
   const ok = xs.filter(d=>SIZE[d.id] && s>=SIZE[d.id][0] && s<=SIZE[d.id][1]);
-  $("#sizeNote").textContent = `이 사이즈로 살 수 있는 후보 ${ok.length}개 / ${DATA.length}개. 슬림핏(나이키)은 한 치수 크게, 오버핏(갈렉스)은 그대로를 생각해 보세요.`;
+  $("#sizeNote").textContent = `해당 사이즈 구매 가능 후보 ${ok.length}종 / 전체 ${DATA.length}종. 슬림핏(나이키)은 한 치수 크게, 오버핏(갈렉스)은 정사이즈를 권장합니다.`;
   $("#sizeHits").innerHTML = xs.map(d=>{ const has = ok.includes(d); return `<button class="hit ${has?"":"no"}" data-open="${d.id}" title="${has?"이 사이즈 있음":"이 사이즈 없음"}">${esc(d.brand)} ${esc(d.name)}</button>`; }).join("");
 }
+/* 안내 말풍선: 해당 부분을 한 번 쓰거나 ×를 누르면 다시 보이지 않음 */
+const HINT_GROUPS = {filter:".filters", card:"#grid", table:".tsort,#tbl", size:".size-find", order:".order"};
+const seenHints = new Set(store.get("tp-hints", []));
+function hideHint(key){ seenHints.add(key); store.set("tp-hints", [...seenHints]); document.querySelectorAll(`.hint[data-hint="${key}"]`).forEach(x=>x.hidden = true); }
+document.querySelectorAll(".hint").forEach(x=>{ if(seenHints.has(x.dataset.hint)) x.hidden = true; });
+document.addEventListener("click", e=>{
+  const x = e.target.closest(".hint-x"); if(x){ hideHint(x.closest(".hint").dataset.hint); return; }
+  if(!e.target.closest("button,a,select,input,th,[data-open]")) return;
+  for(const [k, sel] of Object.entries(HINT_GROUPS)) if(!seenHints.has(k) && e.target.closest(sel)) hideHint(k);
+}, true);
+document.addEventListener("input", e=>{ for(const [k, sel] of Object.entries(HINT_GROUPS)) if(!seenHints.has(k) && e.target.closest(sel)) hideHint(k); }, true);
 function renderAll(){ renderGrid(); renderTable(); renderTray(); }
 function togglePick(id){ picks.has(id)?picks.delete(id):picks.add(id); store.set("tp-picks",[...picks]); renderAll(); if($("#dlg").open) openDetail(id); }
 function toggleCmp(id){
   if(compare.includes(id)) compare = compare.filter(x=>x!==id);
-  else { if(compare.length>=3){ toast("비교는 3개까지 담을 수 있어요"); return; } compare.push(id); }
+  else { if(compare.length>=3){ toast("비교는 최대 3종까지 가능합니다"); return; } compare.push(id); }
   renderAll();
 }
 
@@ -602,6 +666,7 @@ document.addEventListener("click", e=>{
     renderOrder(); return;
   }
   const sw = e.target.closest("[data-sw]"); if(sw){ pickColor(sw); return; }
+  const ts = e.target.closest("[data-ts]"); if(ts){ const k = ts.dataset.ts; tsort = {k, dir: tsort.k===k ? -tsort.dir : (k==="warmth" ? -1 : 1)}; renderTable(); return; }
   const t = e.target.closest("[data-open],[data-pick],[data-cmp],[data-close],[data-share],.chip,#goCompare,thead th[data-k]");
   if(!t) return;
   if(t.dataset.open){ e.preventDefault(); openDetail(t.dataset.open); }
@@ -610,7 +675,7 @@ document.addEventListener("click", e=>{
   else if(t.hasAttribute("data-close")) t.closest("dialog").close();
   else if(t.dataset.share){
     const url = location.href.split("#")[0] + "#c-" + t.dataset.share;
-    const done = ()=>toast("링크를 복사했어요");
+    const done = ()=>toast("링크가 복사되었습니다");
     try{ navigator.clipboard.writeText(url).then(done, ()=>toast(url)); }catch(err){ toast(url); }
   }
   else if(t.classList.contains("chip")){
@@ -648,7 +713,7 @@ function init(){
   $("#statBrand").textContent = new Set(DATA.map(d=>d.brand)).size + "개";
   $("#statRange").textContent = ps.length ? `${Math.min(...ps).toLocaleString("ko-KR")}~${Math.max(...ps).toLocaleString("ko-KR")}원` : "–";
   $("#statLogo").textContent = DATA.filter(d=>d.warmth>=2).length + "종";
-  $("#foot").innerHTML = `태평FC 회원 공유용 비교 페이지 · 가격·링크는 ${CHECKED} 확인 기준이며 쇼핑몰 사정에 따라 바뀔 수 있어요. 상품 사진은 각 판매처 페이지의 사진이며, 사진 속 색이 판매 색상 전부는 아닙니다.`;
+  $("#foot").innerHTML = `본 페이지는 태평FC 회원 공유용 비교 자료입니다.<br>가격과 링크는 ${CHECKED} 기준이며, 판매처 사정에 따라 변경될 수 있습니다. 상품 사진은 각 판매처에서 제공한 사진입니다.`;
   renderAll(); renderOrder(); renderSize();
   openFromHash();
 }
