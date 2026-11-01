@@ -409,8 +409,8 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
     <nav class="tabs" aria-label="섹션">
       <a href="#overview">개요</a>
       <a href="#candidates">후보 보기</a>
-      <a href="#table">한눈에 비교</a>
       <a href="#how">주문 방식</a>
+      <a href="#table">한눈에 비교</a>
       <a href="#guide">구매 안내</a>
       <a href="#order">단체 주문</a>
     </nav>
@@ -477,13 +477,6 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
     <div class="grid" id="grid"></div>
   </section>
 
-  <section id="table">
-    <div class="sec-h"><span class="eyebrow">At a glance</span><h2>한눈에 비교</h2><p>후보별 주요 사양을 한 표로 정리했습니다. 정렬 기준을 바꾸면 순서가 바뀌며, ★ 표시는 본인이 찜한 후보입니다(해당 기기에만 저장되며 다른 회원에게는 표시되지 않습니다).</p></div>
-    <div class="tsort" role="group" aria-label="표 정렬"><span>정렬</span><button type="button" class="chip" data-ts="price">가격순</button><button type="button" class="chip" data-ts="warmth">보온순</button><button type="button" class="chip" data-ts="name">이름순</button></div>
-    <div class="hint" data-hint="table" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span><b>정렬 버튼</b>을 누르면 순서가 바뀌고, <b>후보 이름</b>을 누르면 상세 정보가 열립니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
-    <div class="tablebox"><table id="tbl"></table></div>
-  </section>
-
   <section id="how">
     <div class="sec-h"><span class="eyebrow">How to order</span><h2>주문 방식</h2><p>위 후보는 모두 판매처에서 이미 만들어 파는 기성품입니다. 팀 색상과 로고를 넣어 새로 만드는 주문 제작 방식도 있으며, 두 방식을 나누어 정리했습니다. 가격과 재고는 모두 업체 문의를 통해 확인해야 합니다(2026-11-02 조사 기준).</p></div>
     <div class="how">
@@ -504,6 +497,13 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
       </div>
     </div>
     <p class="note how-q">문의 시 함께 보내면 좋은 정보: 인원과 사이즈별 수량, 자켓·하의 구성, 기모 여부, 로고 파일(AI 또는 고해상도 PNG), 받고 싶은 날짜.</p>
+  </section>
+
+  <section id="table">
+    <div class="sec-h"><span class="eyebrow">At a glance</span><h2>한눈에 비교</h2><p>후보별 주요 사양을 한 표로 정리했습니다. 정렬 기준을 바꾸면 순서가 바뀌며, ★ 표시는 본인이 찜한 후보입니다(해당 기기에만 저장되며 다른 회원에게는 표시되지 않습니다).</p></div>
+    <div class="tsort" role="group" aria-label="표 정렬"><span>정렬</span><button type="button" class="chip" data-ts="price">가격순</button><button type="button" class="chip" data-ts="warmth">보온순</button><button type="button" class="chip" data-ts="name">이름순</button></div>
+    <div class="hint" data-hint="table" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span><b>정렬 버튼</b>을 누르면 순서가 바뀌고, <b>후보 이름</b>을 누르면 상세 정보가 열립니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
+    <div class="tablebox"><table id="tbl"></table></div>
   </section>
 
   <section id="guide">
