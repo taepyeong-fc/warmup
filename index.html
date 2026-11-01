@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>태평FC 26/27 겨울 시즌 웜업 자켓</title>
+<title>태평FC 26/27 겨울 시즌 웜업 상하 세트</title>
 <meta name="description" content="태평FC 26/27 겨울 시즌 팀 웜업 자켓 후보 비교">
-<meta property="og:title" content="태평FC 26/27 겨울 시즌 웜업 자켓">
-<meta property="og:description" content="풀집업 웜업 자켓 후보를 가격·보온성·사이즈·단체 마킹 기준으로 비교합니다.">
+<meta property="og:title" content="태평FC 26/27 겨울 시즌 웜업 상하 세트">
+<meta property="og:description" content="웜업 자켓과 하의 상하 세트 후보를 가격·보온성·사이즈·단체 마킹 기준으로 비교합니다.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://taepyeong-fc.github.io/warmup/">
 <meta property="og:image" content="https://taepyeong-fc.github.io/warmup/assets/og.jpg">
@@ -120,6 +120,30 @@ select.sort{border:1px solid var(--line);background:var(--surface);color:var(--f
 .tag{font-size:12px;border-radius:6px;padding:1px 7px;background:var(--surface-2);color:var(--muted)}
 .tag.zip{background:var(--pitch-soft);color:var(--pitch-ink)}
 .tag.logo{background:var(--flood-soft);color:var(--fg)}
+.tag.set{background:#111;color:#fff;font-weight:600}
+.tag.set.other{background:var(--surface-2);color:var(--warn);border:1px solid var(--warn)}
+.tag.set.none{background:var(--surface-2);color:var(--muted)}
+.mode{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;gap:4px;margin-bottom:6px}
+.mode button{border:0;background:transparent;border-radius:999px;padding:8px 18px;font-size:15px;font-weight:700;color:var(--muted);cursor:pointer;min-height:40px}
+.mode button[aria-pressed="true"]{background:var(--pitch-fill);color:#fff}
+.mode-note{margin:0 0 12px;font-size:13px;color:rgba(234,242,247,.85)}
+.order .mode{margin:0}
+.flabel{display:block;font-size:13px;font-weight:600;margin-bottom:4px}
+.card .art{position:relative}
+.pants-th{position:absolute;right:8px;bottom:8px;width:34%;aspect-ratio:5/6;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.pants-th img{width:100%;height:100%;object-fit:contain}
+.pants-th small{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.65);color:#fff;font-size:11px;font-weight:700;text-align:center;padding:1px 0}
+.pr-split{font-size:12px;color:var(--muted)}
+.setbox{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.setbox h4{margin:0 0 8px;font-size:15px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.set-row{display:flex;gap:12px;align-items:flex-start}
+.set-ph{flex:0 0 96px;aspect-ratio:5/6;background:#fff;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.set-ph img{width:100%;height:100%;object-fit:contain;display:block}
+.set-tx{display:flex;flex-direction:column;gap:2px;font-size:14px;min-width:0}
+.set-tx .note{font-size:13px}
+.set-pr del{color:var(--muted);font-size:13px}
+.set-pr b{font-size:17px}
+.btn.set-go{flex:none;align-self:flex-start;margin-top:6px;padding:8px 12px}
 .warm{display:flex;gap:3px;align-items:center;font-size:12px;color:var(--muted)}
 .warm i{width:14px;height:6px;border-radius:2px;background:var(--line)}
 .warm i.on{background:var(--pitch)}
@@ -319,6 +343,9 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
   .count{font-size:14px}
   .grid{grid-template-columns:1fr 1fr;gap:10px}
   .card h3{font-size:15px}
+  .mode{display:flex}
+  .mode button{flex:1;font-size:16px;min-height:46px}
+  .pants-th small{font-size:12px}
   .card .body{padding:10px 10px 12px}
   .card .actions{flex-direction:column}
   .card .actions .btn{min-height:40px;font-size:14px}
@@ -377,12 +404,12 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
     <div class="hero-in">
       <div>
         <span class="pill" id="heroDate">26/27 WINTER SEASON · TEAMWEAR</span>
-        <h1>태평FC 26/27 겨울 시즌<br>웜업 자켓</h1>
-        <p>목부터 밑단까지 여닫는 풀집업 트레이닝 자켓을 대상으로 판매가, 보온성, 사이즈 구성, 단체 마킹 조건을 정리한 회원 선정 자료입니다. 검토 후 선호 모델을 단톡방에 남겨 주세요.</p>
+        <h1>태평FC 26/27 겨울 시즌<br>웜업 상하 세트</h1>
+        <p>풀집업 트레이닝 자켓과 짝이 되는 하의를 묶어 상하 세트 가격, 보온성, 사이즈 구성, 단체 마킹 조건을 정리한 회원 선정 자료입니다. 자켓만 따로 비교할 수도 있습니다. 검토 후 선호 모델을 단톡방에 남겨 주시기 바랍니다.</p>
         <div class="hero-stats">
           <div><b class="num" id="statCount">–</b><span>후보 모델</span></div>
           <div><b class="num" id="statBrand">–</b><span>참여 브랜드</span></div>
-          <div><b class="num" id="statRange">–</b><span>판매가 범위</span></div>
+          <div><b class="num" id="statRange">–</b><span id="statRangeL">판매가 범위</span></div>
           <div><b class="num" id="statLogo">–</b><span>보온 강화 모델</span></div>
         </div>
       </div>
@@ -391,7 +418,9 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
 
 
   <section id="candidates">
-    <div class="sec-h"><span class="eyebrow">Candidates</span><h2>후보 자켓</h2><p>후보 모델을 판매처 사진과 함께 소개합니다. 사진을 누르면 상세 정보를, 색상 원을 누르면 해당 색상 사진을 확인할 수 있습니다. ‘비교 담기’로 최대 3종을 나란히 비교할 수 있습니다.</p></div>
+    <div class="sec-h"><span class="eyebrow">Candidates</span><h2>후보 목록</h2><p>후보 모델을 판매처 사진과 함께 소개합니다. ‘상하 세트’와 ‘자켓만’ 중 원하는 구성을 선택하시기 바랍니다. 사진을 누르면 상세 정보를, 색상 원을 누르면 해당 색상 사진을 확인할 수 있습니다. ‘비교 담기’로 최대 3종을 나란히 비교할 수 있습니다.</p></div>
+    <div class="mode" role="group" aria-label="구성 선택"><button type="button" data-mode="set" aria-pressed="true">상하 세트</button><button type="button" data-mode="top" aria-pressed="false">자켓만</button></div>
+    <p class="mode-note" id="modeNote"></p>
     <div class="hint" data-hint="filter" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span><b>필터</b> 버튼을 눌러서 가격·후드·보온·찜 조건을 바꿀 수 있습니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
     <div class="fbar"><button type="button" class="btn fopen" aria-controls="filters" aria-expanded="false">⚙ 필터·정렬 <span id="fOn"></span></button><span class="count" id="count2"></span></div>
     <div class="fsheet-bg" hidden></div>
@@ -470,6 +499,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
         <div class="notice-grid">
           <details class="nt"><summary><span class="nt-k">교환</span><b>로고를 넣으면 교환·반품이 어렵습니다</b></summary><p>받은 옷을 먼저 입어 보고 사이즈를 확정한 뒤 마킹을 맡기세요.</p></details>
           <details class="nt"><summary><span class="nt-k">마킹</span><b>마킹 단가는 견적으로만 나옵니다</b></summary><p>후보 판매처 모두 단가를 공개하지 않습니다. 사커붐은 단체견적 게시판, 외부 업체(예: 팀메이커, 1장부터·시안 확정 후 2영업일)도 가능합니다. 로고는 AI 파일이나 고해상도 PNG로 준비하세요.</p></details>
+          <details class="nt"><summary><span class="nt-k">세트</span><b>상하 세트는 구성 방식이 후보마다 다릅니다</b></summary><p>대부분은 같은 라인의 자켓과 하의를 따로 사서 두 가격을 더한 금액입니다. 조마·켈미는 판매처의 세트 상품 가격이며, 나이키 파크26·아디다스 3S 트랙수트·3S 플리스는 상하 한 벌로만 판매됩니다. 갈렉스는 같은 라인 하의가 없어 같은 브랜드의 기모 팬츠를 짝지었습니다. 하의는 허리 사이즈로 따로 고르셔야 합니다.</p></details>
           <details class="nt"><summary><span class="nt-k">가격</span><b>표시 가격은 할인·쿠폰가입니다</b></summary><p>네파는 무신사 쿠폰 적용가, 갈렉스는 타임특가입니다. 행사가 끝나면 오를 수 있으니 주문 당일 링크에서 다시 확인하세요.</p></details>
           <details class="nt"><summary><span class="nt-k">재고</span><b>사이즈가 일부만 남은 후보가 있습니다</b></summary><p>푸마 팀라이즈는 L~2XL, 갈렉스는 M·L만 남았습니다. 회원 사이즈를 모은 뒤 전원 분이 있는지 확인하세요.</p></details>
           <details class="nt"><summary><span class="nt-k">배송</span><b>배송비·교환 조건은 판매처마다 다릅니다</b></summary><p>사커붐과 무신사 상품 페이지의 배송·반품 안내를 따릅니다.</p></details>
@@ -484,6 +514,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
       <div class="panel">
         <h3>조건</h3>
         <div class="hint below" data-hint="order" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span>후보·인원·금액을 <b>눌러서</b> 바꾸면 예상 금액이 바로 바뀝니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
+        <div class="field"><span class="flabel">구성</span><div class="mode" role="group" aria-label="주문 구성 선택"><button type="button" data-mode="set" aria-pressed="true">상하 세트</button><button type="button" data-mode="top" aria-pressed="false">자켓만</button></div></div>
         <div class="field"><label for="oItem">후보</label><select id="oItem"></select></div>
         <div class="field"><label for="oPeople">인원 (명)</label>
           <div class="people"><button type="button" class="step" data-step="-1" aria-label="한 명 빼기">−</button><input id="oPeople" type="number" min="1" max="200" value="20" inputmode="numeric"><button type="button" class="step" data-step="1" aria-label="한 명 더하기">+</button></div>
@@ -495,7 +526,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
       <div class="panel">
         <h3>예상 금액</h3>
         <div class="total">
-          <div class="row"><span>옷값</span><b id="tCloth">–</b></div>
+          <div class="row"><span id="tClothL">옷값</span><b id="tCloth">–</b></div>
           <div class="row"><span>로고</span><b id="tLogo">–</b></div>
           <div class="row"><span>총액</span><b class="big" id="tTotal">–</b></div>
         </div>
@@ -521,6 +552,10 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
 <dialog id="cmp" aria-label="나란히 비교"><div style="position:relative" id="cmpIn"></div></dialog>
 
 <script>
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
 /* 후보 데이터: 조사 날짜 기준. 가격·링크는 바뀔 수 있음. */
 const DATA = [
  {"id": "puma-teamrise", "brand": "푸마", "name": "팀라이즈 트레이닝 폴리 자켓", "model": "657647-02", "price": 28200, "priceNote": "정가 49,000원에서 할인", "seller": "사커붐", "url": "https://soccerboom.co.kr/product/detail.html?product_no=47391", "hood": false, "pockets": "옆 주머니 2개(지퍼 없음)", "material": "폴리에스터 100%, DRYCELL", "warmth": 1, "warmthNote": "안감·기모 없는 얇은 저지", "fit": "미확인", "colors": [{"name": "일렉트릭 블루", "body": "#1E5FD0", "accent": "#FFFFFF"}], "sizes": "L(100)~2XL(110)만 남음", "logo": null, "logoNote": "사커붐 단체견적 게시판에서 마킹 포함 견적(공개 단가 없음)", "groupOrder": "단체 구매 시 할인가에서 추가 할인(견적제), 최소 수량 안내 없음", "pros": ["후보 중 가장 쌈", "축구 팀웨어 라인"], "cons": ["L~2XL만 남아 작은 사이즈는 못 삼", "얇아서 겨울엔 겹쳐 입어야 함"], "image": "https://soccerboom.co.kr/web/product/big/202309/5b1018d9d95c95a0e6ae6095fabb92c1.png"},
@@ -532,12 +567,15 @@ const DATA = [
  {"id": "adidas-tiro24", "brand": "아디다스", "name": "티로24 컴페티션 트레이닝 자켓", "model": "JF4196", "price": 53000, "priceNote": "정가 85,000원에서 할인", "seller": "사커붐", "url": "https://soccerboom.co.kr/product/detail.html?product_no=51851", "hood": false, "pockets": "지퍼 주머니", "material": "폴리에스터 100%, AEROREADY", "warmth": 1, "warmthNote": "안감 없는 저지", "fit": "미확인", "colors": [{"name": "화이트/솔라 레드", "body": "#F5F5F5", "accent": "#FF5A1F"}], "sizes": "S(90)~4XL(120)", "logo": null, "logoNote": "사커붐 단체견적 게시판에서 마킹 포함 견적(공개 단가 없음)", "groupOrder": "단체 구매 시 추가 할인(견적제), 최소 수량 안내 없음", "pros": ["S~4XL로 사이즈 폭이 가장 넓음", "티로 라인, 지퍼 주머니"], "cons": ["흰색 몸판뿐이라 때가 잘 보임"], "image": "https://soccerboom.co.kr/web/product/big/202512/b59667637299e11f7eadfa751849556c.png"},
  {"id": "kelme-k077", "brand": "켈미", "name": "K077 트레이닝 자켓", "model": "K077", "price": 54450, "priceNote": "정가 99,000원에서 45% 할인, 4색 같은 가격", "seller": "무신사", "url": "https://www.musinsa.com/products/3587802", "hood": false, "pockets": "옆 주머니 2개(사진상 지퍼 있음)", "material": "폴리에스터 100%", "warmth": 1, "warmthNote": "안감·기모 표기 없음", "fit": "미확인", "colors": [{"name": "로얄 블루/화이트", "body": "#1F4FA8", "accent": "#FFFFFF", "image": "https://image.msscdn.net/images/goods_img/20230922/3587802/3587802_16953658812434_500.jpg"}, {"name": "블랙/화이트", "body": "#111111", "accent": "#FFFFFF", "image": "https://image.msscdn.net/images/goods_img/20230922/3588040/3588040_16953672412921_500.jpg", "url": "https://www.musinsa.com/products/3588040"}, {"name": "다크 그레이/네온 오렌지", "body": "#3A3D42", "accent": "#FF6A1A", "image": "https://image.msscdn.net/images/goods_img/20230922/3587732/3587732_16953652436671_500.jpg", "url": "https://www.musinsa.com/products/3587732"}, {"name": "블랙/네온 옐로우", "body": "#111111", "accent": "#D7F21C", "image": "https://image.msscdn.net/images/goods_img/20230922/3587866/3587866_16953662743164_500.jpg", "url": "https://www.musinsa.com/products/3587866"}], "sizes": "S(90)~2XL(110)", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["4색이라 팀 색 맞추기 쉬움", "가슴 로고 자수, 래글런 소매"], "cons": ["보온 기능 없음", "2018년 출시 모델"], "image": "https://image.msscdn.net/images/goods_img/20230922/3587802/3587802_16953658812434_500.jpg"},
  {"id": "nepa-bonding", "brand": "네파", "name": "포레스타 트리코트 본딩 트레이닝자켓", "model": "7K56223", "price": 48000, "priceNote": "무신사 표시가(쿠폰 적용가). 쿠폰 없이 60,000원, 정가 169,000원", "seller": "무신사", "url": "https://www.musinsa.com/products/4447145", "hood": false, "pockets": "옆 주머니, 가슴 지퍼 주머니", "material": "나일론·폴리우레탄 겉감에 폴리에스터 본딩", "warmth": 2, "warmthNote": "본딩 원단, 판매처 '보온성이 우수'", "fit": "미확인", "colors": [{"name": "섀도 그레이", "body": "#5E625F", "accent": "#3FA9E0", "image": "https://image.msscdn.net/images/goods_img/20240920/4447145/4447145_17267974750877_500.jpg"}, {"name": "블랙", "body": "#151515", "accent": "#3FA9E0"}], "sizes": "95~110", "logo": null, "logoNote": "판매처 안내 없음. 무지 디자인이라 로고 넣기 좋음", "groupOrder": "판매처 안내 없음", "pros": ["본딩 원단이라 저지보다 따뜻함", "무지라 팀 로고 넣기 좋음"], "cons": ["축구 브랜드가 아닌 아웃도어 브랜드", "95 미만 없음"], "image": "https://image.msscdn.net/images/goods_img/20240920/4447145/4447145_17267974750877_500.jpg"},
- {"id": "lecoq-durotherm", "brand": "르꼬끄", "name": "듀라썸 기모 트랙탑", "model": "QP423EFTO4", "price": 63600, "priceNote": "정가 159,000원에서 할인(블랙 기준), 베이지 57,240원", "seller": "무신사", "url": "https://www.musinsa.com/products/4480866", "hood": false, "pockets": "옆 주머니 2개(지퍼 여부 미확인)", "material": "폴리에스터 96%·폴리우레탄 4%, 안쪽 기모", "warmth": 2, "warmthNote": "안쪽 기모, 판매처 '가볍고 보온성이 우수'", "fit": "레귤러핏", "colors": [{"name": "블랙", "body": "#141414", "accent": "#FFFFFF", "image": "https://image.msscdn.net/images/goods_img/20241002/4480866/4480866_17304318831601_500.jpg"}, {"name": "베이지", "body": "#E6E1D6", "accent": "#2B2B2B", "image": "https://image.msscdn.net/images/goods_img/20241002/4480869/4480869_17304318931535_500.jpg", "url": "https://www.musinsa.com/products/4480869", "price": 57240}, {"name": "퍼플", "body": "#D9C3CF", "accent": "#4A4A4A", "image": "https://image.msscdn.net/images/goods_img/20241002/4480867/4480867_17304318886907_500.jpg", "url": "https://www.musinsa.com/products/4480867"}], "sizes": "85~110", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["기모 안감이라 겨울에 맞음", "85~110로 사이즈 폭이 넓음"], "cons": ["후보 중 가장 비쌈", "팀복보다는 일상용 트랙탑 디자인"], "image": "https://image.msscdn.net/images/goods_img/20241002/4480866/4480866_17304318831601_500.jpg"}
+ {"id": "lecoq-durotherm", "brand": "르꼬끄", "name": "듀라썸 기모 트랙탑", "model": "QP423EFTO4", "price": 63600, "priceNote": "정가 159,000원에서 할인(블랙 기준), 베이지 57,240원", "seller": "무신사", "url": "https://www.musinsa.com/products/4480866", "hood": false, "pockets": "옆 주머니 2개(지퍼 여부 미확인)", "material": "폴리에스터 96%·폴리우레탄 4%, 안쪽 기모", "warmth": 2, "warmthNote": "안쪽 기모, 판매처 '가볍고 보온성이 우수'", "fit": "레귤러핏", "colors": [{"name": "블랙", "body": "#141414", "accent": "#FFFFFF", "image": "https://image.msscdn.net/images/goods_img/20241002/4480866/4480866_17304318831601_500.jpg"}, {"name": "베이지", "body": "#E6E1D6", "accent": "#2B2B2B", "image": "https://image.msscdn.net/images/goods_img/20241002/4480869/4480869_17304318931535_500.jpg", "url": "https://www.musinsa.com/products/4480869", "price": 57240}, {"name": "퍼플", "body": "#D9C3CF", "accent": "#4A4A4A", "image": "https://image.msscdn.net/images/goods_img/20241002/4480867/4480867_17304318886907_500.jpg", "url": "https://www.musinsa.com/products/4480867"}], "sizes": "85~110", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["기모 안감이라 겨울에 맞음", "85~110로 사이즈 폭이 넓음"], "cons": ["후보 중 가장 비쌈", "팀복보다는 일상용 트랙탑 디자인"], "image": "https://image.msscdn.net/images/goods_img/20241002/4480866/4480866_17304318831601_500.jpg"},
+ {"id": "nike-park26-suit", "brand": "나이키", "name": "드라이 핏 파크26 트랙수트", "model": "HM7259", "price": 60000, "priceNote": "정가 95,000원에서 할인. 자켓과 하의가 한 상품으로 묶인 세트", "seller": "사커붐", "url": "https://soccerboom.co.kr/product/detail.html?product_no=52795", "hood": false, "pockets": "미확인", "material": "폴리에스터, Dri-FIT", "warmth": 1, "warmthNote": "안감·기모 표기 없는 저지", "fit": "미확인", "colors": [{"name": "블랙", "body": "#111111", "accent": "#FFFFFF", "image": "https://soccerboom.co.kr/web/product/big/202606/8a0d5a48e0614934b0371dc115ede38e.png"}, {"name": "네이비", "body": "#1F2A44", "accent": "#FFFFFF", "image": "https://soccerboom.co.kr/web/product/big/202607/544fba8a7224a6589820f7f219fc25c0.jpg", "url": "https://soccerboom.co.kr/product/detail.html?product_no=53076"}], "sizes": "XS(90)~3XL(120), 네이비는 S부터", "logo": null, "logoNote": "사커붐 단체견적 게시판에서 마킹 포함 견적(공개 단가 없음)", "groupOrder": "단체 구매 시 추가 할인(견적제), 최소 수량 안내 없음", "pros": ["상하 세트가 6만 원으로 가장 저렴한 축에 속함", "검정·네이비 2색"], "cons": ["자켓만 따로 살 수 없음", "얇은 저지라 한겨울엔 겹쳐 입어야 함"], "image": "https://soccerboom.co.kr/web/product/big/202606/8a0d5a48e0614934b0371dc115ede38e.png", "set": {"kind": "one"}, "setOnly": true},
+ {"id": "adidas-3s-tracksuit", "brand": "아디다스", "name": "M 3S 트레이닝 트랙수트", "model": "KB7657", "price": 59000, "priceNote": "정가 95,000원에서 할인. 자켓과 하의가 한 상품으로 묶인 세트", "seller": "사커붐", "url": "https://soccerboom.co.kr/product/detail.html?product_no=51153", "hood": false, "pockets": "미확인", "material": "미확인", "warmth": 1, "warmthNote": "보온 기능 표기 없음", "fit": "미확인", "colors": [{"name": "네이비", "body": "#22306B", "accent": "#1A1F3D"}], "sizes": "S(90)~3XL(115)", "logo": null, "logoNote": "사커붐 단체견적 게시판에서 마킹 포함 견적(공개 단가 없음)", "groupOrder": "단체 구매 시 추가 할인(견적제), 최소 수량 안내 없음", "pros": ["후보 중 가장 싼 상하 세트", "아디다스 3선 디자인"], "cons": ["자켓만 따로 살 수 없음", "네이비 1색, 소재 정보가 판매처에 없음"], "image": "https://soccerboom.co.kr/web/product/big/202507/3e32877618186d103a20b9dac7d0c6ab.jpg", "set": {"kind": "one"}, "setOnly": true},
+ {"id": "adidas-3s-fleece", "brand": "아디다스", "name": "3S 플리스 트랙수트", "model": "KS5395", "price": 74300, "priceNote": "정가 119,000원에서 할인. 자켓과 하의가 한 상품으로 묶인 세트", "seller": "사커붐", "url": "https://soccerboom.co.kr/product/detail.html?product_no=53234", "hood": false, "pockets": "미확인", "material": "면 70%·폴리에스터 30% 플리스", "warmth": 2, "warmthNote": "플리스 원단, 판매처 '간절기 및 겨울철 활동'", "fit": "미확인", "colors": [{"name": "그레이", "body": "#8A8C8E", "accent": "#1A1A1A"}], "sizes": "S(90)~4XL(120)", "logo": null, "logoNote": "사커붐 단체견적 게시판에서 마킹 포함 견적(공개 단가 없음)", "groupOrder": "단체 구매 시 추가 할인(견적제), 최소 수량 안내 없음", "pros": ["플리스라 저지 세트보다 따뜻함", "S~4XL로 사이즈 폭이 넓음"], "cons": ["자켓만 따로 살 수 없음", "면 소재라 비·땀에 젖으면 무거움", "그레이 1색"], "image": "https://soccerboom.co.kr/web/product/big/202609/f635aae33fbde1d533b0f0d42784910e.png", "set": {"kind": "one"}, "setOnly": true}
 ];
 const CHECKED = "2026-11-01";
 /* 살 수 있는 사이즈 범위(한국 표기). 갈렉스 M·L은 95·100으로 봄 */
 /* 판매처 표시 정가 (2026-11-01) */
-const LIST = {"puma-teamrise":49000,"adidas-squadra25":55000,"galex-hood-padding":159000,"puma-teamliga-sideline":73000,"nike-academy25-track":75000,"joma-champion4":89000,"adidas-tiro24":85000,"kelme-k077":99000,"nepa-bonding":169000,"lecoq-durotherm":159000};
+const LIST = {"puma-teamrise":49000,"adidas-squadra25":55000,"galex-hood-padding":159000,"puma-teamliga-sideline":73000,"nike-academy25-track":75000,"joma-champion4":89000,"adidas-tiro24":85000,"kelme-k077":99000,"nepa-bonding":169000,"lecoq-durotherm":159000,"nike-park26-suit":95000,"adidas-3s-tracksuit":95000,"adidas-3s-fleece":119000};
 /* 판매처 후기 평점·개수: 확인된 값만 넣음 (없으면 표시 안 함) */
 const RATING = {
   "puma-teamrise":{count:0},
@@ -549,9 +587,39 @@ const RATING = {
   "joma-champion4":{score:5.0, scale:5, count:1, themes:["가격 대비 품질이 좋다는 평"], src:"https://www.musinsa.com/products/3767943"},
   "adidas-tiro24":{score:5.0, scale:5, count:1, themes:["짧은 만족 평 1건"], src:"https://soccerboom.co.kr/board/product/read.html?no=214314&board_no=4"},
   "kelme-k077":{score:5.0, scale:5, count:1, themes:["디자인·야간 시인성 칭찬","착용감·가격 만족"], src:"https://www.musinsa.com/products/3587866"},
-  "lecoq-durotherm":{count:0}
+  "lecoq-durotherm":{count:0},
+  "nike-park26-suit":{count:0},
+  "adidas-3s-tracksuit":{count:0},
+  "adidas-3s-fleece":{count:0}
 };
-const SIZE = {"puma-teamrise":[100,110],"adidas-squadra25":[95,110],"galex-hood-padding":[95,100],"puma-teamliga-sideline":[90,110],"nike-academy25-track":[90,115],"joma-champion4":[95,110],"adidas-tiro24":[90,120],"kelme-k077":[90,110],"nepa-bonding":[95,110],"lecoq-durotherm":[85,110]};
+const SIZE = {"puma-teamrise":[100,110],"adidas-squadra25":[95,110],"galex-hood-padding":[95,100],"puma-teamliga-sideline":[90,110],"nike-academy25-track":[90,115],"joma-champion4":[95,110],"adidas-tiro24":[90,120],"kelme-k077":[90,110],"nepa-bonding":[95,110],"lecoq-durotherm":[85,110],"nike-park26-suit":[90,120],"adidas-3s-tracksuit":[90,115],"adidas-3s-fleece":[90,120]};
+/* 상하 세트: 같은 라인 하의(same), 판매처 세트 상품(bundle), 같은 라인이 없어 짝지은 하의(other). 2026-11-02 확인 */
+const SETS = {
+  "puma-teamrise":{kind:"same", name:"팀라이즈 폴리 트레이닝 팬츠", model:"65739003", price:33300, list:59000, seller:"사커붐", url:"https://soccerboom.co.kr/product/detail.html?product_no=42089", image:"https://soccerboom.co.kr/web/product/big/202102/eb1f8f84df9e62658a1cc26c82a23941.png", sizes:"XS(85)~2XL(110)", note:"블랙 기준. 네이비(65739006, 같은 가격)도 있음"},
+  "adidas-squadra25":{kind:"same", name:"스쿼드라25 트레이닝 팬츠", model:"JD1625", price:35300, list:55000, seller:"사커붐", url:"https://soccerboom.co.kr/product/detail.html?product_no=51859", image:"https://soccerboom.co.kr/web/product/big/202512/9c7d2583e17cd41942a64cae6dff99ac.png", sizes:"S(90)~4XL(120)", note:"판매처 사진 기준 짙은 회색"},
+  "galex-hood-padding":{kind:"other", name:"에센셜 풋볼 기모 롱팬츠", model:"GA5851 BK", price:28900, list:49000, seller:"무신사", url:"https://www.musinsa.com/products/5469082", image:"https://image.msscdn.net/images/goods_img/20250916/5469082/5469082_17580041718710_500.jpg", sizes:"판매처에서 확인", note:"패딩과 같은 라인 하의가 없어, 같은 브랜드의 같은 시기 기모 팬츠를 짝지었습니다"},
+  "puma-teamliga-sideline":{kind:"same", name:"팀리가 사이드라인 팬츠", model:"65726103", price:43800, list:73000, seller:"무신사", url:"https://www.musinsa.com/products/3808180", image:"https://image.msscdn.net/images/goods_img/20240119/3808180/3808180_17056288897145_500.jpg", sizes:"판매처에서 확인", note:"블랙"},
+  "nike-academy25-track":{kind:"same", name:"드라이 핏 아카데미25 팬츠", model:"FZ9805-010", price:38800, list:69000, seller:"사커붐", url:"https://soccerboom.co.kr/product/detail.html?product_no=51619", image:"https://soccerboom.co.kr/web/product/big/202602/e31678ea770fa7347df18fbafa93c07e.jpg", sizes:"XS~3XL", note:"블랙 기준. 네이비(FZ9805-410)는 42,000원, 로얄 블루 하의는 없음"},
+  "joma-champion4":{kind:"bundle", name:"챔피언 IV 자켓 + 트레이닝 팬츠 세트", model:"100687.102K + 100540.100K", price:76450, list:139000, seller:"무신사", url:"https://www.musinsa.com/products/3768121", image:"https://image.msscdn.net/images/goods_img/20231227/3768121/3768121_17036440939750_500.jpg", sizes:"판매처에서 확인", note:"블랙/화이트 기준. 로얄 블루 세트(같은 가격)도 있음. 따로 사면 81,400원"},
+  "adidas-tiro24":{kind:"same", name:"티로24 컴페티션 트레이닝 팬츠", model:"JF4193", price:49600, list:79000, seller:"사커붐", url:"https://soccerboom.co.kr/product/detail.html?product_no=51850", image:"https://soccerboom.co.kr/web/product/big/202512/92e7ea02f4f12b3718f920baf5a3f6f2.png", sizes:"S(90)~4XL(120)", note:"판매처 사진 기준 파랑(주황 포인트)"},
+  "kelme-k077":{kind:"bundle", name:"K077/K087 래글런 트레이닝 세트", model:"K077 + K087", price:92400, list:168000, seller:"무신사", url:"https://www.musinsa.com/products/3587148", image:"https://image.msscdn.net/images/goods_img/20230922/3587148/3587148_16953606876024_500.jpg", sizes:"판매처에서 확인", note:"세트는 블랙/네온 옐로우, 블랙/실버, 메탈 그레이/네온 오렌지 3색. 로얄 블루는 세트 없음"},
+  "nepa-bonding":{kind:"same", name:"포레스타 트리코트 본딩 트레이닝 팬츠", model:"7K56323", price:59000, list:139000, seller:"무신사", url:"https://www.musinsa.com/products/4446973", image:"https://image.msscdn.net/images/goods_img/20240920/4446973/4446973_17267958857468_500.jpg", sizes:"판매처에서 확인", note:"판매처 사진 기준 회색"},
+  "lecoq-durotherm":{kind:"same", name:"듀라썸 기모 트랙팬츠", model:"QP423EFPO4", price:51600, list:129000, seller:"무신사", url:"https://www.musinsa.com/products/4480874", image:"https://image.msscdn.net/images/goods_img/20241002/4480874/4480874_17326703058734_500.jpg", sizes:"판매처에서 확인", note:"블랙. 퍼플도 있음"}
+};
+const SET_KIND = {same:"같은 라인 하의", bundle:"세트 상품", one:"상하 한 벌 상품", other:"다른 라인 하의"};
+DATA.forEach(d=>{ if(!d.set && SETS[d.id]) d.set = SETS[d.id]; });
+let mode = store.get("tp-mode", "set") === "top" ? "top" : "set";
+/* 지금 보는 구성(상하 세트 / 자켓만)의 판매가·정가. jp는 색마다 다른 자켓 가격 */
+function cost(d, jp){
+  const j = jp || d.price, s = d.set;
+  if(mode === "set" && s && s.kind !== "one"){
+    if(s.kind === "bundle") return {sale:s.price, list:s.list};
+    return {sale:j + s.price, list:(LIST[d.id]||j) + (s.list||s.price), top:j, bottom:s.price};
+  }
+  return {sale:j, list:LIST[d.id]};
+}
+function pool(){ return DATA.filter(d => mode === "set" || !d.setOnly); }
+function setTag(d){ return d.set ? SET_KIND[d.set.kind] : "하의 없음"; }
 const SIZE_NAME = {85:"XS",90:"S",95:"M",100:"L",105:"XL",110:"2XL",115:"3XL",120:"4XL"};
 /* 상품 사진은 판매처 서버에서 바로 불러옴. 못 불러오면 안내 문구로 대신함 */
 function photo(d, cls){
@@ -564,15 +632,12 @@ function photoFail(img, id){
 
 const $ = s => document.querySelector(s);
 const won = n => n == null ? "–" : n.toLocaleString("ko-KR") + "원";
-const store = {
-  get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
-  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
-};
 let picks = new Set(store.get("tp-picks", []));
 let compare = [];
 const filt = { price:"all", hood:"all", warm:"all", pick:"all" };
 
-function band(p){ return p < 40000 ? "low" : p < 60000 ? "mid" : "high"; }
+const BANDS = {top:[40000,60000,["2~3만 원대","4~5만 원대","6~7만 원대"]], set:[70000,90000,["7만 원 미만","7~8만 원대","9만 원 이상"]]};
+function band(p){ const [a,b] = BANDS[mode]; return p < a ? "low" : p < b ? "mid" : "high"; }
 function esc(s){ return String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 
 function warmBar(w){ return `<span class="warm" title="보온 ${w}/3">${[1,2,3].map(i=>`<i class="${i<=w?"on":""}"></i>`).join("")} 보온</span>`; }
@@ -580,30 +645,32 @@ function logoShort(d){ return /견적/.test(d.logoNote) ? "견적제" : "안내 
 function hoodLabel(d){ return d.hood === true ? "후드 있음" : d.hood === false ? "후드 없음" : "후드 미확인"; }
 
 function list(){
-  let xs = DATA.filter(d =>
-    (filt.price === "all" || band(d.price) === filt.price) &&
+  let xs = pool().filter(d =>
+    (filt.price === "all" || band(cost(d).sale) === filt.price) &&
     (filt.hood === "all" || (filt.hood === "yes" ? d.hood === true : d.hood === false)) &&
     (filt.warm === "all" || d.warmth >= 2) &&
     (filt.pick === "all" || picks.has(d.id)));
   const s = $("#sort").value;
-  xs.sort((a,b) => s === "price-desc" ? b.price-a.price : s === "warm-desc" ? (b.warmth-a.warmth || a.price-b.price) : a.price-b.price);
+  const P = d => cost(d).sale;
+  xs.sort((a,b) => s === "price-desc" ? P(b)-P(a) : s === "warm-desc" ? (b.warmth-a.warmth || P(a)-P(b)) : P(a)-P(b));
   return xs;
 }
 
 function renderGrid(){
   const xs = list();
-  $("#count").textContent = `${xs.length}개 / 전체 ${DATA.length}개`;
-  $("#count2").textContent = `${xs.length}개 / 전체 ${DATA.length}개`;
+  const all = pool().length;
+  $("#count").textContent = `${xs.length}개 / 전체 ${all}개`;
+  $("#count2").textContent = `${xs.length}개 / 전체 ${all}개`;
   const on = Object.values(filt).filter(v=>v!=="all").length; $("#fOn").textContent = on ? `(${on})` : "";
   const fd = document.querySelector(".fdone"); if(fd) fd.textContent = `${xs.length}개 결과 보기`;
   $("#grid").innerHTML = xs.length ? xs.map(d => {
     return `<article class="card ${picks.has(d.id)?"picked":""}" id="c-${d.id}">
-      <button class="art" data-open="${d.id}" aria-label="${esc(d.name)} 자세히">${photo(d)}</button>
+      <button class="art" data-open="${d.id}" aria-label="${esc(d.name)} 자세히">${photo(d)}${mode==="set" && d.set && d.set.kind!=="one" ? `<span class="pants-th"><img src="${esc(d.set.image)}" alt="" loading="lazy" referrerpolicy="no-referrer"><small>${d.set.kind==="bundle"?"세트":"하의"}</small></span>` : ""}</button>
       <div class="body">
         <span class="brand-l">${esc(d.brand)}</span>
         <h3 data-open="${d.id}">${esc(d.name)}</h3>
-        ${priceBlock(d)}<span class="seller">${esc(d.seller)}</span>${ratingLine(d)}
-        <div class="tags"><span class="tag">${hoodLabel(d)}</span>${d.warmth>=2?'<span class="tag logo">겨울용</span>':""}<span class="tag">${esc(d.sizes.split(" ")[0])}</span></div>
+        ${priceBlock(d)}${splitLine(d)}<span class="seller">${esc(d.seller)}</span>${ratingLine(d)}
+        <div class="tags">${mode==="set"||d.setOnly?`<span class="tag set ${d.set?d.set.kind:"none"}">${setTag(d)}</span>`:""}<span class="tag">${hoodLabel(d)}</span>${d.warmth>=2?'<span class="tag logo">겨울용</span>':""}<span class="tag">${esc(d.sizes.split(" ")[0])}</span></div>
         ${warmBar(d.warmth)}
         <div class="dots" role="group" aria-label="판매 색상 ${d.colors.length}가지">${swatches(d)}<span class="sw-name">${d.colors.length>1?`${d.colors.length}색 · 눌러서 보기`:esc(d.colors[0].name)}</span></div>
         <div class="actions">
@@ -617,7 +684,8 @@ function renderGrid(){
 
 const COLS = [
   {k:"name", t:"후보", v:d=>d.brand+" "+d.name, h:d=>`${picks.has(d.id)?"★ ":""}<a href="#c-${d.id}" data-open="${d.id}">${esc(d.brand)} ${esc(d.name)}</a>`},
-  {k:"price", t:"가격", v:d=>d.price, h:d=>`<span class="num">${won(d.price)}</span>`, r:1, nw:1},
+  {k:"price", t:"가격", v:d=>cost(d).sale, h:d=>`<span class="num">${won(cost(d).sale)}</span>`, r:1, nw:1},
+  {k:"set", t:"하의", v:d=>setTag(d), h:d=>d.set && d.set.kind!=="one" ? `<span class="tag set ${d.set.kind}">${setTag(d)}</span><br><small>${esc(d.set.name)} ${won(d.set.kind==="bundle"?d.set.price:d.set.price)}${d.set.kind==="bundle"?"(세트)":""}</small>` : d.set ? `<span class="tag set one">${setTag(d)}</span>` : "없음"},
   {k:"hood", t:"후드", v:d=>String(d.hood), h:d=>hoodLabel(d), nw:1},
   {k:"pockets", t:"주머니", v:d=>d.pockets, h:d=>esc(d.pockets)},
   {k:"warmth", t:"보온", v:d=>d.warmth, h:d=>`<span title="보온 ${d.warmth}/3">${"●".repeat(d.warmth)}${"○".repeat(3-d.warmth)}</span>`, nw:1},
@@ -630,15 +698,33 @@ const COLS = [
 let tsort = {k:"price", dir:1};
 function renderTable(){
   document.querySelectorAll("[data-ts]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.ts===tsort.k));
-  const xs = [...DATA].sort((a,b)=>{ const c = COLS.find(c=>c.k===tsort.k); const x=c.v(a), y=c.v(b); return (x>y?1:x<y?-1:0)*tsort.dir; });
+  const xs = pool().sort((a,b)=>{ const c = COLS.find(c=>c.k===tsort.k); const x=c.v(a), y=c.v(b); return (x>y?1:x<y?-1:0)*tsort.dir; });
   $("#tbl").innerHTML = `<thead><tr>${COLS.map(c=>`<th class="col-${c.k}" data-k="${c.k}" role="button" aria-sort="${tsort.k===c.k?(tsort.dir>0?"ascending":"descending"):"none"}" tabindex="0">${c.t}</th>`).join("")}</tr></thead>
   <tbody>${xs.map(d=>`<tr class="${picks.has(d.id)?"picked":""}">${COLS.map(c=>`<td class="col-${c.k} ${c.r?"r ":""}${c.nw?"nw":""}" data-l="${c.t}">${c.h(d)}</td>`).join("")}</tr>`).join("")}</tbody>`;
 }
 
 /* 색 견본: 누르면 그 색 사진(판매처 사진이 있을 때)으로 바꿈 */
 function priceBlock(d, price){
-  const sale = price || d.price, list = LIST[d.id], off = list && list > sale ? Math.round((1 - sale/list)*100) : 0;
+  const c = cost(d, price), sale = c.sale, list = c.list, off = list && list > sale ? Math.round((1 - sale/list)*100) : 0;
   return `<div class="pr">${off?`<span class="pr-list"><del>${won(list)}</del> <b class="pr-off">${off}%</b></span>`:""}<span class="pr-sale num">${won(sale)}</span></div>`;
+}
+function splitLine(d, jp){
+  const c = cost(d, jp);
+  if(c.bottom) return `<span class="pr-split">자켓 ${won(c.top)} + 하의 ${won(c.bottom)}</span>`;
+  if(mode==="set" && d.set && d.set.kind==="bundle") return `<span class="pr-split">자켓·하의 세트 상품</span>`;
+  if(d.setOnly) return `<span class="pr-split">자켓·하의 한 벌 가격</span>`;
+  return "";
+}
+function setBlock(d){
+  const s = d.set;
+  if(!s) return `<div class="setbox"><h4>하의</h4><p class="note" style="margin:0">같은 라인 하의를 찾지 못했습니다.</p></div>`;
+  if(s.kind === "one") return `<div class="setbox"><h4>상하 세트 <span class="tag set one">${SET_KIND.one}</span></h4><p class="note" style="margin:0">자켓과 하의가 한 상품으로 판매되며, 자켓만 따로 살 수 없습니다. 위 가격은 상하 한 벌 가격입니다.</p></div>`;
+  return `<div class="setbox"><h4>${s.kind==="bundle"?"상하 세트":"짝이 되는 하의"} <span class="tag set ${s.kind}">${SET_KIND[s.kind]}</span></h4>
+    <div class="set-row"><a class="set-ph" href="${esc(s.url)}" target="_blank" rel="noopener"><img src="${esc(s.image)}" alt="${esc(s.name)} 사진" loading="lazy" referrerpolicy="no-referrer" onerror="photoFail(this)"></a>
+    <div class="set-tx"><b>${esc(s.name)}</b><span class="note">${esc(s.model)} · ${esc(s.seller)}</span>
+      <span class="num set-pr">${s.list>s.price?`<del>${won(s.list)}</del> `:""}<b>${won(s.price)}</b>${s.kind==="bundle"?" (자켓 포함)":""}</span>
+      <span class="note">사이즈: ${esc(s.sizes)}</span><span class="note">${esc(s.note)}</span>
+      <a class="btn set-go" href="${esc(s.url)}" target="_blank" rel="noopener">${s.kind==="bundle"?"세트":"하의"} 판매 페이지 보기</a></div></div></div>`;
 }
 function ratingLine(d){
   const r = RATING[d.id]; if(!r) return "";
@@ -672,7 +758,7 @@ function setColor(box, d, i){
   const k = d.colors[i];
   box.querySelectorAll("[data-sw]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.sw===`${d.id}:${i}`));
   box.querySelector(".sw-name").textContent = "색상: " + k.name + (k.image || d.colors.length===1 ? "" : " · 판매처에 이 색 사진이 없어 다른 색 사진입니다");
-  box.querySelector(".dlg-price").innerHTML = priceBlock(d, k.price);
+  box.querySelector(".dlg-price").innerHTML = priceBlock(d, k.price) + splitLine(d, k.price);
   box.querySelector(".dlg-bar a.btn.primary").href = k.url || d.url;
 }
 function gallery(d){
@@ -687,7 +773,7 @@ function detail(d){
   <div class="dlg-info">
     <span class="brand-l">${esc(d.brand)}${d.model?` · ${esc(d.model)}`:""}</span>
     <h2 id="dlgTitle">${esc(d.name)}</h2>
-    <div class="dlg-price">${priceBlock(d)}</div>
+    <div class="dlg-price">${priceBlock(d)}${splitLine(d)}</div>
     <p class="dlg-note">${esc(d.priceNote||"")}</p>
     ${ratingLine(d)}
     <div class="tags"><span class="tag">${hoodLabel(d)}</span>${warmBar(d.warmth)}</div>
@@ -695,6 +781,7 @@ function detail(d){
     <span class="sw-name">색상: ${esc(d.colors[0].name)}</span>
   </div>
   <div class="dlg-body">
+    ${setBlock(d)}
     <dl class="kv">
       <dt>후드·주머니</dt><dd>${hoodLabel(d)} · ${esc(d.pockets)}</dd>
       <dt>소재·보온</dt><dd>${esc(d.material)}${d.warmthNote?` — ${esc(d.warmthNote)}`:""}</dd>
@@ -713,7 +800,7 @@ function detail(d){
   </div>
   <div class="dlg-bar">
     <button class="btn pick" data-pick="${d.id}" aria-pressed="${picks.has(d.id)}">${picks.has(d.id)?"★ 찜함":"☆ 찜"}</button>
-    ${d.url?`<a class="btn primary" href="${esc(d.url)}" target="_blank" rel="noopener">판매 페이지 보기</a>`:""}
+    ${d.url?`<a class="btn primary" href="${esc(d.url)}" target="_blank" rel="noopener">${d.setOnly?"세트 판매 페이지":"자켓 판매 페이지"}</a>`:""}
   </div>`;
 }
 let lastFocus = null;
@@ -739,7 +826,7 @@ function openDetail(id){
 }
 function openCompare(){
   const xs = compare.map(id=>DATA.find(d=>d.id===id)).filter(Boolean);
-  const rows = [["가격",d=>`<b class="num">${won(d.price)}</b>`],["후드",d=>hoodLabel(d)],["주머니",d=>esc(d.pockets)],["보온",d=>"●".repeat(d.warmth)+"○".repeat(3-d.warmth)],["소재",d=>esc(d.material)],["핏",d=>esc(d.fit)],["로고",d=>esc(d.logoNote)],["단체",d=>esc(d.groupOrder)],["좋은 점",d=>d.pros.map(esc).join("<br>")],["아쉬운 점",d=>d.cons.map(esc).join("<br>")]];
+  const rows = [["가격",d=>`<b class="num">${won(cost(d).sale)}</b>${splitLine(d)}`],["하의",d=>d.set && d.set.kind!=="one" ? `${setTag(d)}<br>${esc(d.set.name)}` : setTag(d)],["후드",d=>hoodLabel(d)],["주머니",d=>esc(d.pockets)],["보온",d=>"●".repeat(d.warmth)+"○".repeat(3-d.warmth)],["소재",d=>esc(d.material)],["핏",d=>esc(d.fit)],["로고",d=>esc(d.logoNote)],["단체",d=>esc(d.groupOrder)],["좋은 점",d=>d.pros.map(esc).join("<br>")],["아쉬운 점",d=>d.cons.map(esc).join("<br>")]];
   $("#cmpIn").innerHTML = `<button class="close" data-close aria-label="닫기">×</button>
   <div style="padding:20px 16px 16px"><h2 style="font-size:18px;margin-bottom:12px">나란히 비교</h2>
   <div class="tablebox"><table style="min-width:${180*xs.length+90}px"><thead><tr><th></th>${xs.map(d=>{return `<th style="cursor:default;text-align:center"><div style="width:100px;aspect-ratio:5/6;margin:0 auto 6px;border-radius:8px;overflow:hidden;background:#fff">${photo(d)}</div>${esc(d.brand)}<br><span style="color:var(--fg)">${esc(d.name)}</span></th>`}).join("")}</tr></thead>
@@ -759,12 +846,14 @@ function toast(msg){ const t=document.createElement("div"); t.className="toast";
 
 function renderOrder(){
   const sel = $("#oItem");
-  if(!sel.options.length) sel.innerHTML = [...DATA].sort((a,b)=>a.price-b.price).map(d=>`<option value="${d.id}">${esc(d.brand)} ${esc(d.name)} (${won(d.price)})</option>`).join("");
+  const keep = sel.value, opts = pool().sort((a,b)=>cost(a).sale-cost(b).sale).map(d=>`<option value="${d.id}">${esc(d.brand)} ${esc(d.name)} (${won(cost(d).sale)})</option>`).join("");
+  if(sel.dataset.mode !== mode){ sel.innerHTML = opts; sel.dataset.mode = mode; if(pool().some(d=>d.id===keep)) sel.value = keep; }
   const d = DATA.find(x=>x.id===sel.value); if(!d) return;
   document.querySelectorAll("[data-people]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.people === String(+$("#oPeople").value)));
   const n = Math.min(200, Math.max(1, Math.round(+$("#oPeople").value)||1)), lg = Math.max(0, +$("#oLogo").value||0);
-  const cloth = d.price*n, logo = lg*n, total = cloth+logo;
+  const cloth = cost(d).sale*n, logo = lg*n, total = cloth+logo;
   $("#tCloth").textContent = won(cloth); $("#tLogo").textContent = won(logo);
+  $("#tClothL").textContent = mode==="set" ? "옷값(상하)" : "옷값(자켓)";
   $("#tTotal").textContent = won(total);
   $("#oLogoNote").textContent = "이 후보의 로고 안내: " + (d.logoNote || "미확인");
 }
@@ -776,9 +865,9 @@ function renderSize(){
   if(c < 83 || c > 122){ $("#sizeRec").textContent = "–"; $("#sizeNote").textContent = c < 83 ? "최소 표기(85, XS)보다 작습니다. 상품 페이지의 실측 사이즈를 확인하시기 바랍니다." : "최대 표기(120, 4XL)보다 큽니다. 상품 페이지의 실측 사이즈를 확인하시기 바랍니다."; $("#sizeHits").innerHTML = ""; return; }
   const s = Math.min(120, Math.max(85, Math.round(c/5)*5));
   $("#sizeRec").textContent = `${s}(${SIZE_NAME[s]})`;
-  const xs = [...DATA].sort((a,b)=>a.price-b.price);
+  const xs = pool().sort((a,b)=>cost(a).sale-cost(b).sale);
   const ok = xs.filter(d=>SIZE[d.id] && s>=SIZE[d.id][0] && s<=SIZE[d.id][1]);
-  $("#sizeNote").textContent = `해당 사이즈 구매 가능 후보 ${ok.length}종 / 전체 ${DATA.length}종. 슬림핏(나이키)은 한 치수 크게, 오버핏(갈렉스)은 정사이즈를 권장합니다.`;
+  $("#sizeNote").textContent = `해당 사이즈 구매 가능 후보 ${ok.length}종 / 전체 ${xs.length}종(상의 기준, 하의는 허리 사이즈로 따로 고릅니다). 슬림핏(나이키)은 한 치수 크게, 오버핏(갈렉스)은 정사이즈를 권장합니다.`;
   $("#sizeHits").innerHTML = xs.map(d=>{ const has = ok.includes(d); return `<button class="hit ${has?"":"no"}" data-open="${d.id}" title="${has?"이 사이즈 있음":"이 사이즈 없음"}">${esc(d.brand)} ${esc(d.name)}</button>`; }).join("");
 }
 /* 안내 말풍선: 해당 부분을 한 번 쓰거나 ×를 누르면 다시 보이지 않음 */
@@ -798,6 +887,15 @@ document.addEventListener("click", e=>{
   else if(e.target.closest(".fclose,.fdone,.fsheet-bg")) sheet(false);
 });
 function renderAll(){ renderGrid(); renderTable(); renderTray(); }
+function setMode(m){
+  mode = m; store.set("tp-mode", m);
+  document.querySelectorAll("[data-mode]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.mode===m));
+  const lb = BANDS[m][2]; document.querySelectorAll('.fgroup[data-key="price"] .chip:not([data-v="all"])').forEach((c,i)=>c.textContent = lb[i]);
+  $("#modeNote").textContent = m==="set" ? "가격은 자켓과 짝이 되는 하의를 더한 상하 한 벌 기준입니다." : "가격은 자켓 한 벌 기준입니다. 상하 한 벌로만 파는 후보는 숨겨집니다.";
+  compare = compare.filter(id=>pool().some(d=>d.id===id));
+  stats(); renderAll(); renderOrder(); renderSize();
+  if($("#dlg").open) openDetail($("#dlgIn").querySelector("[data-pick]")?.dataset.pick);
+}
 function togglePick(id){ picks.has(id)?picks.delete(id):picks.add(id); store.set("tp-picks",[...picks]); renderAll(); if($("#dlg").open) openDetail(id); }
 function toggleCmp(id){
   if(compare.includes(id)) compare = compare.filter(x=>x!==id);
@@ -816,6 +914,7 @@ document.addEventListener("click", e=>{
   }
   const ga = e.target.closest("[data-gal]"); if(ga){ const g = ga.closest(".gal-wrap").querySelector(".gal"); const w = g.clientWidth, cur = +(g.dataset.to ?? Math.round(g.scrollLeft/w)), to = Math.max(0, Math.min(g.children.length-1, cur + (+ga.dataset.gal))); g.dataset.to = to; g.scrollTo({left:to*w, behavior:"smooth"}); clearTimeout(g._t); g._t = setTimeout(()=>delete g.dataset.to, 600); return; }
   const sw = e.target.closest("[data-sw]"); if(sw){ pickColor(sw); return; }
+  const md = e.target.closest("[data-mode]"); if(md){ if(md.dataset.mode !== mode) setMode(md.dataset.mode); return; }
   const ts = e.target.closest("[data-ts]"); if(ts){ const k = ts.dataset.ts; tsort = {k, dir: tsort.k===k ? -tsort.dir : (k==="warmth" ? -1 : 1)}; renderTable(); return; }
   const t = e.target.closest("[data-open],[data-pick],[data-cmp],[data-close],[data-share],.chip,#goCompare,thead th[data-k]");
   if(!t) return;
@@ -860,14 +959,17 @@ const io = new IntersectionObserver(es=>{ es.forEach(en=>{ if(en.isIntersecting)
 document.querySelectorAll("#overview,section[id]").forEach(s=>io.observe(s));
 tabs[0].classList.add("on");
 
-function init(){
-  const ps = DATA.map(d=>d.price);
-  $("#statCount").textContent = DATA.length + "종";
-  $("#statBrand").textContent = new Set(DATA.map(d=>d.brand)).size + "개";
+function stats(){
+  const xs = pool(), ps = xs.map(d=>cost(d).sale);
+  $("#statCount").textContent = xs.length + "종";
+  $("#statBrand").textContent = new Set(xs.map(d=>d.brand)).size + "개";
   $("#statRange").textContent = ps.length ? `${Math.min(...ps).toLocaleString("ko-KR")}~${Math.max(...ps).toLocaleString("ko-KR")}원` : "–";
-  $("#statLogo").textContent = DATA.filter(d=>d.warmth>=2).length + "종";
+  $("#statRangeL").textContent = mode==="set" ? "상하 세트 가격" : "자켓 가격";
+  $("#statLogo").textContent = xs.filter(d=>d.warmth>=2).length + "종";
+}
+function init(){
   $("#foot").innerHTML = `본 페이지는 태평FC 회원 공유용 비교 자료입니다.<br>가격과 링크는 ${CHECKED} 기준이며, 판매처 사정에 따라 변경될 수 있습니다. 상품 사진은 각 판매처에서 제공한 사진입니다.`;
-  renderAll(); renderOrder(); renderSize();
+  setMode(mode);
   openFromHash();
 }
 init();
