@@ -252,6 +252,10 @@ dialog{border:0;border-radius:16px;padding:0;max-width:640px;width:calc(100% - 3
 .rt-star{color:var(--flood)}
 .rt small{color:var(--muted)}
 .rt.none{color:var(--muted)}
+.rv{background:var(--surface-2);border-radius:10px;padding:12px 14px}
+.rv h4{margin:0 0 6px;font-size:15px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.rv ul{margin:0 0 6px;padding-left:18px;font-size:14px}
+.rv a{color:var(--pitch-ink)}
 /* 색상: 사진 썸네일 */
 .sw.th{border-radius:8px;width:38px;height:44px;background:#fff;overflow:hidden}
 .sw.th img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
@@ -525,7 +529,18 @@ const CHECKED = "2026-11-01";
 /* 판매처 표시 정가 (2026-11-01) */
 const LIST = {"puma-teamrise":49000,"adidas-squadra25":55000,"galex-hood-padding":159000,"puma-teamliga-sideline":73000,"nike-academy25-track":75000,"joma-champion4":89000,"adidas-tiro24":85000,"kelme-k077":99000,"nepa-bonding":169000,"lecoq-durotherm":159000};
 /* 판매처 후기 평점·개수: 확인된 값만 넣음 (없으면 표시 안 함) */
-const RATING = {};
+const RATING = {
+  "puma-teamrise":{count:0},
+  "adidas-squadra25":{count:0},
+  "galex-hood-padding":{score:4.8, scale:5, count:4, themes:["가볍고 따뜻하다는 평이 많음","정전기·약간의 무게감 언급"], src:"https://www.musinsa.com/products/5468961"},
+  "puma-teamliga-sideline":{score:5.0, scale:5, count:3, themes:["넉넉한 오버핏이라는 평","운동·선선한 날씨에 입기 좋다는 평"], src:"https://www.musinsa.com/products/3771937"},
+  "nike-academy25-track":{count:0},
+  "nepa-bonding":{count:0},
+  "joma-champion4":{score:5.0, scale:5, count:1, themes:["가격 대비 품질이 좋다는 평"], src:"https://www.musinsa.com/products/3767943"},
+  "adidas-tiro24":{score:5.0, scale:5, count:1, themes:["짧은 만족 평 1건"], src:"https://soccerboom.co.kr/board/product/read.html?no=214314&board_no=4"},
+  "kelme-k077":{score:5.0, scale:5, count:1, themes:["디자인·야간 시인성 칭찬","착용감·가격 만족"], src:"https://www.musinsa.com/products/3587866"},
+  "lecoq-durotherm":{count:0}
+};
 const SIZE = {"puma-teamrise":[100,110],"adidas-squadra25":[95,110],"galex-hood-padding":[95,100],"puma-teamliga-sideline":[90,110],"nike-academy25-track":[90,115],"joma-champion4":[95,110],"adidas-tiro24":[90,120],"kelme-k077":[90,110],"nepa-bonding":[95,110],"lecoq-durotherm":[85,110]};
 const SIZE_NAME = {85:"XS",90:"S",95:"M",100:"L",105:"XL",110:"2XL",115:"3XL",120:"4XL"};
 /* 상품 사진은 판매처 서버에서 바로 불러옴. 못 불러오면 안내 문구로 대신함 */
@@ -598,6 +613,7 @@ const COLS = [
   {k:"material", t:"소재", v:d=>d.material, h:d=>esc(d.material)},
   {k:"fit", t:"핏", v:d=>d.fit, h:d=>esc(d.fit), nw:1},
   {k:"logo", t:"로고", v:d=>logoShort(d), h:d=>`<span class="tag" title="${esc(d.logoNote)}">${logoShort(d)}</span>`, nw:1},
+  {k:"rating", t:"후기", v:d=>(RATING[d.id]||{}).count||0, h:d=>{const r=RATING[d.id]; return r&&r.count?`★${r.score.toFixed(1)} (${r.count})`:"없음";}, nw:1},
   {k:"sizes", t:"사이즈", v:d=>d.sizes, h:d=>esc(d.sizes)},
 ];
 let tsort = {k:"price", dir:1};
@@ -616,7 +632,14 @@ function priceBlock(d, price){
 function ratingLine(d){
   const r = RATING[d.id]; if(!r) return "";
   if(!r.count) return `<span class="rt none">판매처 후기 없음</span>`;
-  return `<span class="rt"><span class="rt-star" aria-hidden="true">★</span> <b class="num">${r.score}</b>${r.scale?`<small>/${r.scale}</small>`:""} · 후기 ${r.count.toLocaleString("ko-KR")}개</span>`;
+  return `<span class="rt"><span class="rt-star" aria-hidden="true">★</span> <b class="num">${r.score.toFixed(1)}</b><small>/${r.scale}</small> · 판매처 후기 ${r.count.toLocaleString("ko-KR")}개</span>`;
+}
+function reviewBlock(d){
+  const r = RATING[d.id]; if(!r) return "";
+  if(!r.count) return `<div class="rv"><h4>판매처 후기</h4><p class="note" style="margin:0">아직 판매처에 등록된 후기가 없습니다 (${CHECKED} 기준).</p></div>`;
+  return `<div class="rv"><h4>판매처 후기 <span class="rt"><span class="rt-star">★</span> <b class="num">${r.score.toFixed(1)}</b><small>/${r.scale}</small> · ${r.count}개</span></h4>
+    <ul>${r.themes.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+    <p class="note" style="margin:0">${r.count<5?"후기가 적어 평점만으로 비교하기는 어렵습니다. ":""}${CHECKED} 기준 · <a href="${esc(r.src)}" target="_blank" rel="noopener">후기 원문 보기</a></p></div>`;
 }
 function swatches(d, big){
   return d.colors.map((k,i)=>{
@@ -670,6 +693,7 @@ function detail(d){
       <dt>단체 주문</dt><dd>${esc(d.groupOrder)}</dd>
       <dt>확인</dt><dd>${esc(d.seller)}, ${esc(d.checked||CHECKED)} 기준</dd>
     </dl>
+    ${reviewBlock(d)}
     <div class="pc">
       <div class="pro"><h4>좋은 점</h4><ul>${d.pros.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>
       <div class="con"><h4>아쉬운 점</h4><ul>${d.cons.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>
