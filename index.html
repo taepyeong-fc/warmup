@@ -89,6 +89,7 @@ section{padding-block:36px 8px;scroll-margin-top:110px}
 /* 고르는 기준 */
 
 /* 필터 */
+.fbar,.fsheet-h,.fdone{display:none}
 .filters{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;margin-bottom:14px}
 .fgroup{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .fgroup > span{font-size:12px;color:var(--muted);margin-right:2px}
@@ -107,7 +108,7 @@ select.sort{border:1px solid var(--line);background:var(--surface);color:var(--f
 .dots{display:flex;gap:4px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--muted)}
 .sw{width:20px;height:20px;border-radius:50%;border:1px solid var(--line);background:linear-gradient(135deg,var(--c) 0 62%,var(--a) 62%);cursor:pointer;padding:0;flex:none}
 .sw.big{width:30px;height:30px}
-.sw[aria-pressed="true"]{outline:2px solid var(--pitch);outline-offset:2px}
+.sw[aria-pressed="true"]{outline:2.5px solid var(--pitch);outline-offset:2px}
 .sw:hover{transform:scale(1.1)}
 .sw-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
 .card .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
@@ -188,9 +189,14 @@ tr.picked td:first-child{box-shadow:inset 3px 0 0 var(--flood)}
 .notice h3{display:flex;align-items:center;gap:8px}
 .notice-ic{width:20px;height:20px;border-radius:50%;background:var(--pitch);color:#fff;font-size:13px;display:grid;place-items:center;flex:none}
 .notice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px}
-.nt{display:flex;gap:10px;align-items:flex-start;background:var(--surface-2);border-radius:10px;padding:12px}
+.nt{background:var(--surface-2);border-radius:10px;padding:0}
+.nt summary{display:flex;gap:10px;align-items:center;padding:14px 12px;cursor:pointer;list-style:none}
+.nt summary::-webkit-details-marker{display:none}
+.nt summary::after{content:"펼치기 ▾";margin-left:auto;flex:none;font-size:12px;color:var(--muted)}
+.nt[open] summary::after{content:"접기 ▴"}
+.nt p{padding:0 12px 14px 12px}
 .nt-k{flex:none;font-size:12px;font-weight:700;color:var(--pitch-ink);background:var(--pitch-soft);border-radius:999px;padding:3px 9px;margin-top:1px}
-.nt b{display:block;font-size:14px;margin-bottom:3px}
+.nt b{font-size:15px}
 .nt p{margin:0;font-size:13px;color:var(--muted)}
 .guide .size-panel{grid-column:1/-1}
 .bul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14px}
@@ -213,6 +219,43 @@ footer{padding-block:40px 120px;padding-right:64px;color:rgba(234,242,247,.88);f
 
 /* 상세 창 */
 dialog{border:0;border-radius:16px;padding:0;max-width:640px;width:calc(100% - 32px);background:var(--surface);color:var(--fg)}
+#dlg{max-width:560px;max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain}
+.dlg-head{position:sticky;top:0;z-index:3;display:flex;justify-content:flex-start;padding:8px 10px;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.dlg-head .close{position:static;width:auto;height:40px;border-radius:999px;padding:0 14px;font-size:15px;font-weight:600;background:var(--surface-2);color:var(--fg)}
+.gal-wrap{position:relative;background:#fff}
+.gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.gal::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:start;aspect-ratio:5/6;max-height:62vh;display:flex;justify-content:center}
+.slide .ph{object-fit:contain;object-position:center}
+.gal-n{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.6);color:#fff;font-size:13px;border-radius:999px;padding:3px 10px}
+.gal-tip{position:absolute;left:12px;bottom:12px;background:var(--pitch);color:#fff;font-size:13px;font-weight:600;border-radius:999px;padding:3px 10px}
+.dlg-info{padding:16px 20px 4px;display:flex;flex-direction:column;gap:6px}
+.dlg-info .brand-l{font-size:13px;color:var(--muted);font-weight:600}
+.dlg-info h2{font-size:21px}
+.dlg-note{margin:0;font-size:13px;color:var(--muted)}
+.sw-name{font-size:14px;color:var(--muted)}
+.dlg-bar{position:sticky;bottom:0;z-index:3;display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -6px 16px rgba(0,0,0,.08)}
+.dlg-bar .btn{min-height:50px;font-size:16px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.dlg-bar .pick{flex:0 0 96px}
+.dlg-bar .primary{flex:1}
+.btn.ghost{align-self:flex-start;flex:none;padding:8px 14px}
+/* 가격: 정가 취소선 · 할인율 · 판매가 */
+.pr{display:flex;flex-direction:column;gap:0}
+.pr-list{font-size:13px;color:var(--muted)}
+.pr-list del{font-family:var(--f-num)}
+.pr-off{color:var(--pitch);font-size:15px;font-weight:700;margin-left:2px}
+.pr-sale{font-size:20px;font-weight:700}
+.dlg-price .pr-sale{font-size:26px}
+.dlg-price .pr-off{font-size:18px}
+.seller{font-size:12px;color:var(--muted)}
+.rt{font-size:13px;color:var(--fg)}
+.rt-star{color:var(--flood)}
+.rt small{color:var(--muted)}
+.rt.none{color:var(--muted)}
+/* 색상: 사진 썸네일 */
+.sw.th{border-radius:8px;width:38px;height:44px;background:#fff;overflow:hidden}
+.sw.th img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.sw.th.big{width:56px;height:66px}
 dialog::backdrop{background:rgba(5,12,18,.55)}
 .dlg-top{display:grid;grid-template-columns:180px 1fr;gap:16px;padding:20px;background:var(--surface-2)}
 .dlg-top svg{width:100%;height:auto}
@@ -250,6 +293,17 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
   .sec-h p{font-size:15px}
   .chip{padding:8px 14px;font-size:15px;min-height:40px}
   .fgroup > span{font-size:14px;width:100%}
+  .fbar{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .fbar .fopen{flex:none;min-height:46px;padding:0 18px;font-size:16px;border-radius:999px}
+  .fbar .count{color:rgba(234,242,247,.9)}
+  .filters{display:none}
+  .filters.open{display:flex;flex-direction:column;align-items:stretch;position:fixed;left:0;right:0;bottom:0;z-index:70;margin:0;border-radius:18px 18px 0 0;max-height:85dvh;overflow:auto;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
+  .filters.open .fsheet-h{display:flex;justify-content:space-between;align-items:center;font-size:18px}
+  .fclose{width:40px;height:40px;border-radius:50%;border:0;background:var(--surface-2);font-size:20px;cursor:pointer;color:var(--fg)}
+  .filters.open .count{display:none}
+  .filters.open .fdone{display:block;min-height:50px;font-size:16px;border-radius:10px}
+  .fsheet-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:69}
+  body.sheet-open{overflow:hidden}
   .filters{gap:12px}
   .count{font-size:14px}
   .grid{grid-template-columns:1fr 1fr;gap:10px}
@@ -258,6 +312,9 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
   .card .actions{flex-direction:column}
   .card .actions .btn{min-height:40px;font-size:14px}
   .sw{width:28px;height:28px}
+  .sw.th{width:40px;height:46px}
+  #dlg{max-width:none;width:100%;max-height:none;height:100dvh;margin:0;border-radius:0}
+  .slide{max-height:none}
   .tablebox:has(#tbl){overflow:visible;background:transparent;border:0}
   #tbl{min-width:0;display:block}
   #tbl thead{display:none}
@@ -322,8 +379,11 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
 
   <section id="candidates">
     <div class="sec-h"><span class="eyebrow">Candidates</span><h2>후보 자켓</h2><p>후보 모델을 판매처 사진과 함께 소개합니다. 사진을 누르면 상세 정보를, 색상 원을 누르면 해당 색상 사진을 확인할 수 있습니다. ‘비교 담기’로 최대 3종을 나란히 비교할 수 있습니다.</p></div>
-    <div class="hint" data-hint="filter" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span>아래 버튼을 <b>눌러서</b> 조건을 바꿀 수 있습니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
-    <div class="filters" role="group" aria-label="후보 거르기">
+    <div class="hint" data-hint="filter" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span><b>필터</b> 버튼을 눌러서 가격·후드·보온 조건을 바꿀 수 있습니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
+    <div class="fbar"><button type="button" class="btn fopen" aria-controls="filters" aria-expanded="false">⚙ 필터·정렬 <span id="fOn"></span></button><span class="count" id="count2"></span></div>
+    <div class="fsheet-bg" hidden></div>
+    <div class="filters" id="filters" role="group" aria-label="후보 거르기">
+      <div class="fsheet-h"><b>필터·정렬</b><button type="button" class="fclose" aria-label="닫기">×</button></div>
       <div class="fgroup" data-key="price"><span>가격</span>
         <button class="chip" data-v="all" aria-pressed="true">전체</button>
         <button class="chip" data-v="low" aria-pressed="false">2~3만 원대</button>
@@ -347,6 +407,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
         </select>
       </div>
       <span class="count" id="count"></span>
+      <button type="button" class="btn primary fdone">결과 보기</button>
     </div>
     <div class="hint" data-hint="card" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span><b>사진을 누르면</b> 상세 정보, <b>색상 원을 누르면</b> 그 색 사진이 나옵니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
     <div class="grid" id="grid"></div>
@@ -388,12 +449,13 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
       </div>
       <div class="panel notice">
         <h3><span class="notice-ic" aria-hidden="true">!</span>주문 전 확인 사항</h3>
+        <p class="note" style="margin:-4px 0 10px">항목을 누르면 자세한 내용이 펼쳐집니다.</p>
         <div class="notice-grid">
-          <div class="nt"><span class="nt-k">교환</span><div><b>로고를 넣으면 교환·반품이 어렵습니다</b><p>받은 옷을 먼저 입어 보고 사이즈를 확정한 뒤 마킹을 맡기세요.</p></div></div>
-          <div class="nt"><span class="nt-k">마킹</span><div><b>마킹 단가는 견적으로만 나옵니다</b><p>후보 판매처 모두 단가를 공개하지 않습니다. 사커붐은 단체견적 게시판, 외부 업체(예: 팀메이커, 1장부터·시안 확정 후 2영업일)도 가능합니다. 로고는 AI 파일이나 고해상도 PNG로 준비하세요.</p></div></div>
-          <div class="nt"><span class="nt-k">가격</span><div><b>표시 가격은 할인·쿠폰가입니다</b><p>네파는 무신사 쿠폰 적용가, 갈렉스는 타임특가입니다. 행사가 끝나면 오를 수 있으니 주문 당일 링크에서 다시 확인하세요.</p></div></div>
-          <div class="nt"><span class="nt-k">재고</span><div><b>사이즈가 일부만 남은 후보가 있습니다</b><p>푸마 팀라이즈는 L~2XL, 갈렉스는 M·L만 남았습니다. 회원 사이즈를 모은 뒤 전원 분이 있는지 확인하세요.</p></div></div>
-          <div class="nt"><span class="nt-k">배송</span><div><b>배송비·교환 조건은 판매처마다 다릅니다</b><p>사커붐과 무신사 상품 페이지의 배송·반품 안내를 따릅니다.</p></div></div>
+          <details class="nt"><summary><span class="nt-k">교환</span><b>로고를 넣으면 교환·반품이 어렵습니다</b></summary><p>받은 옷을 먼저 입어 보고 사이즈를 확정한 뒤 마킹을 맡기세요.</p></details>
+          <details class="nt"><summary><span class="nt-k">마킹</span><b>마킹 단가는 견적으로만 나옵니다</b></summary><p>후보 판매처 모두 단가를 공개하지 않습니다. 사커붐은 단체견적 게시판, 외부 업체(예: 팀메이커, 1장부터·시안 확정 후 2영업일)도 가능합니다. 로고는 AI 파일이나 고해상도 PNG로 준비하세요.</p></details>
+          <details class="nt"><summary><span class="nt-k">가격</span><b>표시 가격은 할인·쿠폰가입니다</b></summary><p>네파는 무신사 쿠폰 적용가, 갈렉스는 타임특가입니다. 행사가 끝나면 오를 수 있으니 주문 당일 링크에서 다시 확인하세요.</p></details>
+          <details class="nt"><summary><span class="nt-k">재고</span><b>사이즈가 일부만 남은 후보가 있습니다</b></summary><p>푸마 팀라이즈는 L~2XL, 갈렉스는 M·L만 남았습니다. 회원 사이즈를 모은 뒤 전원 분이 있는지 확인하세요.</p></details>
+          <details class="nt"><summary><span class="nt-k">배송</span><b>배송비·교환 조건은 판매처마다 다릅니다</b></summary><p>사커붐과 무신사 상품 페이지의 배송·반품 안내를 따릅니다.</p></details>
         </div>
       </div>
     </div>
@@ -460,6 +522,10 @@ const DATA = [
 ];
 const CHECKED = "2026-11-01";
 /* 살 수 있는 사이즈 범위(한국 표기). 갈렉스 M·L은 95·100으로 봄 */
+/* 판매처 표시 정가 (2026-11-01) */
+const LIST = {"puma-teamrise":49000,"adidas-squadra25":55000,"galex-hood-padding":159000,"puma-teamliga-sideline":73000,"nike-academy25-track":75000,"joma-champion4":89000,"adidas-tiro24":85000,"kelme-k077":99000,"nepa-bonding":169000,"lecoq-durotherm":159000};
+/* 판매처 후기 평점·개수: 확인된 값만 넣음 (없으면 표시 안 함) */
+const RATING = {};
 const SIZE = {"puma-teamrise":[100,110],"adidas-squadra25":[95,110],"galex-hood-padding":[95,100],"puma-teamliga-sideline":[90,110],"nike-academy25-track":[90,115],"joma-champion4":[95,110],"adidas-tiro24":[90,120],"kelme-k077":[90,110],"nepa-bonding":[95,110],"lecoq-durotherm":[85,110]};
 const SIZE_NAME = {85:"XS",90:"S",95:"M",100:"L",105:"XL",110:"2XL",115:"3XL",120:"4XL"};
 /* 상품 사진은 판매처 서버에서 바로 불러옴. 못 불러오면 안내 문구로 대신함 */
@@ -501,13 +567,16 @@ function list(){
 function renderGrid(){
   const xs = list();
   $("#count").textContent = `${xs.length}개 / 전체 ${DATA.length}개`;
+  $("#count2").textContent = `${xs.length}개 / 전체 ${DATA.length}개`;
+  const on = Object.values(filt).filter(v=>v!=="all").length; $("#fOn").textContent = on ? `(${on})` : "";
+  const fd = document.querySelector(".fdone"); if(fd) fd.textContent = `${xs.length}개 결과 보기`;
   $("#grid").innerHTML = xs.length ? xs.map(d => {
     return `<article class="card ${picks.has(d.id)?"picked":""}" id="c-${d.id}">
       <button class="art" data-open="${d.id}" aria-label="${esc(d.name)} 자세히">${photo(d)}</button>
       <div class="body">
         <span class="brand-l">${esc(d.brand)}</span>
         <h3 data-open="${d.id}">${esc(d.name)}</h3>
-        <div class="price">${won(d.price)}<small>${esc(d.seller)}</small></div>
+        ${priceBlock(d)}<span class="seller">${esc(d.seller)}</span>${ratingLine(d)}
         <div class="tags"><span class="tag">${hoodLabel(d)}</span>${d.warmth>=2?'<span class="tag logo">겨울용</span>':""}<span class="tag">${esc(d.sizes.split(" ")[0])}</span></div>
         ${warmBar(d.warmth)}
         <div class="dots" role="group" aria-label="판매 색상 ${d.colors.length}가지">${swatches(d)}<span class="sw-name">${d.colors.length>1?`${d.colors.length}색 · 눌러서 보기`:esc(d.colors[0].name)}</span></div>
@@ -540,29 +609,56 @@ function renderTable(){
 }
 
 /* 색 견본: 누르면 그 색 사진(판매처 사진이 있을 때)으로 바꿈 */
+function priceBlock(d, price){
+  const sale = price || d.price, list = LIST[d.id], off = list && list > sale ? Math.round((1 - sale/list)*100) : 0;
+  return `<div class="pr">${off?`<span class="pr-list"><del>${won(list)}</del> <b class="pr-off">${off}%</b></span>`:""}<span class="pr-sale num">${won(sale)}</span></div>`;
+}
+function ratingLine(d){
+  const r = RATING[d.id]; if(!r) return "";
+  if(!r.count) return `<span class="rt none">판매처 후기 없음</span>`;
+  return `<span class="rt"><span class="rt-star" aria-hidden="true">★</span> <b class="num">${r.score}</b>${r.scale?`<small>/${r.scale}</small>`:""} · 후기 ${r.count.toLocaleString("ko-KR")}개</span>`;
+}
 function swatches(d, big){
-  return d.colors.map((k,i)=>`<button type="button" class="sw${big?" big":""}" data-sw="${d.id}:${i}" aria-pressed="${i===0}" style="--c:${k.body};--a:${k.accent}" title="${esc(k.name)}" aria-label="${esc(k.name)}"></button>`).join("");
+  return d.colors.map((k,i)=>{
+    const img = k.image || (d.colors.length===1 ? d.image : "");
+    return `<button type="button" class="sw${big?" big":""}${img?" th":""}" data-sw="${d.id}:${i}" aria-pressed="${i===0}" style="--c:${k.body};--a:${k.accent}" title="${esc(k.name)}" aria-label="${esc(k.name)}">${img?`<img src="${esc(img)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:""}</button>`;
+  }).join("");
 }
 function pickColor(btn){
   const [id, i] = btn.dataset.sw.split(":"), d = DATA.find(x=>x.id===id), k = d && d.colors[+i]; if(!k) return;
   const box = btn.closest(".card,.dlg-in"); if(!box) return;
+  if(box.classList.contains("dlg-in")){ const s = box.querySelector(`.gal [data-ci="${i}"]`) || box.querySelector(".gal .slide"); if(s) box.querySelector(".gal").scrollTo({left:s.offsetLeft, behavior:"smooth"}); setColor(box, d, +i); return; }
   box.querySelectorAll("[data-sw]").forEach(b=>b.setAttribute("aria-pressed", b===btn));
   const img = box.querySelector("img.ph"), src = k.image || d.image;
   if(img && img.getAttribute("src") !== src){ img.src = src; }
   const nm = box.querySelector(".sw-name"); if(nm) nm.textContent = k.name + (k.price && k.price !== d.price ? ` · 이 색은 ${won(k.price)}` : "") + (k.image || d.colors.length===1 ? "" : " · 판매처에 이 색 사진이 없어 다른 색 사진이에요");
   const a = box.querySelector("a.btn.primary"); if(a) a.href = k.url || d.url;
 }
+function setColor(box, d, i){
+  const k = d.colors[i];
+  box.querySelectorAll("[data-sw]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.sw===`${d.id}:${i}`));
+  box.querySelector(".sw-name").textContent = "색상: " + k.name + (k.image || d.colors.length===1 ? "" : " · 판매처에 이 색 사진이 없어 다른 색 사진입니다");
+  box.querySelector(".dlg-price").innerHTML = priceBlock(d, k.price);
+  box.querySelector(".dlg-bar a.btn.primary").href = k.url || d.url;
+}
+function gallery(d){
+  const slides = d.colors.map((k,i)=>({i, src:k.image})).filter(s=>s.src);
+  if(!slides.length) slides.push({i:0, src:d.image});
+  return `<div class="gal-wrap"><div class="gal" tabindex="0" aria-label="상품 사진, 옆으로 넘겨 보기">${slides.map(s=>`<div class="slide" data-ci="${s.i}"><img class="ph" src="${esc(s.src)}" alt="${esc(d.brand)} ${esc(d.name)} ${esc(d.colors[s.i].name)}" referrerpolicy="no-referrer" onerror="photoFail(this,'${d.id}')"></div>`).join("")}</div>
+  ${slides.length>1?`<span class="gal-n"><b>1</b> / ${slides.length}</span><span class="gal-tip">👉 옆으로 밀어 다른 색 보기</span>`:""}</div>`;
+}
 function detail(d){
-  return `<button class="close" data-close aria-label="닫기">×</button>
-  <div class="dlg-top"><div style="aspect-ratio:5/6;border-radius:10px;overflow:hidden;background:#fff;max-width:100%">${photo(d)}</div>
-    <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
-      <span class="brand-l" style="font-size:12px;color:var(--muted);font-weight:600">${esc(d.brand)}${d.model?` · ${esc(d.model)}`:""}</span>
-      <h2 id="dlgTitle" style="font-size:20px">${esc(d.name)}</h2>
-      <div class="price">${won(d.price)}<small>${esc(d.priceNote||"")}</small></div>
-      <div class="tags"><span class="tag">${hoodLabel(d)}</span>${warmBar(d.warmth)}</div>
-      <div class="sw-row">${swatches(d, true)}</div>${d.colors.length>1?`<span class="sw-tip">👆 색상 원을 누르면 사진이 바뀝니다</span>`:""}
-      <span class="sw-name" style="font-size:13px;color:var(--muted)">${esc(d.colors[0].name)}</span>
-    </div>
+  return `<div class="dlg-head"><button class="close" data-close aria-label="닫기">← 목록으로</button></div>
+  ${gallery(d)}
+  <div class="dlg-info">
+    <span class="brand-l">${esc(d.brand)}${d.model?` · ${esc(d.model)}`:""}</span>
+    <h2 id="dlgTitle">${esc(d.name)}</h2>
+    <div class="dlg-price">${priceBlock(d)}</div>
+    <p class="dlg-note">${esc(d.priceNote||"")}</p>
+    ${ratingLine(d)}
+    <div class="tags"><span class="tag">${hoodLabel(d)}</span>${warmBar(d.warmth)}</div>
+    <div class="sw-row">${swatches(d, true)}</div>
+    <span class="sw-name">색상: ${esc(d.colors[0].name)}</span>
   </div>
   <div class="dlg-body">
     <dl class="kv">
@@ -578,11 +674,11 @@ function detail(d){
       <div class="pro"><h4>좋은 점</h4><ul>${d.pros.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>
       <div class="con"><h4>아쉬운 점</h4><ul>${d.cons.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>
     </div>
-    <div class="actions" style="display:flex;gap:8px;flex-wrap:wrap">
-      ${d.url?`<a class="btn primary" href="${esc(d.url)}" target="_blank" rel="noopener">판매 페이지</a>`:""}
-      <button class="btn" data-pick="${d.id}" aria-pressed="${picks.has(d.id)}">${picks.has(d.id)?"★ 찜함":"☆ 찜"}</button>
-      <button class="btn" data-share="${d.id}">링크 복사</button>
-    </div>
+    <button class="btn ghost" data-share="${d.id}">이 후보 링크 복사</button>
+  </div>
+  <div class="dlg-bar">
+    <button class="btn pick" data-pick="${d.id}" aria-pressed="${picks.has(d.id)}">${picks.has(d.id)?"★ 찜함":"☆ 찜"}</button>
+    ${d.url?`<a class="btn primary" href="${esc(d.url)}" target="_blank" rel="noopener">판매 페이지 보기</a>`:""}
   </div>`;
 }
 let lastFocus = null;
@@ -590,6 +686,9 @@ function openDetail(id){
   if(!$("#dlg").open) lastFocus = document.activeElement;
   const d = DATA.find(x=>x.id===id); if(!d) return;
   $("#dlgIn").innerHTML = detail(d);
+  const box = $("#dlgIn"), gal = box.querySelector(".gal");
+  gal.addEventListener("scroll", ()=>{ const n = Math.round(gal.scrollLeft / gal.clientWidth), s = gal.children[n]; if(!s) return; const c = box.querySelector(".gal-n b"); if(c) c.textContent = n+1; if(+s.dataset.ci !== +(box.dataset.ci||0)){ box.dataset.ci = s.dataset.ci; setColor(box, d, +s.dataset.ci); } }, {passive:true});
+  box.dataset.ci = 0;
   const dlg = $("#dlg"); if(!dlg.open) dlg.showModal();
 }
 function openCompare(){
@@ -638,7 +737,7 @@ function renderSize(){
   $("#sizeHits").innerHTML = xs.map(d=>{ const has = ok.includes(d); return `<button class="hit ${has?"":"no"}" data-open="${d.id}" title="${has?"이 사이즈 있음":"이 사이즈 없음"}">${esc(d.brand)} ${esc(d.name)}</button>`; }).join("");
 }
 /* 안내 말풍선: 해당 부분을 한 번 쓰거나 ×를 누르면 다시 보이지 않음 */
-const HINT_GROUPS = {filter:".filters", card:"#grid", table:".tsort,#tbl", size:".size-find", order:".order"};
+const HINT_GROUPS = {filter:".filters,.fbar", card:"#grid", table:".tsort,#tbl", size:".size-find", order:".order"};
 const seenHints = new Set(store.get("tp-hints", []));
 function hideHint(key){ seenHints.add(key); store.set("tp-hints", [...seenHints]); document.querySelectorAll(`.hint[data-hint="${key}"]`).forEach(x=>x.hidden = true); }
 document.querySelectorAll(".hint").forEach(x=>{ if(seenHints.has(x.dataset.hint)) x.hidden = true; });
@@ -648,6 +747,11 @@ document.addEventListener("click", e=>{
   for(const [k, sel] of Object.entries(HINT_GROUPS)) if(!seenHints.has(k) && e.target.closest(sel)) hideHint(k);
 }, true);
 document.addEventListener("input", e=>{ for(const [k, sel] of Object.entries(HINT_GROUPS)) if(!seenHints.has(k) && e.target.closest(sel)) hideHint(k); }, true);
+function sheet(open){ $("#filters").classList.toggle("open", open); document.querySelector(".fsheet-bg").hidden = !open; document.querySelector(".fopen").setAttribute("aria-expanded", open); document.body.classList.toggle("sheet-open", open); }
+document.addEventListener("click", e=>{
+  if(e.target.closest(".fopen")) sheet(true);
+  else if(e.target.closest(".fclose,.fdone,.fsheet-bg")) sheet(false);
+});
 function renderAll(){ renderGrid(); renderTable(); renderTray(); }
 function togglePick(id){ picks.has(id)?picks.delete(id):picks.add(id); store.set("tp-picks",[...picks]); renderAll(); if($("#dlg").open) openDetail(id); }
 function toggleCmp(id){
