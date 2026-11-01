@@ -227,6 +227,11 @@ dialog{border:0;border-radius:16px;padding:0;max-width:640px;width:calc(100% - 3
 .gal::-webkit-scrollbar{display:none}
 .slide{flex:0 0 100%;scroll-snap-align:start;aspect-ratio:5/6;max-height:62vh;display:flex;justify-content:center}
 .slide .ph{object-fit:contain;object-position:center}
+.gal-arrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:rgba(18,18,20,.72);color:#fff;font-size:30px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding-bottom:4px;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.gal-arrow:hover{background:var(--pitch)}
+.gal-arrow:disabled{opacity:0;pointer-events:none}
+.gal-arrow.prev{left:10px}
+.gal-arrow.next{right:10px}
 .gal-n{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.6);color:#fff;font-size:13px;border-radius:999px;padding:3px 10px}
 .gal-tip{position:absolute;left:12px;bottom:12px;background:var(--pitch);color:#fff;font-size:13px;font-weight:600;border-radius:999px;padding:3px 10px}
 .dlg-info{padding:16px 20px 4px;display:flex;flex-direction:column;gap:6px}
@@ -668,7 +673,7 @@ function gallery(d){
   const slides = d.colors.map((k,i)=>({i, src:k.image})).filter(s=>s.src);
   if(!slides.length) slides.push({i:0, src:d.image});
   return `<div class="gal-wrap"><div class="gal" tabindex="0" aria-label="상품 사진, 옆으로 넘겨 보기">${slides.map(s=>`<div class="slide" data-ci="${s.i}"><img class="ph" src="${esc(s.src)}" alt="${esc(d.brand)} ${esc(d.name)} ${esc(d.colors[s.i].name)}" referrerpolicy="no-referrer" onerror="photoFail(this,'${d.id}')"></div>`).join("")}</div>
-  ${slides.length>1?`<span class="gal-n"><b>1</b> / ${slides.length}</span><span class="gal-tip">👉 옆으로 밀어 다른 색 보기</span>`:""}</div>`;
+  ${slides.length>1?`<button type="button" class="gal-arrow prev" data-gal="-1" aria-label="이전 사진" disabled>‹</button><button type="button" class="gal-arrow next" data-gal="1" aria-label="다음 사진">›</button><span class="gal-n"><b>1</b> / ${slides.length}</span><span class="gal-tip">👉 화살표를 누르거나 옆으로 밀어 다른 색 보기</span>`:""}</div>`;
 }
 function detail(d){
   return `<div class="dlg-head"><button class="close" data-close aria-label="닫기">← 목록으로</button></div>
@@ -711,7 +716,7 @@ function openDetail(id){
   const d = DATA.find(x=>x.id===id); if(!d) return;
   $("#dlgIn").innerHTML = detail(d);
   const box = $("#dlgIn"), gal = box.querySelector(".gal");
-  gal.addEventListener("scroll", ()=>{ const n = Math.round(gal.scrollLeft / gal.clientWidth), s = gal.children[n]; if(!s) return; const c = box.querySelector(".gal-n b"); if(c) c.textContent = n+1; if(+s.dataset.ci !== +(box.dataset.ci||0)){ box.dataset.ci = s.dataset.ci; setColor(box, d, +s.dataset.ci); } }, {passive:true});
+  gal.addEventListener("scroll", ()=>{ const n = Math.round(gal.scrollLeft / gal.clientWidth), s = gal.children[n]; if(!s) return; const c = box.querySelector(".gal-n b"); if(c) c.textContent = n+1; const pv = box.querySelector(".gal-arrow.prev"), nx = box.querySelector(".gal-arrow.next"); if(pv){ pv.disabled = n===0; nx.disabled = n===gal.children.length-1; } if(+s.dataset.ci !== +(box.dataset.ci||0)){ box.dataset.ci = s.dataset.ci; setColor(box, d, +s.dataset.ci); } }, {passive:true});
   box.dataset.ci = 0;
   const dlg = $("#dlg"); if(!dlg.open) dlg.showModal();
 }
@@ -793,6 +798,7 @@ document.addEventListener("click", e=>{
     inp.value = st.dataset.people ? st.dataset.people : Math.min(200, Math.max(1, (+inp.value||0) + (+st.dataset.step)));
     renderOrder(); return;
   }
+  const ga = e.target.closest("[data-gal]"); if(ga){ const g = ga.closest(".gal-wrap").querySelector(".gal"); g.scrollBy({left:g.clientWidth*(+ga.dataset.gal), behavior:"smooth"}); return; }
   const sw = e.target.closest("[data-sw]"); if(sw){ pickColor(sw); return; }
   const ts = e.target.closest("[data-ts]"); if(ts){ const k = ts.dataset.ts; tsort = {k, dir: tsort.k===k ? -tsort.dir : (k==="warmth" ? -1 : 1)}; renderTable(); return; }
   const t = e.target.closest("[data-open],[data-pick],[data-cmp],[data-close],[data-share],.chip,#goCompare,thead th[data-k]");
