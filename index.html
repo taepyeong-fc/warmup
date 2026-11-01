@@ -7,18 +7,24 @@
 <meta name="description" content="태평FC 회원용 겨울 웜업 자켓 후보 비교">
 <meta property="og:title" content="태평FC 겨울 웜업, 같이 골라요">
 <meta property="og:description" content="웜업 자켓 후보를 가격·보온·색으로 비교해 보세요.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yusini97.github.io/taepyeong-fc-warmup/">
+<meta property="og:image" content="https://yusini97.github.io/taepyeong-fc-warmup/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 4 6v9c0 7.5 5 12.5 12 15 7-2.5 12-7.5 12-15V6z' fill='%23111'/%3E%3Ccircle cx='16' cy='15' r='6' fill='none' stroke='%23c8102e' stroke-width='1.8'/%3E%3C/svg%3E">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
-/* Layout: 참고(펫 가이드)처럼 상단 고정 탭 → 배너 → 기준 카드 → 필터+후보 카드(상세 창) → 비교표 → 단체 주문 계산 → 질문.
-   색: 겨울밤 경기장(남색) 위 잔디(녹색) 포인트, 조명색(호박)은 '내 픽' 표시에만. */
+/* Layout: 참고(펫 가이드)처럼 상단 고정 탭 → 배경 사진 위 제목 → 필터+후보 카드(상세 창) → 비교표 → 구매 안내 → 단체 주문 계산.
+   색: 태평FC 팀 색(검정·빨강). 조명색(호박)은 '내 픽' 표시에만. */
 :root{
-  --bg:#f3f6f8; --surface:#ffffff; --surface-2:#e9eff2; --line:#d5dfe4;
-  --fg:#14212b; --muted:#5a6b76;
-  --pitch:#17784a; --pitch-soft:#dcefe4; --pitch-ink:#0f5534;
-  --night:#14273b; --night-fg:#eaf2f7;
+  --bg:#f4f4f5; --surface:#ffffff; --surface-2:#efeff1; --line:#dcdce0;
+  --fg:#151517; --muted:#5f6067;
+  --pitch:#c8102e; --pitch-soft:#fbe4e7; --pitch-ink:#8e0a20;
+  --night:#121214; --night-fg:#eaf2f7;
   --flood:#e8a317; --flood-soft:#fbefd2;
   --warn:#b4461f;
   --f-display:"Black Han Sans","IBM Plex Sans KR",system-ui,sans-serif;
@@ -27,16 +33,16 @@
   --r:12px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0d151c; --surface:#15212b; --surface-2:#1c2a35; --line:#2a3a46;
-  --fg:#e6eef3; --muted:#9aadb9;
-  --pitch:#3fb57a; --pitch-soft:#173727; --pitch-ink:#8fe0b5;
-  --night:#0a1824; --night-fg:#eaf2f7;
+  --bg:#0e0e10; --surface:#18181b; --surface-2:#222226; --line:#323238;
+  --fg:#ececee; --muted:#a3a3ab;
+  --pitch:#ff4b5c; --pitch-soft:#3b1218; --pitch-ink:#ffb2b9;
+  --night:#0b0b0c; --night-fg:#eaf2f7;
   --flood:#f2b84a; --flood-soft:#3a2d12; --warn:#f08a62; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0d151c; --surface:#15212b; --surface-2:#1c2a35; --line:#2a3a46;
-  --fg:#e6eef3; --muted:#9aadb9;
-  --pitch:#3fb57a; --pitch-soft:#173727; --pitch-ink:#8fe0b5;
-  --night:#0a1824; --night-fg:#eaf2f7;
+  --bg:#0e0e10; --surface:#18181b; --surface-2:#222226; --line:#323238;
+  --fg:#ececee; --muted:#a3a3ab;
+  --pitch:#ff4b5c; --pitch-soft:#3b1218; --pitch-ink:#ffb2b9;
+  --night:#0b0b0c; --night-fg:#eaf2f7;
   --flood:#f2b84a; --flood-soft:#3a2d12; --warn:#f08a62; color-scheme:dark}
 
 *{box-sizing:border-box}
@@ -58,10 +64,11 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backgroun
 nav.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 nav.tabs::-webkit-scrollbar{display:none}
 nav.tabs a{flex:none;text-decoration:none;color:var(--muted);font-weight:600;font-size:14px;padding:10px 12px;border-bottom:2px solid transparent;white-space:nowrap}
+@media (max-width:480px){nav.tabs{gap:0;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}nav.tabs a{padding:10px 8px;font-size:13px}}
 nav.tabs a.on{color:var(--fg);border-bottom-color:var(--pitch)}
 
 /* 배너 */
-.bgphoto{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,16,26,.35) 0%,rgba(8,16,26,.72) 45%,rgba(8,16,26,.86) 100%),url("assets/hero.webp") 70% center/cover no-repeat,var(--night)}
+.bgphoto{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,10,12,.35) 0%,rgba(10,10,12,.72) 45%,rgba(10,10,12,.86) 100%),url("assets/hero.webp") 70% center/cover no-repeat,var(--night)}
 .hero{color:var(--night-fg);position:relative;min-height:clamp(320px,52vh,520px);display:flex;align-items:center}
 .hero-in{position:relative;max-width:520px;padding-block:40px 48px;text-shadow:0 2px 12px rgba(0,0,0,.45)}
 .pill{display:inline-block;background:var(--pitch);color:#fff;font-weight:700;font-size:12px;border-radius:999px;padding:3px 10px;letter-spacing:.3px}
@@ -77,7 +84,7 @@ section{padding-block:36px 8px;scroll-margin-top:110px}
 .sec-h h2{font-size:22px}
 .sec-h p{margin:0;color:rgba(234,242,247,.78)}
 .sec-h h2{color:#f1f6f9}
-.eyebrow{font-family:var(--f-num);font-size:12px;letter-spacing:1.5px;color:#7fd3a5;text-transform:uppercase}
+.eyebrow{font-family:var(--f-num);font-size:12px;letter-spacing:1.5px;color:#ff7a86;text-transform:uppercase}
 
 /* 고르는 기준 */
 
@@ -121,7 +128,8 @@ select.sort{border:1px solid var(--line);background:var(--surface);color:var(--f
 .tray{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--night);color:var(--night-fg);padding-bottom:env(safe-area-inset-bottom,0px)}
 .tray .wrap{display:flex;align-items:center;gap:10px;padding-block:10px;flex-wrap:wrap}
 .tray .slots{display:flex;gap:6px;flex-wrap:wrap;flex:1;min-width:0}
-.tray .slot{background:rgba(255,255,255,.1);border-radius:8px;padding:4px 8px;font-size:13px;display:flex;gap:6px;align-items:center}
+.tray .slot{background:rgba(255,255,255,.1);border-radius:8px;padding:4px 8px;font-size:13px;display:flex;gap:6px;align-items:center;min-width:0}
+.tray .slot span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:min(220px,34vw)}
 .tray .slot button{background:none;border:0;color:inherit;cursor:pointer;opacity:.7;padding:0 2px}
 .tray .go{background:var(--pitch);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer}
 
@@ -137,6 +145,7 @@ tbody tr:last-child td{border-bottom:0}
 td.r{text-align:right}
 #tbl td{overflow-wrap:normal}
 #tbl td.nw{white-space:nowrap}
+@media (max-width:720px){#tbl{min-width:520px}#tbl .col-material,#tbl .col-fit,#tbl .col-logo{display:none}}
 tr.picked td:first-child{box-shadow:inset 3px 0 0 var(--flood)}
 
 /* 단체 주문 */
@@ -166,23 +175,22 @@ tr.picked td:first-child{box-shadow:inset 3px 0 0 var(--flood)}
 .size-out .note{margin:2px 0 8px}
 .size-hits{display:flex;flex-wrap:wrap;gap:6px}
 .hit{border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer;color:var(--fg)}
-.hit.no{opacity:.45;text-decoration:line-through}
+.hit.no{opacity:.7;background:transparent;color:var(--muted)}
+.hit.no::after{content:" · 없음"}
+.hit:not(.no)::after{content:" · 있음";color:var(--pitch);font-weight:600}
 .size-table table{min-width:560px;font-size:13px}
 .size-table td,.size-table th{text-align:center;white-space:nowrap;cursor:default}
 .size-table td:first-child,.size-table th:first-child{text-align:left;color:var(--muted)}
 
-/* 질문 */
-details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;margin-bottom:8px}
-summary{cursor:pointer;font-weight:600}
-details p{margin:8px 0 0;color:var(--muted)}
 
-footer{padding-block:40px 120px;color:rgba(234,242,247,.7);font-size:13px}
+footer{padding-block:40px 120px;padding-right:64px;color:rgba(234,242,247,.88);font-size:13px}
 
 /* 상세 창 */
 dialog{border:0;border-radius:16px;padding:0;max-width:640px;width:calc(100% - 32px);background:var(--surface);color:var(--fg)}
 dialog::backdrop{background:rgba(5,12,18,.55)}
 .dlg-top{display:grid;grid-template-columns:180px 1fr;gap:16px;padding:20px;background:var(--surface-2)}
 .dlg-top svg{width:100%;height:auto}
+.dlg-top .price small{display:block;margin:2px 0 0}
 .dlg-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:12px}
 .kv{display:grid;grid-template-columns:96px 1fr;gap:6px 12px;font-size:14px}
 .kv dt{color:var(--muted)}
@@ -190,11 +198,11 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
 .pc{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .pc ul{margin:4px 0 0;padding-left:18px;font-size:14px}
 .pc h4{margin:0;font-size:13px}
-.pc .pro h4{color:var(--pitch)}
+.pc .pro h4{color:var(--fg)}
 .pc .con h4{color:var(--warn)}
 .close{position:absolute;top:10px;right:10px;border:0;background:var(--surface);border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:18px}
 .jump{position:fixed;right:max(16px,calc(env(safe-area-inset-right,0px) + 16px));bottom:calc(16px + env(safe-area-inset-bottom,0px) + var(--tray-h,0px));z-index:31;display:flex;flex-direction:column;gap:8px}
-.jump button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(20,39,59,.88);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.jump button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(18,18,20,.9);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.3)}
 .jump button:hover{background:var(--pitch)}
 .jump svg{width:22px;height:22px}
 .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:14px;z-index:50}
@@ -222,7 +230,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
 <header class="top">
   <div class="wrap">
     <div class="brand">
-      <svg class="crest" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 4 6v9c0 7.5 5 12.5 12 15 7-2.5 12-7.5 12-15V6z" fill="var(--pitch)"/><circle cx="16" cy="15" r="6" fill="none" stroke="#fff" stroke-width="1.8"/><path d="m16 11 2.6 1.9-1 3h-3.2l-1-3z" fill="#fff"/></svg>
+      <svg class="crest" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 4 6v9c0 7.5 5 12.5 12 15 7-2.5 12-7.5 12-15V6z" fill="#111" stroke="#c8102e" stroke-width="1.5"/><circle cx="16" cy="15" r="6" fill="none" stroke="#c8102e" stroke-width="1.8"/><path d="m16 11 2.6 1.9-1 3h-3.2l-1-3z" fill="#fff"/></svg>
       <b>태평FC</b><span>겨울 웜업 고르기</span>
     </div>
     <nav class="tabs" aria-label="섹션">
@@ -361,7 +369,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
           <div class="row"><span>총액</span><b id="tTotal">–</b></div>
           <div class="row"><span>1인 부담</span><b class="big" id="tPer">–</b></div>
         </div>
-        <p class="note">판매처 할인가 기준 추정치예요. 단체 할인·배송비·마킹비는 견적으로 확인해 주세요.</p>
+        <p class="note">판매처 할인가 기준 추정치이고, 1인 부담은 백 원 단위로 올림했어요. 단체 할인·배송비·마킹비는 견적으로 확인해 주세요.</p>
       </div>
     </div>
   </section>
@@ -387,13 +395,13 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
 const DATA = [
  {"id": "puma-teamrise", "brand": "푸마", "name": "팀라이즈 트레이닝 폴리 자켓", "model": "657647-02", "price": 28200, "priceNote": "정가 49,000원에서 할인", "seller": "사커붐", "url": "https://soccerboom.co.kr/product/detail.html?product_no=47391", "hood": false, "pockets": "옆 주머니 2개(지퍼 없음)", "material": "폴리에스터 100%, DRYCELL", "warmth": 1, "warmthNote": "안감·기모 없는 얇은 저지", "fit": "미확인", "colors": [{"name": "일렉트릭 블루", "body": "#1E5FD0", "accent": "#FFFFFF"}], "sizes": "L(100)~2XL(110)만 남음", "logo": null, "logoNote": "사커붐 단체견적 게시판에서 마킹 포함 견적(공개 단가 없음)", "groupOrder": "단체 구매 시 할인가에서 추가 할인(견적제), 최소 수량 안내 없음", "pros": ["후보 중 가장 쌈", "축구 팀웨어 라인"], "cons": ["L~2XL만 남아 작은 사이즈는 못 삼", "얇아서 겨울엔 겹쳐 입어야 함"], "image": "https://soccerboom.co.kr/web/product/big/202309/5b1018d9d95c95a0e6ae6095fabb92c1.png"},
  {"id": "adidas-squadra25", "brand": "아디다스", "name": "스쿼드라25 트레이닝 자켓", "model": "JD1630", "price": 35300, "priceNote": "정가 55,000원에서 할인", "seller": "사커붐", "url": "https://soccerboom.co.kr/product/detail.html?product_no=51868", "hood": false, "pockets": "지퍼 옆 주머니", "material": "폴리에스터 100%, AEROREADY", "warmth": 1, "warmthNote": "안감 없는 저지", "fit": "미확인", "colors": [{"name": "블랙/그레이/레드", "body": "#111111", "accent": "#8A8A8A"}], "sizes": "M(95)~2XL(110)", "logo": null, "logoNote": "사커붐 단체견적 게시판에서 마킹 포함 견적(공개 단가 없음)", "groupOrder": "단체 구매 시 추가 할인(견적제), 최소 수량 안내 없음", "pros": ["3만원대 아디다스 팀웨어", "지퍼 주머니"], "cons": ["S 이하 없음", "색이 검정 1종"], "image": "https://soccerboom.co.kr/web/product/big/202512/3a443566373142b2daecd2ba13d240ec.png"},
- {"id": "galex-hood-padding", "brand": "갈렉스", "name": "레트로 라이트 후드 패딩", "model": "GA5841 BK", "price": 39500, "priceNote": "정가 159,000원에서 75% 할인", "seller": "무신사", "url": "https://www.musinsa.com/products/5468961", "hood": true, "pockets": "옆 주머니(지퍼 여부 미확인)", "material": "겉감 나일론 100%, 충전재 웰론 100%", "warmth": 3, "warmthNote": "웰론 충전 누빔 패딩, 투웨이 지퍼", "fit": "오버핏", "colors": [{"name": "블랙", "body": "#121212", "accent": "#2A2A2A"}], "sizes": "M, L", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["4만원 아래로 확실한 보온(충전재)", "후드·투웨이 지퍼로 벤치 대기에 좋음"], "cons": ["사이즈가 M·L뿐", "패션 패딩이라 팀 트레이닝복 느낌은 약함"], "image": "https://image.msscdn.net/images/goods_img/20250916/5468961/5468961_17580026171935_500.jpg"},
+ {"id": "galex-hood-padding", "brand": "갈렉스", "name": "레트로 라이트 후드 패딩", "model": "GA5841 BK", "price": 39500, "priceNote": "정가 159,000원에서 75% 할인. 타임특가라 곧 끝날 수 있음", "seller": "무신사", "url": "https://www.musinsa.com/products/5468961", "hood": true, "pockets": "옆 주머니(지퍼 여부 미확인)", "material": "겉감 나일론 100%, 충전재 웰론 100%", "warmth": 3, "warmthNote": "웰론 충전 누빔 패딩, 투웨이 지퍼", "fit": "오버핏", "colors": [{"name": "블랙", "body": "#121212", "accent": "#2A2A2A"}], "sizes": "M, L", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["4만원 아래로 확실한 보온(충전재)", "후드·투웨이 지퍼로 벤치 대기에 좋음"], "cons": ["사이즈가 M·L뿐", "패션 패딩이라 팀 트레이닝복 느낌은 약함"], "image": "https://image.msscdn.net/images/goods_img/20250916/5468961/5468961_17580026171935_500.jpg"},
  {"id": "puma-teamliga-sideline", "brand": "푸마", "name": "팀리가 사이드라인 자켓", "model": "65725902", "price": 43800, "priceNote": "정가 73,000원에서 40% 할인", "seller": "무신사", "url": "https://www.musinsa.com/products/3771937", "hood": false, "pockets": "양옆 지퍼 주머니", "material": "우븐 겉감 폴리에스터 100%, 몸판·소매 안감 있음", "warmth": 1, "warmthNote": "안감 있는 우븐, 방풍·기모 표기는 없음", "fit": "미확인", "colors": [{"name": "블루/화이트", "body": "#1E6FE0", "accent": "#FFFFFF"}], "sizes": "90~110", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["안감 있는 우븐이라 저지보다 바람을 덜 탐", "양옆 지퍼 주머니"], "cons": ["파랑 1색뿐", "보온 기능 표기 없음"], "image": "https://image.msscdn.net/images/goods_img/20240102/3771937/3771937_17041812106820_500.jpg"},
  {"id": "nike-academy25-track", "brand": "나이키", "name": "드라이 핏 아카데미25 트랙 재킷", "model": "FZ9824", "price": 48000, "priceNote": "정가 75,000원에서 할인, 3색 같은 가격", "seller": "사커붐", "url": "https://soccerboom.co.kr/product/detail.html?product_no=51396", "hood": false, "pockets": "지퍼 옆 주머니", "material": "폴리에스터 100%, Dri-FIT", "warmth": 1, "warmthNote": "안감 없는 저지", "fit": "슬림핏", "colors": [{"name": "블랙/화이트", "body": "#111111", "accent": "#FFFFFF"}, {"name": "네이비", "body": "#1F2A44", "accent": "#2F7FD8"}, {"name": "로얄 블루", "body": "#1F6FD1", "accent": "#1F2A44"}], "sizes": "XS(90)~2XL(115), 로얄 블루는 S부터", "logo": null, "logoNote": "사커붐 단체견적 게시판에서 마킹 포함 견적(공개 단가 없음)", "groupOrder": "단체 구매 시 추가 할인(견적제), 최소 수량 안내 없음", "pros": ["3색 모두 사이즈가 고르게 있어 단체 구매에 유리", "지퍼 주머니"], "cons": ["슬림핏이라 안에 껴입기 불편할 수 있음", "보온 기능 없음"], "image": "https://soccerboom.co.kr/web/product/big/202509/1adae4f2ba1aa00c0efd9387c1c26f15.png"},
  {"id": "joma-champion4", "brand": "조마", "name": "챔피언 IV 트레이닝 자켓", "model": "100687", "price": 48950, "priceNote": "정가 89,000원에서 45% 할인", "seller": "무신사", "url": "https://www.musinsa.com/products/3767943", "hood": false, "pockets": "미확인", "material": "폴리에스터 100%", "warmth": 1, "warmthNote": "안감·기모 표기 없음", "fit": "미확인", "colors": [{"name": "블랙/화이트", "body": "#111111", "accent": "#FFFFFF"}, {"name": "로얄 블루", "body": "#1F6FD6", "accent": "#FFFFFF"}], "sizes": "S(95)~XL(110)", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["소매 배색이 뚜렷한 축구 웜업 디자인", "검정·로얄 2색"], "cons": ["2XL 이상 없음", "주머니·핏 정보 미확인"], "image": "https://image.msscdn.net/images/goods_img/20231227/3767943/3767943_17036420391965_500.jpg"},
  {"id": "adidas-tiro24", "brand": "아디다스", "name": "티로24 컴페티션 트레이닝 자켓", "model": "JF4196", "price": 53000, "priceNote": "정가 85,000원에서 할인", "seller": "사커붐", "url": "https://soccerboom.co.kr/product/detail.html?product_no=51851", "hood": false, "pockets": "지퍼 주머니", "material": "폴리에스터 100%, AEROREADY", "warmth": 1, "warmthNote": "안감 없는 저지", "fit": "미확인", "colors": [{"name": "화이트/솔라 레드", "body": "#F5F5F5", "accent": "#FF5A1F"}], "sizes": "S(90)~4XL(120)", "logo": null, "logoNote": "사커붐 단체견적 게시판에서 마킹 포함 견적(공개 단가 없음)", "groupOrder": "단체 구매 시 추가 할인(견적제), 최소 수량 안내 없음", "pros": ["S~4XL로 사이즈 폭이 가장 넓음", "티로 라인, 지퍼 주머니"], "cons": ["흰색 몸판뿐이라 때가 잘 보임"], "image": "https://soccerboom.co.kr/web/product/big/202512/b59667637299e11f7eadfa751849556c.png"},
  {"id": "kelme-k077", "brand": "켈미", "name": "K077 트레이닝 자켓", "model": "K077", "price": 54450, "priceNote": "정가 99,000원에서 45% 할인, 4색 같은 가격", "seller": "무신사", "url": "https://www.musinsa.com/products/3587802", "hood": false, "pockets": "옆 주머니 2개(사진상 지퍼 있음)", "material": "폴리에스터 100%", "warmth": 1, "warmthNote": "안감·기모 표기 없음", "fit": "미확인", "colors": [{"name": "로얄 블루/화이트", "body": "#1F4FA8", "accent": "#FFFFFF"}, {"name": "블랙/화이트", "body": "#111111", "accent": "#FFFFFF"}, {"name": "다크 그레이/네온 오렌지", "body": "#3A3D42", "accent": "#FF6A1A"}, {"name": "블랙/네온 옐로우", "body": "#111111", "accent": "#D7F21C"}], "sizes": "S(90)~2XL(110)", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["4색이라 팀 색 맞추기 쉬움", "가슴 로고 자수, 래글런 소매"], "cons": ["보온 기능 없음", "2018년 출시 모델"], "image": "https://image.msscdn.net/images/goods_img/20230922/3587802/3587802_16953658812434_500.jpg"},
- {"id": "nepa-bonding", "brand": "네파", "name": "포레스타 트리코트 본딩 트레이닝자켓", "model": "7K56223", "price": 60000, "priceNote": "정가 169,000원에서 할인, 무신사 쿠폰 적용 시 48,000원 표시", "seller": "무신사", "url": "https://www.musinsa.com/products/4447145", "hood": false, "pockets": "옆 주머니, 가슴 지퍼 주머니", "material": "나일론·폴리우레탄 겉감에 폴리에스터 본딩", "warmth": 2, "warmthNote": "본딩 원단, 판매처 '보온성이 우수'", "fit": "미확인", "colors": [{"name": "섀도 그레이", "body": "#5E625F", "accent": "#3FA9E0"}, {"name": "블랙", "body": "#151515", "accent": "#3FA9E0"}], "sizes": "95~110", "logo": null, "logoNote": "판매처 안내 없음. 무지 디자인이라 로고 넣기 좋음", "groupOrder": "판매처 안내 없음", "pros": ["본딩 원단이라 저지보다 따뜻함", "무지라 팀 로고 넣기 좋음"], "cons": ["축구 브랜드가 아닌 아웃도어 브랜드", "95 미만 없음"], "image": "https://image.msscdn.net/images/goods_img/20240920/4447145/4447145_17267974750877_500.jpg"},
+ {"id": "nepa-bonding", "brand": "네파", "name": "포레스타 트리코트 본딩 트레이닝자켓", "model": "7K56223", "price": 48000, "priceNote": "무신사 표시가(쿠폰 적용가). 쿠폰 없이 60,000원, 정가 169,000원", "seller": "무신사", "url": "https://www.musinsa.com/products/4447145", "hood": false, "pockets": "옆 주머니, 가슴 지퍼 주머니", "material": "나일론·폴리우레탄 겉감에 폴리에스터 본딩", "warmth": 2, "warmthNote": "본딩 원단, 판매처 '보온성이 우수'", "fit": "미확인", "colors": [{"name": "섀도 그레이", "body": "#5E625F", "accent": "#3FA9E0"}, {"name": "블랙", "body": "#151515", "accent": "#3FA9E0"}], "sizes": "95~110", "logo": null, "logoNote": "판매처 안내 없음. 무지 디자인이라 로고 넣기 좋음", "groupOrder": "판매처 안내 없음", "pros": ["본딩 원단이라 저지보다 따뜻함", "무지라 팀 로고 넣기 좋음"], "cons": ["축구 브랜드가 아닌 아웃도어 브랜드", "95 미만 없음"], "image": "https://image.msscdn.net/images/goods_img/20240920/4447145/4447145_17267974750877_500.jpg"},
  {"id": "lecoq-durotherm", "brand": "르꼬끄", "name": "듀라썸 기모 트랙탑", "model": "QP423EFTO4", "price": 63600, "priceNote": "정가 159,000원에서 할인(블랙 기준), 베이지 57,240원", "seller": "무신사", "url": "https://www.musinsa.com/products/4480866", "hood": false, "pockets": "옆 주머니 2개(지퍼 여부 미확인)", "material": "폴리에스터 96%·폴리우레탄 4%, 안쪽 기모", "warmth": 2, "warmthNote": "안쪽 기모, 판매처 '가볍고 보온성이 우수'", "fit": "레귤러핏", "colors": [{"name": "블랙", "body": "#141414", "accent": "#FFFFFF"}, {"name": "베이지", "body": "#E6E1D6", "accent": "#2B2B2B"}, {"name": "퍼플", "body": "#D9C3CF", "accent": "#4A4A4A"}], "sizes": "85~110", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["기모 안감이라 겨울에 맞음", "85~110로 사이즈 폭이 넓음"], "cons": ["후보 중 가장 비쌈", "팀복보다는 일상용 트랙탑 디자인"], "image": "https://image.msscdn.net/images/goods_img/20241002/4480866/4480866_17304318831601_500.jpg"}
 ];
 const CHECKED = "2026-11-01";
@@ -402,7 +410,7 @@ const SIZE = {"puma-teamrise":[100,110],"adidas-squadra25":[95,110],"galex-hood-
 const SIZE_NAME = {85:"XS",90:"S",95:"M",100:"L",105:"XL",110:"2XL",115:"3XL",120:"4XL"};
 /* 상품 사진은 판매처 서버에서 바로 불러옴. 못 불러오면 안내 문구로 대신함 */
 function photo(d, cls){
-  return `<img class="${cls||"ph"}" src="${esc(d.image)}" alt="${esc(d.brand)} ${esc(d.name)} 상품 사진" loading="lazy" onerror="photoFail(this,'${d.id}')">`;
+  return `<img class="${cls||"ph"}" src="${esc(d.image)}" alt="${esc(d.brand)} ${esc(d.name)} 상품 사진" loading="lazy" referrerpolicy="no-referrer" onerror="photoFail(this,'${d.id}')">`;
 }
 function photoFail(img, id){
   const w = document.createElement("div"); w.className = img.className + " ph-fallback"; w.textContent = "사진을 불러오지 못했어요";
@@ -423,6 +431,7 @@ function band(p){ return p < 40000 ? "low" : p < 60000 ? "mid" : "high"; }
 function esc(s){ return String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 
 function warmBar(w){ return `<span class="warm" title="보온 ${w}/3">${[1,2,3].map(i=>`<i class="${i<=w?"on":""}"></i>`).join("")} 보온</span>`; }
+function logoShort(d){ return /견적/.test(d.logoNote) ? "견적제" : "안내 없음"; }
 function hoodLabel(d){ return d.hood === true ? "후드 있음" : d.hood === false ? "후드 없음" : "후드 미확인"; }
 
 function list(){
@@ -445,7 +454,7 @@ function renderGrid(){
         <span class="brand-l">${esc(d.brand)}</span>
         <h3 data-open="${d.id}">${esc(d.name)}</h3>
         <div class="price">${won(d.price)}<small>${esc(d.seller)}</small></div>
-        <div class="tags"><span class="tag zip">풀집 자켓</span><span class="tag">${hoodLabel(d)}</span>${d.warmth>=2?'<span class="tag logo">겨울용</span>':""}<span class="tag">${esc(d.sizes.split(" ")[0])}</span></div>
+        <div class="tags"><span class="tag">${hoodLabel(d)}</span>${d.warmth>=2?'<span class="tag logo">겨울용</span>':""}<span class="tag">${esc(d.sizes.split(" ")[0])}</span></div>
         ${warmBar(d.warmth)}
         <div class="dots" aria-label="판매 색상 ${d.colors.length}가지">${d.colors.map(k=>`<span class="dot" style="background:${k.body}" title="${esc(k.name)}"></span>`).join("")}<span>${d.colors.length}색</span></div>
         <div class="actions">
@@ -465,14 +474,14 @@ const COLS = [
   {k:"warmth", t:"보온", v:d=>d.warmth, h:d=>`<span title="보온 ${d.warmth}/3">${"●".repeat(d.warmth)}${"○".repeat(3-d.warmth)}</span>`, nw:1},
   {k:"material", t:"소재", v:d=>d.material, h:d=>esc(d.material)},
   {k:"fit", t:"핏", v:d=>d.fit, h:d=>esc(d.fit), nw:1},
-  {k:"logo", t:"로고", v:d=>d.logo===true?0:d.logo==null?1:2, h:d=>esc(d.logoNote)},
+  {k:"logo", t:"로고", v:d=>logoShort(d), h:d=>`<span class="tag" title="${esc(d.logoNote)}">${logoShort(d)}</span>`, nw:1},
   {k:"sizes", t:"사이즈", v:d=>d.sizes, h:d=>esc(d.sizes)},
 ];
 let tsort = {k:"price", dir:1};
 function renderTable(){
   const xs = [...DATA].sort((a,b)=>{ const c = COLS.find(c=>c.k===tsort.k); const x=c.v(a), y=c.v(b); return (x>y?1:x<y?-1:0)*tsort.dir; });
-  $("#tbl").innerHTML = `<thead><tr>${COLS.map(c=>`<th data-k="${c.k}" aria-sort="${tsort.k===c.k?(tsort.dir>0?"ascending":"descending"):"none"}" tabindex="0">${c.t}</th>`).join("")}</tr></thead>
-  <tbody>${xs.map(d=>`<tr class="${picks.has(d.id)?"picked":""}">${COLS.map(c=>`<td class="${c.r?"r ":""}${c.nw?"nw":""}">${c.h(d)}</td>`).join("")}</tr>`).join("")}</tbody>`;
+  $("#tbl").innerHTML = `<thead><tr>${COLS.map(c=>`<th class="col-${c.k}" data-k="${c.k}" role="button" aria-sort="${tsort.k===c.k?(tsort.dir>0?"ascending":"descending"):"none"}" tabindex="0">${c.t}</th>`).join("")}</tr></thead>
+  <tbody>${xs.map(d=>`<tr class="${picks.has(d.id)?"picked":""}">${COLS.map(c=>`<td class="col-${c.k} ${c.r?"r ":""}${c.nw?"nw":""}">${c.h(d)}</td>`).join("")}</tr>`).join("")}</tbody>`;
 }
 
 function detail(d){
@@ -482,7 +491,7 @@ function detail(d){
       <span class="brand-l" style="font-size:12px;color:var(--muted);font-weight:600">${esc(d.brand)}${d.model?` · ${esc(d.model)}`:""}</span>
       <h2 id="dlgTitle" style="font-size:20px">${esc(d.name)}</h2>
       <div class="price">${won(d.price)}<small>${esc(d.priceNote||"")}</small></div>
-      <div class="tags"><span class="tag zip">${hoodLabel(d)}</span>${warmBar(d.warmth)}</div>
+      <div class="tags"><span class="tag">${hoodLabel(d)}</span>${warmBar(d.warmth)}</div>
       <span style="font-size:13px;color:var(--muted)">색: ${d.colors.map(k=>esc(k.name)).join(" · ")}</span>
     </div>
   </div>
@@ -501,13 +510,15 @@ function detail(d){
       <div class="con"><h4>아쉬운 점</h4><ul>${d.cons.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>
     </div>
     <div class="actions" style="display:flex;gap:8px;flex-wrap:wrap">
-      ${d.url?`<a class="btn primary" href="${esc(d.url)}" target="_blank" rel="noopener">판매 페이지 열기</a>`:""}
+      ${d.url?`<a class="btn primary" href="${esc(d.url)}" target="_blank" rel="noopener">판매 페이지</a>`:""}
       <button class="btn" data-pick="${d.id}" aria-pressed="${picks.has(d.id)}">${picks.has(d.id)?"★ 찜함":"☆ 찜"}</button>
-      <button class="btn" data-share="${d.id}">카드 링크 복사</button>
+      <button class="btn" data-share="${d.id}">링크 복사</button>
     </div>
   </div>`;
 }
+let lastFocus = null;
 function openDetail(id){
+  if(!$("#dlg").open) lastFocus = document.activeElement;
   const d = DATA.find(x=>x.id===id); if(!d) return;
   $("#dlgIn").innerHTML = detail(d);
   const dlg = $("#dlg"); if(!dlg.open) dlg.showModal();
@@ -519,12 +530,14 @@ function openCompare(){
   <div style="padding:20px 16px 16px"><h2 style="font-size:18px;margin-bottom:12px">나란히 비교</h2>
   <div class="tablebox"><table style="min-width:${180*xs.length+90}px"><thead><tr><th></th>${xs.map(d=>{return `<th style="cursor:default;text-align:center"><div style="width:100px;aspect-ratio:5/6;margin:0 auto 6px;border-radius:8px;overflow:hidden;background:#fff">${photo(d)}</div>${esc(d.brand)}<br><span style="color:var(--fg)">${esc(d.name)}</span></th>`}).join("")}</tr></thead>
   <tbody>${rows.map(([t,f])=>`<tr><td style="color:var(--muted);white-space:nowrap">${t}</td>${xs.map(d=>`<td>${f(d)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div>`;
-  $("#cmp").showModal();
+  lastFocus = document.activeElement; $("#cmp").showModal();
 }
+function syncTrayH(){ document.documentElement.style.setProperty("--tray-h", compare.length ? $("#tray").offsetHeight + "px" : "0px"); }
+addEventListener("resize", syncTrayH);
 function renderTray(){
-  requestAnimationFrame(()=>document.documentElement.style.setProperty("--tray-h", compare.length ? $("#tray").offsetHeight + "px" : "0px"));
+  requestAnimationFrame(syncTrayH);
   $("#tray").hidden = compare.length === 0;
-  $("#slots").innerHTML = compare.map(id=>{const d=DATA.find(x=>x.id===id);return `<span class="slot">${esc(d.brand)} ${esc(d.name)}<button data-cmp="${id}" aria-label="빼기">×</button></span>`}).join("");
+  $("#slots").innerHTML = compare.map(id=>{const d=DATA.find(x=>x.id===id);return `<span class="slot"><span>${esc(d.brand)} ${esc(d.name)}</span><button data-cmp="${id}" aria-label="빼기">×</button></span>`}).join("");
   $("#goCompare").disabled = compare.length < 2;
   $("#goCompare").style.opacity = compare.length < 2 ? .5 : 1;
 }
@@ -535,7 +548,7 @@ function renderOrder(){
   if(!sel.options.length) sel.innerHTML = [...DATA].sort((a,b)=>a.price-b.price).map(d=>`<option value="${d.id}">${esc(d.brand)} ${esc(d.name)} (${won(d.price)})</option>`).join("");
   const d = DATA.find(x=>x.id===sel.value); if(!d) return;
   document.querySelectorAll("[data-people]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.people === String(+$("#oPeople").value)));
-  const n = Math.max(1, +$("#oPeople").value||1), lg = Math.max(0, +$("#oLogo").value||0), sp = Math.max(0, +$("#oSupport").value||0);
+  const n = Math.min(200, Math.max(1, Math.round(+$("#oPeople").value)||1)), lg = Math.max(0, +$("#oLogo").value||0), sp = Math.max(0, +$("#oSupport").value||0);
   const cloth = d.price*n, logo = lg*n, total = Math.max(0, cloth+logo-sp);
   $("#tCloth").textContent = won(cloth); $("#tLogo").textContent = won(logo);
   $("#tSupport").textContent = sp ? "−"+won(sp) : won(0);
@@ -546,6 +559,7 @@ function renderOrder(){
 function renderSize(){
   const c = +$("#chest").value;
   if(!c || c < 75 || c > 135){ $("#sizeRec").textContent = "–"; $("#sizeNote").textContent = "75~135 사이로 넣어 주세요."; $("#sizeHits").innerHTML = ""; return; }
+  if(c < 83 || c > 122){ $("#sizeRec").textContent = "–"; $("#sizeNote").textContent = c < 83 ? "가장 작은 표기(85, XS)보다 작아요. 상품 페이지의 실측 사이즈를 확인해 주세요." : "가장 큰 표기(120, 4XL)보다 커요. 상품 페이지의 실측 사이즈를 확인해 주세요."; $("#sizeHits").innerHTML = ""; return; }
   const s = Math.min(120, Math.max(85, Math.round(c/5)*5));
   $("#sizeRec").textContent = `${s}(${SIZE_NAME[s]})`;
   const xs = [...DATA].sort((a,b)=>a.price-b.price);
@@ -584,16 +598,22 @@ document.addEventListener("click", e=>{
     g.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", c===t)); renderGrid();
   }
   else if(t.id==="goCompare" && compare.length>=2) openCompare();
-  else if(t.dataset.k){ tsort = {k:t.dataset.k, dir: tsort.k===t.dataset.k ? -tsort.dir : 1}; renderTable(); }
+  else if(t.dataset.k){ const k = t.dataset.k; tsort = {k, dir: tsort.k===k ? -tsort.dir : 1}; renderTable(); document.querySelector(`#tbl th[data-k="${k}"]`)?.focus(); }
 });
-document.addEventListener("keydown", e=>{ if(e.key==="Enter" && e.target.matches("thead th[data-k]")) e.target.click(); });
-["#dlg","#cmp"].forEach(s=>$(s).addEventListener("click", e=>{ if(e.target===e.currentTarget) e.currentTarget.close(); }));
+document.addEventListener("keydown", e=>{ if((e.key==="Enter" || e.key===" ") && e.target.matches("thead th[data-k]")){ e.preventDefault(); e.target.click(); } });
+["#dlg","#cmp"].forEach(s=>{
+  $(s).addEventListener("click", e=>{ if(e.target===e.currentTarget) e.currentTarget.close(); });
+  $(s).addEventListener("close", ()=>{ if(lastFocus && document.contains(lastFocus)) lastFocus.focus(); lastFocus = null; });
+});
+function openFromHash(){ const m = /^#c-(.+)$/.exec(location.hash); if(m && DATA.some(d=>d.id===m[1])){ document.getElementById("c-"+m[1])?.scrollIntoView(); openDetail(m[1]); } }
+addEventListener("hashchange", openFromHash);
 $("#sort").addEventListener("change", renderGrid);
 $("#chest").addEventListener("input", renderSize);
 const smooth = matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 $("#toTop").addEventListener("click", ()=>scrollTo({top:0, behavior:smooth}));
 $("#toBottom").addEventListener("click", ()=>scrollTo({top:document.documentElement.scrollHeight, behavior:smooth}));
 ["#oItem","#oPeople","#oLogo","#oSupport"].forEach(s=>$(s).addEventListener("input", renderOrder));
+$("#oPeople").addEventListener("change", ()=>{ const v = $("#oPeople"); v.value = Math.min(200, Math.max(1, Math.round(+v.value)||1)); renderOrder(); });
 
 /* 현재 섹션 탭 표시 */
 const tabs = [...document.querySelectorAll("nav.tabs a")];
@@ -604,11 +624,11 @@ tabs[0].classList.add("on");
 function init(){
   const ps = DATA.map(d=>d.price);
   $("#statCount").textContent = DATA.length + "개";
-  $("#statRange").textContent = ps.length ? `${Math.round(Math.min(...ps)/1000)}~${Math.round(Math.max(...ps)/1000)}천원` : "–";
+  $("#statRange").textContent = ps.length ? `${(Math.min(...ps)/10000).toFixed(1)}만~${(Math.max(...ps)/10000).toFixed(1)}만 원` : "–";
   $("#statLogo").textContent = DATA.filter(d=>d.warmth>=2).length + "개";
   $("#foot").innerHTML = `태평FC 회원 공유용 비교 페이지 · 가격·링크는 ${CHECKED} 확인 기준이며 쇼핑몰 사정에 따라 바뀔 수 있어요. 상품 사진은 각 판매처 페이지의 사진이며, 사진 속 색이 판매 색상 전부는 아닙니다.`;
   renderAll(); renderOrder(); renderSize();
-  const m = /^#c-(.+)$/.exec(location.hash); if(m && DATA.some(d=>d.id===m[1])){ document.getElementById("c-"+m[1])?.scrollIntoView(); openDetail(m[1]); }
+  openFromHash();
 }
 init();
 </script>
