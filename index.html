@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>태평FC 겨울 웜업</title>
-<meta name="description" content="태평FC 회원용 겨울 웜업 자켓 후보 비교">
-<meta property="og:title" content="태평FC 겨울 웜업, 같이 골라요">
-<meta property="og:description" content="웜업 자켓 후보를 가격·보온·색으로 비교해 보세요.">
+<title>태평FC 26/27 겨울 시즌 웜업 자켓</title>
+<meta name="description" content="태평FC 26/27 겨울 시즌 팀 웜업 자켓 후보 비교">
+<meta property="og:title" content="태평FC 26/27 겨울 시즌 웜업 자켓">
+<meta property="og:description" content="풀집업 웜업 자켓 후보를 가격·보온성·사이즈·단체 마킹 기준으로 비교합니다.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://yusini97.github.io/taepyeong-fc-warmup/">
 <meta property="og:image" content="https://yusini97.github.io/taepyeong-fc-warmup/assets/og.jpg">
@@ -76,7 +76,7 @@ nav.tabs a.on{color:var(--fg);border-bottom-color:var(--pitch)}
 .hero p{margin:0;opacity:.85;max-width:34em}
 .hero-stats{display:flex;flex-wrap:wrap;gap:18px;margin-top:18px}
 .hero-stats div{display:flex;flex-direction:column}
-.hero-stats b{font-family:var(--f-num);font-size:20px}
+.hero-stats b{font-family:var(--f-num);font-size:20px;white-space:nowrap}
 .hero-stats span{font-size:12px;opacity:.7}
 
 section{padding-block:36px 8px;scroll-margin-top:110px}
@@ -231,7 +231,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
   <div class="wrap">
     <div class="brand">
       <svg class="crest" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 4 6v9c0 7.5 5 12.5 12 15 7-2.5 12-7.5 12-15V6z" fill="#111" stroke="#c8102e" stroke-width="1.5"/><circle cx="16" cy="15" r="6" fill="none" stroke="#c8102e" stroke-width="1.8"/><path d="m16 11 2.6 1.9-1 3h-3.2l-1-3z" fill="#fff"/></svg>
-      <b>태평FC</b><span>겨울 웜업 고르기</span>
+      <b>태평FC</b><span>26/27 겨울 시즌</span>
     </div>
     <nav class="tabs" aria-label="섹션">
       <a href="#overview">개요</a>
@@ -247,13 +247,14 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
   <div class="hero" id="overview">
     <div class="hero-in">
       <div>
-        <span class="pill" id="heroDate">2026 겨울</span>
-        <h1>태평FC 겨울 웜업, 같이 골라요</h1>
-        <p>목부터 밑단까지 지퍼로 여닫는 웜업 자켓 후보를 모았습니다. 가격·보온·로고 인쇄를 비교하고, 마음에 드는 걸 골라 단톡방에 의견을 남겨 주세요.</p>
+        <span class="pill" id="heroDate">26/27 WINTER SEASON · TEAMWEAR</span>
+        <h1>태평FC 26/27 겨울 시즌<br>웜업 자켓</h1>
+        <p>목부터 밑단까지 여닫는 풀집업 트레이닝 자켓을 대상으로 판매가, 보온성, 사이즈 구성, 단체 마킹 조건을 정리한 회원 선정 자료입니다. 검토 후 선호 모델을 단톡방에 남겨 주세요.</p>
         <div class="hero-stats">
-          <div><b class="num" id="statCount">–</b><span>후보</span></div>
-          <div><b class="num" id="statRange">–</b><span>1벌 가격</span></div>
-          <div><b class="num" id="statLogo">–</b><span>겨울용</span></div>
+          <div><b class="num" id="statCount">–</b><span>후보 모델</span></div>
+          <div><b class="num" id="statBrand">–</b><span>참여 브랜드</span></div>
+          <div><b class="num" id="statRange">–</b><span>판매가 범위</span></div>
+          <div><b class="num" id="statLogo">–</b><span>보온 강화 모델</span></div>
         </div>
       </div>
     </div>
@@ -623,9 +624,10 @@ tabs[0].classList.add("on");
 
 function init(){
   const ps = DATA.map(d=>d.price);
-  $("#statCount").textContent = DATA.length + "개";
-  $("#statRange").textContent = ps.length ? `${(Math.min(...ps)/10000).toFixed(1)}만~${(Math.max(...ps)/10000).toFixed(1)}만원` : "–";
-  $("#statLogo").textContent = DATA.filter(d=>d.warmth>=2).length + "개";
+  $("#statCount").textContent = DATA.length + "종";
+  $("#statBrand").textContent = new Set(DATA.map(d=>d.brand)).size + "개";
+  $("#statRange").textContent = ps.length ? `${Math.min(...ps).toLocaleString("ko-KR")}~${Math.max(...ps).toLocaleString("ko-KR")}원` : "–";
+  $("#statLogo").textContent = DATA.filter(d=>d.warmth>=2).length + "종";
   $("#foot").innerHTML = `태평FC 회원 공유용 비교 페이지 · 가격·링크는 ${CHECKED} 확인 기준이며 쇼핑몰 사정에 따라 바뀔 수 있어요. 상품 사진은 각 판매처 페이지의 사진이며, 사진 속 색이 판매 색상 전부는 아닙니다.`;
   renderAll(); renderOrder(); renderSize();
   openFromHash();
