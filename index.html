@@ -80,10 +80,6 @@ section{padding-block:36px 8px;scroll-margin-top:110px}
 .eyebrow{font-family:var(--f-num);font-size:12px;letter-spacing:1.5px;color:#7fd3a5;text-transform:uppercase}
 
 /* 고르는 기준 */
-.criteria{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
-.crit{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--pitch);border-radius:var(--r);padding:16px}
-.crit h3{font-size:16px;margin-bottom:4px}
-.crit p{margin:0;color:var(--muted);font-size:14px}
 
 /* 필터 */
 .filters{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;margin-bottom:14px}
@@ -139,6 +135,8 @@ thead th[aria-sort="ascending"]::after{content:" ↑";opacity:1}
 thead th[aria-sort="descending"]::after{content:" ↓";opacity:1}
 tbody tr:last-child td{border-bottom:0}
 td.r{text-align:right}
+#tbl td{overflow-wrap:normal}
+#tbl td.nw{white-space:nowrap}
 tr.picked td:first-child{box-shadow:inset 3px 0 0 var(--flood)}
 
 /* 단체 주문 */
@@ -153,7 +151,25 @@ tr.picked td:first-child{box-shadow:inset 3px 0 0 var(--flood)}
 .total .row b{font-family:var(--f-num)}
 .total .big{font-size:26px;color:var(--pitch)}
 .note{font-size:13px;color:var(--muted)}
+.people{display:flex;gap:6px;align-items:stretch}
+.people input{flex:1;min-width:0;text-align:center;font-family:var(--f-num);font-size:16px}
+.step{width:40px;border:1px solid var(--line);background:var(--surface-2);border-radius:8px;font-size:18px;cursor:pointer}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.guide{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.guide .size-panel{grid-column:1/-1}
+.bul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.size-find{display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:start;margin-bottom:12px}
+.size-find .field{margin:0}
+.size-rec{margin:0;font-size:15px}
+.size-rec b{font-size:24px;color:var(--pitch);margin-left:6px}
+.size-out .note{margin:2px 0 8px}
+.size-hits{display:flex;flex-wrap:wrap;gap:6px}
+.hit{border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer;color:var(--fg)}
+.hit.no{opacity:.45;text-decoration:line-through}
+.size-table table{min-width:560px;font-size:13px}
+.size-table td,.size-table th{text-align:center;white-space:nowrap;cursor:default}
+.size-table td:first-child,.size-table th:first-child{text-align:left;color:var(--muted)}
 
 /* 질문 */
 details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;margin-bottom:8px}
@@ -177,12 +193,18 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
 .pc .pro h4{color:var(--pitch)}
 .pc .con h4{color:var(--warn)}
 .close{position:absolute;top:10px;right:10px;border:0;background:var(--surface);border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:18px}
+.jump{position:fixed;right:max(16px,calc(env(safe-area-inset-right,0px) + 16px));bottom:calc(16px + env(safe-area-inset-bottom,0px) + var(--tray-h,0px));z-index:31;display:flex;flex-direction:column;gap:8px}
+.jump button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(20,39,59,.88);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.jump button:hover{background:var(--pitch)}
+.jump svg{width:22px;height:22px}
 .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:14px;z-index:50}
 
 @media (max-width:720px){
   .hero{min-height:clamp(300px,60vh,460px)}
   .hero-in{padding-block:28px 36px}
   .order{grid-template-columns:1fr}
+  .guide{grid-template-columns:1fr}
+  .size-find{grid-template-columns:1fr}
   .dlg-top{grid-template-columns:110px 1fr}
   .pc{grid-template-columns:1fr}
   .count{margin-left:0;width:100%}
@@ -205,9 +227,9 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
     </div>
     <nav class="tabs" aria-label="섹션">
       <a href="#overview">개요</a>
-      <a href="#criteria">고르는 기준</a>
       <a href="#candidates">후보 보기</a>
       <a href="#table">한눈에 비교</a>
+      <a href="#guide">구매 안내</a>
       <a href="#order">단체 주문</a>
     </nav>
   </div>
@@ -229,23 +251,6 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
     </div>
   </div>
 
-  <section id="criteria">
-    <div class="sec-h"><span class="eyebrow">How to pick</span><h2>이것만 보고 고르면 돼요</h2><p>운동 전후에 입고 벗기 편하고, 다 같이 맞췄을 때 보기 좋은 옷이 목표입니다.</p></div>
-    <div class="criteria">
-      <div class="crit">
-        <h3>후드·주머니</h3><p>후드가 있으면 바람 부는 날 좋고, 지퍼 주머니가 있으면 차 키·휴대폰을 넣어 두기 편해요.</p>
-      </div>
-      <div class="crit">
-        <h3>보온</h3><p>겨울 새벽 경기 기준. 안쪽 기모나 두께가 있는지, 바람을 막아 주는지 봐 주세요.</p>
-      </div>
-      <div class="crit">
-        <h3>가격</h3><p>1벌 2만~7만 원. 로고 인쇄비를 더한 실제 1인 부담은 아래 단체 주문에서 계산해요.</p>
-      </div>
-      <div class="crit">
-        <h3>로고·단체 주문</h3><p>태평FC 로고를 넣을 수 있는지, 몇 벌부터 할인되는지, 받는 데 며칠 걸리는지.</p>
-      </div>
-    </div>
-  </section>
 
   <section id="candidates">
     <div class="sec-h"><span class="eyebrow">Candidates</span><h2>후보 자켓</h2><p>사진을 누르면 자세히 볼 수 있어요. 색 점은 판매 중인 색상이고, ‘비교 담기’로 최대 3개를 나란히 볼 수 있어요.</p></div>
@@ -282,13 +287,67 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
     <div class="tablebox"><table id="tbl"></table></div>
   </section>
 
+  <section id="guide">
+    <div class="sec-h"><span class="eyebrow">Shopping guide</span><h2>구매 안내</h2><p>주문 전에 사이즈, 로고 마킹, 교환 조건을 확인해 주세요.</p></div>
+    <div class="guide">
+      <div class="panel size-panel">
+        <h3>내 사이즈 찾기</h3>
+        <div class="size-find">
+          <div class="field"><label for="chest">가슴둘레 (cm)</label><input id="chest" type="number" min="75" max="135" value="100" inputmode="numeric"></div>
+          <div class="size-out" aria-live="polite">
+            <p class="size-rec">추천 <b class="num" id="sizeRec">–</b></p>
+            <p class="note" id="sizeNote"></p>
+            <div class="size-hits" id="sizeHits"></div>
+          </div>
+        </div>
+        <div class="tablebox size-table"><table>
+          <thead><tr><th>표기</th><th>85</th><th>90</th><th>95</th><th>100</th><th>105</th><th>110</th><th>115</th><th>120</th></tr></thead>
+          <tbody>
+            <tr><td>국제</td><td>XS</td><td>S</td><td>M</td><td>L</td><td>XL</td><td>2XL</td><td>3XL</td><td>4XL</td></tr>
+            <tr><td>가슴둘레</td><td class="num">83~87</td><td class="num">88~92</td><td class="num">93~97</td><td class="num">98~102</td><td class="num">103~107</td><td class="num">108~112</td><td class="num">113~117</td><td class="num">118~122</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note">한국 표기 숫자는 대략 가슴둘레(cm)입니다. 브랜드와 핏마다 다르니 주문 전 상품 페이지의 실측 사이즈를 확인하세요.</p>
+      </div>
+      <div class="panel">
+        <h3>로고 마킹</h3>
+        <ul class="bul">
+          <li>후보 판매처 중 마킹 단가를 공개한 곳은 없습니다. 사커붐은 단체견적 게시판에서 마킹 포함 견적을 받습니다.</li>
+          <li>외부 마킹업체를 쓸 수도 있습니다(예: 팀메이커 — 1장부터, 시안 확정 후 2영업일).</li>
+          <li>로고 파일은 AI 또는 고해상도 PNG로 준비하고, 위치(왼가슴·등)와 방식(인쇄·자수)을 정해 견적을 요청하세요.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>배송·교환</h3>
+        <ul class="bul">
+          <li>배송비와 교환·반품 조건은 각 판매처 상품 페이지의 안내를 따릅니다.</li>
+          <li>로고를 넣은 옷은 대부분 교환·반품이 어렵습니다. 마킹 전에 받아서 입어 보고 사이즈를 확정하세요.</li>
+          <li>할인가는 기간이 끝나면 오를 수 있으니 주문 당일 링크에서 다시 확인하세요.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>주문 순서</h3>
+        <ol class="steps">
+          <li>단톡방에서 후보 1~2개로 좁히기</li>
+          <li>색상 정하고 회원별 사이즈 받기</li>
+          <li>판매처나 마킹업체에 수량·로고 견적 요청</li>
+          <li>회비 지원 금액 정하고 1인 부담 공지</li>
+          <li>주문 → 수령 후 사이즈 확인 → 마킹 → 나눠 주기</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
   <section id="order">
     <div class="sec-h"><span class="eyebrow">Group order</span><h2>단체 주문 계산</h2><p>후보와 인원을 고르면 총액과 1인 부담을 바로 계산해요. 로고 인쇄비는 업체 견적에 맞게 고쳐 넣으세요.</p></div>
     <div class="order">
       <div class="panel">
         <h3>조건</h3>
         <div class="field"><label for="oItem">후보</label><select id="oItem"></select></div>
-        <div class="field"><label for="oPeople">인원 (명)</label><input id="oPeople" type="number" min="1" max="200" value="20" inputmode="numeric"></div>
+        <div class="field"><label for="oPeople">인원 (명)</label>
+          <div class="people"><button type="button" class="step" data-step="-1" aria-label="한 명 빼기">−</button><input id="oPeople" type="number" min="1" max="200" value="20" inputmode="numeric"><button type="button" class="step" data-step="1" aria-label="한 명 더하기">+</button></div>
+          <div class="presets" role="group" aria-label="인원 빠른 선택"><button type="button" class="chip" data-people="10" aria-pressed="false">10명</button><button type="button" class="chip" data-people="15" aria-pressed="false">15명</button><button type="button" class="chip" data-people="20" aria-pressed="true">20명</button><button type="button" class="chip" data-people="25" aria-pressed="false">25명</button><button type="button" class="chip" data-people="30" aria-pressed="false">30명</button><button type="button" class="chip" data-people="40" aria-pressed="false">40명</button></div>
+        </div>
         <div class="field"><label for="oLogo">로고 인쇄·자수 1벌당 (원)</label><input id="oLogo" type="number" min="0" step="500" value="5000" inputmode="numeric"></div>
         <div class="field"><label for="oSupport">회비 지원 총액 (원)</label><input id="oSupport" type="number" min="0" step="10000" value="0" inputmode="numeric"></div>
         <p class="note" id="oLogoNote"></p>
@@ -302,14 +361,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
           <div class="row"><span>총액</span><b id="tTotal">–</b></div>
           <div class="row"><span>1인 부담</span><b class="big" id="tPer">–</b></div>
         </div>
-        <p class="note">정가 기준 추정치예요. 단체 할인·배송비·사이즈 교환비는 업체 견적으로 확인해 주세요.</p>
-        <h3 style="margin-top:14px">주문 순서</h3>
-        <ol class="steps">
-          <li>단톡방에서 후보 1~2개로 좁히기</li>
-          <li>색상 정하고 회원별 사이즈 받기</li>
-          <li>로고 파일(가능하면 AI·PNG 고해상도) 준비해 업체에 견적 요청</li>
-          <li>회비 지원 금액 정하고 1인 부담 공지</li>
-        </ol>
+        <p class="note">판매처 할인가 기준 추정치예요. 단체 할인·배송비·마킹비는 견적으로 확인해 주세요.</p>
       </div>
     </div>
   </section>
@@ -317,6 +369,11 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
 
   <footer id="foot"></footer>
 </main>
+
+<div class="jump" role="group" aria-label="빠른 이동">
+  <button type="button" id="toTop" aria-label="맨 위로"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button type="button" id="toBottom" aria-label="맨 아래로"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
 
 <div class="tray" id="tray" hidden>
   <div class="wrap"><span style="font-size:13px;opacity:.8">비교</span><div class="slots" id="slots"></div><button class="go" id="goCompare">나란히 보기</button></div>
@@ -340,6 +397,9 @@ const DATA = [
  {"id": "lecoq-durotherm", "brand": "르꼬끄", "name": "듀라썸 기모 트랙탑", "model": "QP423EFTO4", "price": 63600, "priceNote": "정가 159,000원에서 할인(블랙 기준), 베이지 57,240원", "seller": "무신사", "url": "https://www.musinsa.com/products/4480866", "hood": false, "pockets": "옆 주머니 2개(지퍼 여부 미확인)", "material": "폴리에스터 96%·폴리우레탄 4%, 안쪽 기모", "warmth": 2, "warmthNote": "안쪽 기모, 판매처 '가볍고 보온성이 우수'", "fit": "레귤러핏", "colors": [{"name": "블랙", "body": "#141414", "accent": "#FFFFFF"}, {"name": "베이지", "body": "#E6E1D6", "accent": "#2B2B2B"}, {"name": "퍼플", "body": "#D9C3CF", "accent": "#4A4A4A"}], "sizes": "85~110", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["기모 안감이라 겨울에 맞음", "85~110로 사이즈 폭이 넓음"], "cons": ["후보 중 가장 비쌈", "팀복보다는 일상용 트랙탑 디자인"], "image": "https://image.msscdn.net/images/goods_img/20241002/4480866/4480866_17304318831601_500.jpg"}
 ];
 const CHECKED = "2026-11-01";
+/* 살 수 있는 사이즈 범위(한국 표기). 갈렉스 M·L은 95·100으로 봄 */
+const SIZE = {"puma-teamrise":[100,110],"adidas-squadra25":[95,110],"galex-hood-padding":[95,100],"puma-teamliga-sideline":[90,110],"nike-academy25-track":[90,115],"joma-champion4":[95,110],"adidas-tiro24":[90,120],"kelme-k077":[90,110],"nepa-bonding":[95,110],"lecoq-durotherm":[85,110]};
+const SIZE_NAME = {85:"XS",90:"S",95:"M",100:"L",105:"XL",110:"2XL",115:"3XL",120:"4XL"};
 /* 상품 사진은 판매처 서버에서 바로 불러옴. 못 불러오면 안내 문구로 대신함 */
 function photo(d, cls){
   return `<img class="${cls||"ph"}" src="${esc(d.image)}" alt="${esc(d.brand)} ${esc(d.name)} 상품 사진" loading="lazy" onerror="photoFail(this,'${d.id}')">`;
@@ -399,12 +459,12 @@ function renderGrid(){
 
 const COLS = [
   {k:"name", t:"후보", v:d=>d.brand+" "+d.name, h:d=>`${picks.has(d.id)?"★ ":""}<a href="#c-${d.id}" data-open="${d.id}">${esc(d.brand)} ${esc(d.name)}</a>`},
-  {k:"price", t:"가격", v:d=>d.price, h:d=>`<span class="num">${won(d.price)}</span>`, r:1},
-  {k:"hood", t:"후드", v:d=>String(d.hood), h:d=>hoodLabel(d)},
+  {k:"price", t:"가격", v:d=>d.price, h:d=>`<span class="num">${won(d.price)}</span>`, r:1, nw:1},
+  {k:"hood", t:"후드", v:d=>String(d.hood), h:d=>hoodLabel(d), nw:1},
   {k:"pockets", t:"주머니", v:d=>d.pockets, h:d=>esc(d.pockets)},
-  {k:"warmth", t:"보온", v:d=>d.warmth, h:d=>"●".repeat(d.warmth)+"○".repeat(3-d.warmth)},
+  {k:"warmth", t:"보온", v:d=>d.warmth, h:d=>`<span title="보온 ${d.warmth}/3">${"●".repeat(d.warmth)}${"○".repeat(3-d.warmth)}</span>`, nw:1},
   {k:"material", t:"소재", v:d=>d.material, h:d=>esc(d.material)},
-  {k:"fit", t:"핏", v:d=>d.fit, h:d=>esc(d.fit)},
+  {k:"fit", t:"핏", v:d=>d.fit, h:d=>esc(d.fit), nw:1},
   {k:"logo", t:"로고", v:d=>d.logo===true?0:d.logo==null?1:2, h:d=>esc(d.logoNote)},
   {k:"sizes", t:"사이즈", v:d=>d.sizes, h:d=>esc(d.sizes)},
 ];
@@ -412,7 +472,7 @@ let tsort = {k:"price", dir:1};
 function renderTable(){
   const xs = [...DATA].sort((a,b)=>{ const c = COLS.find(c=>c.k===tsort.k); const x=c.v(a), y=c.v(b); return (x>y?1:x<y?-1:0)*tsort.dir; });
   $("#tbl").innerHTML = `<thead><tr>${COLS.map(c=>`<th data-k="${c.k}" aria-sort="${tsort.k===c.k?(tsort.dir>0?"ascending":"descending"):"none"}" tabindex="0">${c.t}</th>`).join("")}</tr></thead>
-  <tbody>${xs.map(d=>`<tr class="${picks.has(d.id)?"picked":""}">${COLS.map(c=>`<td class="${c.r?"r":""}">${c.h(d)}</td>`).join("")}</tr>`).join("")}</tbody>`;
+  <tbody>${xs.map(d=>`<tr class="${picks.has(d.id)?"picked":""}">${COLS.map(c=>`<td class="${c.r?"r ":""}${c.nw?"nw":""}">${c.h(d)}</td>`).join("")}</tr>`).join("")}</tbody>`;
 }
 
 function detail(d){
@@ -462,6 +522,7 @@ function openCompare(){
   $("#cmp").showModal();
 }
 function renderTray(){
+  requestAnimationFrame(()=>document.documentElement.style.setProperty("--tray-h", compare.length ? $("#tray").offsetHeight + "px" : "0px"));
   $("#tray").hidden = compare.length === 0;
   $("#slots").innerHTML = compare.map(id=>{const d=DATA.find(x=>x.id===id);return `<span class="slot">${esc(d.brand)} ${esc(d.name)}<button data-cmp="${id}" aria-label="빼기">×</button></span>`}).join("");
   $("#goCompare").disabled = compare.length < 2;
@@ -473,6 +534,7 @@ function renderOrder(){
   const sel = $("#oItem");
   if(!sel.options.length) sel.innerHTML = [...DATA].sort((a,b)=>a.price-b.price).map(d=>`<option value="${d.id}">${esc(d.brand)} ${esc(d.name)} (${won(d.price)})</option>`).join("");
   const d = DATA.find(x=>x.id===sel.value); if(!d) return;
+  document.querySelectorAll("[data-people]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.people === String(+$("#oPeople").value)));
   const n = Math.max(1, +$("#oPeople").value||1), lg = Math.max(0, +$("#oLogo").value||0), sp = Math.max(0, +$("#oSupport").value||0);
   const cloth = d.price*n, logo = lg*n, total = Math.max(0, cloth+logo-sp);
   $("#tCloth").textContent = won(cloth); $("#tLogo").textContent = won(logo);
@@ -481,6 +543,16 @@ function renderOrder(){
   $("#oLogoNote").textContent = "이 후보의 로고 안내: " + (d.logoNote || "미확인");
 }
 
+function renderSize(){
+  const c = +$("#chest").value;
+  if(!c || c < 75 || c > 135){ $("#sizeRec").textContent = "–"; $("#sizeNote").textContent = "75~135 사이로 넣어 주세요."; $("#sizeHits").innerHTML = ""; return; }
+  const s = Math.min(120, Math.max(85, Math.round(c/5)*5));
+  $("#sizeRec").textContent = `${s}(${SIZE_NAME[s]})`;
+  const xs = [...DATA].sort((a,b)=>a.price-b.price);
+  const ok = xs.filter(d=>SIZE[d.id] && s>=SIZE[d.id][0] && s<=SIZE[d.id][1]);
+  $("#sizeNote").textContent = `이 사이즈로 살 수 있는 후보 ${ok.length}개 / ${DATA.length}개. 슬림핏(나이키)은 한 치수 크게, 오버핏(갈렉스)은 그대로를 생각해 보세요.`;
+  $("#sizeHits").innerHTML = xs.map(d=>{ const has = ok.includes(d); return `<button class="hit ${has?"":"no"}" data-open="${d.id}" title="${has?"이 사이즈 있음":"이 사이즈 없음"}">${esc(d.brand)} ${esc(d.name)}</button>`; }).join("");
+}
 function renderAll(){ renderGrid(); renderTable(); renderTray(); }
 function togglePick(id){ picks.has(id)?picks.delete(id):picks.add(id); store.set("tp-picks",[...picks]); renderAll(); if($("#dlg").open) openDetail(id); }
 function toggleCmp(id){
@@ -490,6 +562,12 @@ function toggleCmp(id){
 }
 
 document.addEventListener("click", e=>{
+  const st = e.target.closest("[data-step],[data-people]");
+  if(st){
+    const inp = $("#oPeople");
+    inp.value = st.dataset.people ? st.dataset.people : Math.min(200, Math.max(1, (+inp.value||0) + (+st.dataset.step)));
+    renderOrder(); return;
+  }
   const t = e.target.closest("[data-open],[data-pick],[data-cmp],[data-close],[data-share],.chip,#goCompare,thead th[data-k]");
   if(!t) return;
   if(t.dataset.open){ e.preventDefault(); openDetail(t.dataset.open); }
@@ -511,6 +589,10 @@ document.addEventListener("click", e=>{
 document.addEventListener("keydown", e=>{ if(e.key==="Enter" && e.target.matches("thead th[data-k]")) e.target.click(); });
 ["#dlg","#cmp"].forEach(s=>$(s).addEventListener("click", e=>{ if(e.target===e.currentTarget) e.currentTarget.close(); }));
 $("#sort").addEventListener("change", renderGrid);
+$("#chest").addEventListener("input", renderSize);
+const smooth = matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+$("#toTop").addEventListener("click", ()=>scrollTo({top:0, behavior:smooth}));
+$("#toBottom").addEventListener("click", ()=>scrollTo({top:document.documentElement.scrollHeight, behavior:smooth}));
 ["#oItem","#oPeople","#oLogo","#oSupport"].forEach(s=>$(s).addEventListener("input", renderOrder));
 
 /* 현재 섹션 탭 표시 */
@@ -525,7 +607,7 @@ function init(){
   $("#statRange").textContent = ps.length ? `${Math.round(Math.min(...ps)/1000)}~${Math.round(Math.max(...ps)/1000)}천원` : "–";
   $("#statLogo").textContent = DATA.filter(d=>d.warmth>=2).length + "개";
   $("#foot").innerHTML = `태평FC 회원 공유용 비교 페이지 · 가격·링크는 ${CHECKED} 확인 기준이며 쇼핑몰 사정에 따라 바뀔 수 있어요. 상품 사진은 각 판매처 페이지의 사진이며, 사진 속 색이 판매 색상 전부는 아닙니다.`;
-  renderAll(); renderOrder();
+  renderAll(); renderOrder(); renderSize();
   const m = /^#c-(.+)$/.exec(location.hash); if(m && DATA.some(d=>d.id===m[1])){ document.getElementById("c-"+m[1])?.scrollIntoView(); openDetail(m[1]); }
 }
 init();
