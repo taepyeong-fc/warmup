@@ -223,6 +223,12 @@ tr.picked td:first-child{box-shadow:inset 3px 0 0 var(--flood)}
 .v-top b{font-size:15px}
 .ask{flex:none;font-size:12px;font-weight:700;color:var(--pitch-ink);background:var(--pitch-soft);border-radius:999px;padding:2px 9px}
 .vendor p{margin:0;font-size:14px}
+.vendor.has-ph{flex-direction:row;gap:12px;align-items:flex-start}
+.v-ph{flex:0 0 84px;aspect-ratio:5/6;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;padding:0!important}
+.v-ph img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.v-ph .ph-fallback{height:100%;font-size:11px;padding:4px}
+.v-tx{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.v-cap{font-size:12px;color:var(--muted)}
 .vendor a{font-size:14px;font-weight:600;color:var(--pitch-ink);align-self:flex-start;padding:6px 0}
 .how-q{margin-top:12px;color:rgba(234,242,247,.85)}
 .tag.stock{background:var(--surface-2);color:var(--muted)}
@@ -489,11 +495,14 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
       </div>
       <div class="panel how-col">
         <div class="how-h"><span class="how-k custom">주문 제작</span><h3>팀 디자인으로 새로 제작</h3></div>
-        <ul class="how-pt"><li>팀 색상·로고·이름을 원단에 직접 인쇄(승화전사)</li><li>보통 5벌부터, 같은 디자인 추가 주문은 1벌도 가능</li><li>시안 확정 후 1~4주 소요</li><li>화면과 실물 색이 다를 수 있어 샘플 확인 권장</li><li>공개 가격은 대부분 상의만 있어, 상하 세트 가격은 견적 필요</li></ul>
-        <div class="vendor"><div class="v-top"><b>에스그래픽스 (S.G.F.W.)</b><span class="ask">문의 필요</span></div><p>축구팀 맞춤 트레이닝. 니트 풀집업 56,000원, 우븐(바람막이) 풀집업 68,000원, 후드 풀집업 76,000원(부가세 별도, 이벤트가). 5벌부터. 트레이닝 하의 가격은 공개되어 있지 않음.</p><a href="https://sgraphicsfw.com/price" target="_blank" rel="noopener">가격표 보기</a></div>
-        <div class="vendor"><div class="v-top"><b>팀매니아</b><span class="ask">문의 필요</span></div><p>승화전사 하프집업 트레이닝 제작. 시안 확정 후 제작 4주, 소량 샘플 가능. 가격 비공개.</p><a href="https://www.teammania.co.kr/shop_view/75" target="_blank" rel="noopener">상품 보기</a></div>
-        <div class="vendor"><div class="v-top"><b>포런</b><span class="ask">문의 필요</span></div><p>승화전사 단체복 전문. 제작 영업일 7일, 20벌 이상 벌당 9,000원 할인. 트레이닝 제작 단가는 문의.</p><a href="https://fourrun.co.kr/" target="_blank" rel="noopener">사이트 열기</a></div>
-        <div class="vendor"><div class="v-top"><b>KIRI SOCCER</b><span class="ask">문의 필요</span></div><p>웹에서 커스텀 유니폼을 꾸미고 견적을 받는 방식. 가격 비공개.</p><a href="https://kirinco.net/sports" target="_blank" rel="noopener">사이트 열기</a></div>
+        <ul class="how-pt"><li>팀 색상·로고·이름을 원단에 직접 인쇄(승화전사)</li><li>아래는 <b>풀집업 자켓과 긴 트레이닝 바지를 함께 주문할 수 있는 곳</b>만 넣었습니다</li><li>보통 5벌부터, 같은 디자인 추가 주문은 1벌도 가능</li><li>시안 확정 후 2~4주 소요</li><li>화면과 실물 색이 다를 수 있어 샘플 확인 권장</li><li>기모 등 겨울용 원단은 업체마다 문의 필요</li></ul>
+        <div class="vendor has-ph"><a class="v-ph" href="https://www.fieldmanager.co.kr/product/bcf43ab8-38c5-4ee5-8e6e-aae81a9eaaa0" target="_blank" rel="noopener"><img src="https://contents.sixshop.com/uploadedFiles/163271/product/image_1747706589991.png" alt="필드매니저 제작 예시 사진" loading="lazy" referrerpolicy="no-referrer" onerror="photoFail(this)"></a>
+          <div class="v-tx"><div class="v-top"><b>필드매니저</b><span class="ask">문의 필요</span></div><p>트레이닝 상품에서 ‘상하의 풀집업 세트’ 선택 가능. 세트 74,000원(상세 안내)·79,000원(주문 옵션)으로 페이지 표기가 달라 확인 필요. 가슴 로고 인쇄 2,000원, 등 인쇄 4,000원 추가. 주문부터 배송까지 최소 3주(3·6·9월 4주). 겨울엔 안에 껴입기 권장, 기모 옵션 없음.</p><small class="v-cap">판매처 디자인 예시(사진은 반집업, 풀집업으로 선택 가능)</small><a href="https://www.fieldmanager.co.kr/product/bcf43ab8-38c5-4ee5-8e6e-aae81a9eaaa0" target="_blank" rel="noopener">상품 보기</a></div></div>
+        <div class="vendor has-ph"><a class="v-ph" href="https://paiksports.com/%ec%a0%84%ec%82%ac-%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%8b%9d-ps-3026/" target="_blank" rel="noopener"><img src="https://paiksports.com/wp-content/uploads/2024/10/ps-3001-51-1024x1024.png" alt="파이크스포츠 제작 예시 사진" loading="lazy" referrerpolicy="no-referrer" onerror="photoFail(this)"></a>
+          <div class="v-tx"><div class="v-top"><b>파이크스포츠</b><span class="ask">문의 필요</span></div><p>전사 트레이닝 풀집업 60,000원(10벌 미만)·55,000원(10벌 이상)·52,000원(30벌 이상), 부가세 별도. 하의도 세트로 제작 가능하나 바지 가격은 문의. 5장부터, 10벌 미만은 디자인비 5만 원 추가. 시안 확정 후 2~3주.</p><small class="v-cap">판매처 디자인 예시(사진은 하프집업, 풀집업으로 선택 가능)</small><a href="https://paiksports.com/%ec%a0%84%ec%82%ac-%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%8b%9d-ps-3026/" target="_blank" rel="noopener">가격표 보기</a></div></div>
+        <div class="vendor has-ph"><a class="v-ph" href="https://kirinco.net/sports/design_products/256?lang=ko-KR" target="_blank" rel="noopener"><img src="https://d1oro1067kxrgx.cloudfront.net/kirinco/sports/assets/images/products/5034/model/m_1.jpg" alt="KIRI SOCCER (끼리엔코) 제작 예시 사진" loading="lazy" referrerpolicy="no-referrer" onerror="photoFail(this)"></a>
+          <div class="v-tx"><div class="v-top"><b>KIRI SOCCER (끼리엔코)</b><span class="ask">문의 필요</span></div><p>풀집업 하이넥 50,000원부터, 일반·기모 원단 선택 가능, YKK 지퍼. 트레이닝 팬츠(긴바지) 20,000원은 면 소재 바지에 인쇄하는 상품으로 보여 자켓과 같은 원단인지 확인 필요. 수량별 단가·최소 수량은 견적 문의.</p><small class="v-cap">판매처 사진(풀집업 하이넥)</small><a href="https://kirinco.net/sports/design_products/256?lang=ko-KR" target="_blank" rel="noopener">상품 보기</a></div></div>
+        <p class="note" style="margin:0">풀집업이나 바지 세트가 확인되지 않은 에스그래픽스·팀매니아·포런 등은 제외했습니다.</p>
       </div>
     </div>
     <p class="note how-q">문의 시 함께 보내면 좋은 정보: 인원과 사이즈별 수량, 자켓·하의 구성, 기모 여부, 로고 파일(AI 또는 고해상도 PNG), 받고 싶은 날짜.</p>
