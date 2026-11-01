@@ -176,7 +176,9 @@ tr.picked td:first-child{box-shadow:inset 3px 0 0 var(--flood)}
 .total{display:flex;flex-direction:column;gap:6px}
 .total .row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding-block:6px}
 .total .row b{font-family:var(--f-num)}
-.total .big{font-size:26px;color:var(--pitch)}
+.total .big{font-size:28px;color:var(--pitch)}
+.total .row:has(.big){border:0;background:var(--pitch-soft);border-radius:10px;padding:14px 14px;margin-top:8px;align-items:center}
+.total .row:has(.big) span{font-weight:700;font-size:17px;color:var(--fg)}
 .note{font-size:13px;color:var(--muted)}
 .people{display:flex;gap:6px;align-items:stretch}
 .people input{flex:1;min-width:0;text-align:center;font-family:var(--f-num);font-size:16px}
@@ -477,7 +479,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
   </section>
 
   <section id="order">
-    <div class="sec-h"><span class="eyebrow">Group order</span><h2>단체 주문 계산</h2><p>후보와 인원을 선택하면 총액과 1인 부담액이 자동으로 계산됩니다. 로고 비용은 업체 견적에 맞춰 수정하시기 바랍니다.</p></div>
+    <div class="sec-h"><span class="eyebrow">Group order</span><h2>단체 주문 계산</h2><p>후보와 인원을 선택하면 총액이 자동으로 계산됩니다. 로고 비용은 업체 견적에 맞춰 수정하시기 바랍니다.</p></div>
     <div class="order">
       <div class="panel">
         <h3>조건</h3>
@@ -497,10 +499,9 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
           <div class="row"><span>옷값</span><b id="tCloth">–</b></div>
           <div class="row"><span>로고</span><b id="tLogo">–</b></div>
           <div class="row"><span>회비 지원</span><b id="tSupport">–</b></div>
-          <div class="row"><span>총액</span><b id="tTotal">–</b></div>
-          <div class="row"><span>1인 부담</span><b class="big" id="tPer">–</b></div>
+          <div class="row"><span>총액</span><b class="big" id="tTotal">–</b></div>
         </div>
-        <p class="note">판매처 할인가 기준 추정치이며, 1인 부담액은 100원 단위로 올림하였습니다. 단체 할인, 배송비, 마킹비는 견적을 통해 확인하시기 바랍니다.</p>
+        <p class="note">판매처 할인가 기준 추정치입니다. 단체 할인, 배송비, 마킹비는 견적을 통해 확인하시기 바랍니다.</p>
       </div>
     </div>
   </section>
@@ -768,7 +769,7 @@ function renderOrder(){
   $("#tCloth").textContent = won(cloth); $("#tLogo").textContent = won(logo);
   const used = Math.min(sp, cloth+logo);
   $("#tSupport").textContent = used ? "−"+won(used) + (sp > used ? " (입력액이 총액보다 많아 총액까지만 반영)" : "") : won(0);
-  $("#tTotal").textContent = won(total); $("#tPer").textContent = won(Math.ceil(total/n/100)*100);
+  $("#tTotal").textContent = won(total);
   $("#oLogoNote").textContent = "이 후보의 로고 안내: " + (d.logoNote || "미확인");
 }
 
