@@ -390,7 +390,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
 
   <section id="candidates">
     <div class="sec-h"><span class="eyebrow">Candidates</span><h2>후보 자켓</h2><p>후보 모델을 판매처 사진과 함께 소개합니다. 사진을 누르면 상세 정보를, 색상 원을 누르면 해당 색상 사진을 확인할 수 있습니다. ‘비교 담기’로 최대 3종을 나란히 비교할 수 있습니다.</p></div>
-    <div class="hint" data-hint="filter" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span><b>필터</b> 버튼을 눌러서 가격·후드·보온 조건을 바꿀 수 있습니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
+    <div class="hint" data-hint="filter" role="note"><span class="hint-hand" aria-hidden="true">👆</span><span><b>필터</b> 버튼을 눌러서 가격·후드·보온·찜 조건을 바꿀 수 있습니다</span><button type="button" class="hint-x" aria-label="안내 닫기">×</button></div>
     <div class="fbar"><button type="button" class="btn fopen" aria-controls="filters" aria-expanded="false">⚙ 필터·정렬 <span id="fOn"></span></button><span class="count" id="count2"></span></div>
     <div class="fsheet-bg" hidden></div>
     <div class="filters" id="filters" role="group" aria-label="후보 거르기">
@@ -409,6 +409,10 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
       <div class="fgroup" data-key="warm"><span>보온</span>
         <button class="chip" data-v="all" aria-pressed="true">전체</button>
         <button class="chip" data-v="fleece" aria-pressed="false">겨울용(기모·누빔)</button>
+      </div>
+      <div class="fgroup" data-key="pick"><span>찜</span>
+        <button class="chip" data-v="all" aria-pressed="true">전체</button>
+        <button class="chip" data-v="mine" aria-pressed="false">★ 찜한 후보만</button>
       </div>
       <div class="fgroup"><span>정렬</span>
         <select class="sort" id="sort" aria-label="정렬">
@@ -567,7 +571,7 @@ const store = {
 };
 let picks = new Set(store.get("tp-picks", []));
 let compare = [];
-const filt = { price:"all", hood:"all", warm:"all" };
+const filt = { price:"all", hood:"all", warm:"all", pick:"all" };
 
 function band(p){ return p < 40000 ? "low" : p < 60000 ? "mid" : "high"; }
 function esc(s){ return String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
@@ -580,7 +584,8 @@ function list(){
   let xs = DATA.filter(d =>
     (filt.price === "all" || band(d.price) === filt.price) &&
     (filt.hood === "all" || (filt.hood === "yes" ? d.hood === true : d.hood === false)) &&
-    (filt.warm === "all" || d.warmth >= 2));
+    (filt.warm === "all" || d.warmth >= 2) &&
+    (filt.pick === "all" || picks.has(d.id)));
   const s = $("#sort").value;
   xs.sort((a,b) => s === "price-desc" ? b.price-a.price : s === "warm-desc" ? (b.warmth-a.warmth || a.price-b.price) : a.price-b.price);
   return xs;
@@ -608,7 +613,7 @@ function renderGrid(){
         </div>
       </div>
     </article>`;
-  }).join("") : `<div class="empty">조건에 맞는 후보가 없습니다. 필터를 ‘전체’로 바꿔 주십시오.</div>`;
+  }).join("") : `<div class="empty">${filt.pick==="mine" && !picks.size ? "아직 찜한 후보가 없습니다. 후보 카드의 ‘☆ 찜’을 눌러 주십시오." : "조건에 맞는 후보가 없습니다. 필터를 ‘전체’로 바꿔 주십시오."}</div>`;
 }
 
 const COLS = [
