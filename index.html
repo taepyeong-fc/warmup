@@ -71,7 +71,8 @@ nav.tabs a.on{color:var(--fg);border-bottom-color:var(--pitch)}
 .hero-stats b{font-family:var(--f-num);font-size:20px}
 .hero-stats span{font-size:12px;opacity:.7}
 .hero-art{display:flex;justify-content:center}
-.hero-art svg{width:min(300px,100%);height:auto}
+.collage{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:min(320px,100%)}
+.collage button{border:0;padding:0;border-radius:10px;overflow:hidden;background:#fff;aspect-ratio:5/6;cursor:pointer;max-width:100%}
 .pitchlines{position:absolute;inset:auto 0 0 0;height:8px;background:repeating-linear-gradient(90deg,var(--pitch) 0 40px,var(--pitch-ink) 40px 80px);opacity:.9}
 
 section{padding-block:36px 8px;scroll-margin-top:110px}
@@ -100,8 +101,12 @@ select.sort{border:1px solid var(--line);background:var(--surface);color:var(--f
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;overflow:hidden;position:relative}
 .card.picked{border-color:var(--flood);box-shadow:0 0 0 2px var(--flood-soft)}
-.card .art{background:var(--surface-2);display:flex;justify-content:center;padding:14px 0 6px;cursor:pointer;border:0;width:100%}
-.card .art svg{width:150px;height:auto}
+.card .art{background:#fff;display:block;padding:0;cursor:pointer;border:0;width:100%;aspect-ratio:5/6;max-width:100%;overflow:hidden}
+.ph{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.ph-fallback{display:flex;align-items:center;justify-content:center;background:var(--surface-2)}
+.ph-fallback svg{width:60%;height:auto}
+.dots{display:flex;gap:4px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--muted)}
+.dot{width:12px;height:12px;border-radius:50%;border:1px solid var(--line)}
 .card .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
 .card .brand-l{font-size:12px;color:var(--muted);font-weight:600}
 .card h3{font-size:16px;cursor:pointer}
@@ -185,7 +190,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
 @media (max-width:720px){
   .hero-in{grid-template-columns:1fr;padding:22px 18px}
   .hero-art{order:-1}
-  .hero-art svg{width:180px}
+  .collage{grid-template-columns:repeat(4,1fr);width:100%}
   .order{grid-template-columns:1fr}
   .dlg-top{grid-template-columns:110px 1fr}
   .pc{grid-template-columns:1fr}
@@ -257,7 +262,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
   </section>
 
   <section id="candidates">
-    <div class="sec-h"><span class="eyebrow">Candidates</span><h2>후보 웜업</h2><p>그림을 누르면 자세히 볼 수 있어요. 색 동그라미를 누르면 그 색으로 바뀌고, ‘비교 담기’로 최대 3개를 나란히 볼 수 있어요.</p></div>
+    <div class="sec-h"><span class="eyebrow">Candidates</span><h2>후보 웜업</h2><p>사진을 누르면 자세히 볼 수 있어요. 색 점은 판매 중인 색상이고, ‘비교 담기’로 최대 3개를 나란히 볼 수 있어요.</p></div>
     <div class="filters" role="group" aria-label="후보 거르기">
       <div class="fgroup" data-key="price"><span>가격</span>
         <button class="chip" data-v="all" aria-pressed="true">전체</button>
@@ -358,6 +363,28 @@ const DATA = [
  {id:"kelme",brand:"켈미",name:"니트 하프 지퍼 트레이닝 재킷",model:"8061TT1007",price:67650,priceNote:"정가 123,000원에서 45% 할인 — 할인이 끝나면 예산 초과",seller:"무신사",url:"https://www.musinsa.com/products/3596152",zip:"half",zipNote:"상품명이 하프 지퍼. 지퍼가 내려오는 위치는 미확인",material:"니트(상품명 기준), 혼용률 미확인",warmth:1,warmthNote:"기모 표기 없음",fit:"미확인",colors:[{name:"다크 그레이",body:"#4A4D52",accent:"#FFFFFF"},{name:"레드",body:"#C8102E",accent:"#FFFFFF"},{name:"인더스트리얼 블루",body:"#2D4F7C",accent:"#FFFFFF"},{name:"로얄 스카이 블루",body:"#4A90D9",accent:"#FFFFFF"},{name:"그린블랙",body:"#1E6B3A",accent:"#111111"}],sizes:"90(S)~120(4XL)",logo:null,logoNote:MARK,groupOrder:"2023년 상품 할인 판매 — 재고가 끝나면 추가 구매 어려울 수 있음",pros:["축구 브랜드에 5가지 색","4XL(120)까지 있음"],cons:["보온 근거 없음","재고 소진 시 다시 못 살 수 있음"]}
 ];
 const CHECKED = "2026-11-01";
+/* 판매처 상품 사진(판매처 서버에서 바로 불러옴). 못 불러오면 그림으로 대신함 */
+const IMG = {
+  "tesla":"https://image.msscdn.net/images/goods_img/20240826/4369381/4369381_17657788393255_500.jpg",
+  "notwithstanding":"https://image.msscdn.net/images/goods_img/20260120/5913384/5913384_17688786821431_500.jpg",
+  "puma-teamgoal":"https://image.msscdn.net/thumbnails/images/goods_img/20241230/4685050/4685050_17355450307216_big.jpg",
+  "zd":"https://image.msscdn.net/thumbnails/images/goods_img/20251227/5857091/5857091_17668303483367_big.jpg",
+  "fcmm":"https://image.msscdn.net/images/goods_img/20250109/4709210/4709210_17368301027610_500.png",
+  "reebok":"https://image.msscdn.net/images/goods_img/20240920/4448131/4448131_17270582220679_500.jpg",
+  "nike-academy25":"https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/7885004562/B.webp?105541830",
+  "galex":"https://image.msscdn.net/thumbnails/images/goods_img/20260929/7419717/7419717_17906699260180_big.jpg",
+  "juntas":"https://image.msscdn.net/images/goods_img/20250527/5149521/5149521_17483272778631_500.png",
+  "kelme":"https://image.msscdn.net/images/goods_img/20230926/3596152/3596152_16957120578655_500.jpg"
+};
+DATA.forEach(d => d.image = IMG[d.id]);
+function photo(d, cls){
+  return `<img class="${cls||"ph"}" src="${esc(d.image)}" alt="${esc(d.brand)} ${esc(d.name)} 상품 사진" loading="lazy" onerror="photoFail(this,'${d.id}')">`;
+}
+function photoFail(img, id){
+  const d = DATA.find(x=>x.id===id); const c = d.colors[0] || {body:"#33475b",accent:"#fff"};
+  const w = document.createElement("div"); w.className = img.className + " ph-fallback"; w.innerHTML = jacket(c.body, c.accent, d.zip);
+  img.replaceWith(w);
+}
 
 const $ = s => document.querySelector(s);
 const won = n => n == null ? "–" : n.toLocaleString("ko-KR") + "원";
@@ -419,14 +446,14 @@ function renderGrid(){
   $("#grid").innerHTML = xs.length ? xs.map(d => {
     const c = curColor(d);
     return `<article class="card ${picks.has(d.id)?"picked":""}" id="c-${d.id}">
-      <button class="art" data-open="${d.id}" aria-label="${esc(d.name)} 자세히">${jacket(c.body, c.accent, d.zip)}</button>
+      <button class="art" data-open="${d.id}" aria-label="${esc(d.name)} 자세히">${photo(d)}</button>
       <div class="body">
         <span class="brand-l">${esc(d.brand)}</span>
         <h3 data-open="${d.id}">${esc(d.name)}</h3>
         <div class="price">${won(d.price)}<small>${esc(d.seller)}</small></div>
         <div class="tags"><span class="tag ${d.zip==="unknown"?"":"zip"}">${zipLabel(d.zip)}</span>${d.warmth>=2?'<span class="tag logo">기모</span>':""}<span class="tag">${esc(d.sizes.split(" ")[0])}</span></div>
         ${warmBar(d.warmth)}
-        <div class="swatches" aria-label="색상">${d.colors.map((k,i)=>`<button class="sw" style="background:${k.body};--acc:${k.accent}" data-sw="${d.id}" data-i="${i}" aria-pressed="${(colorSel[d.id]??0)===i}" title="${esc(k.name)}" aria-label="${esc(k.name)}"></button>`).join("")}</div>
+        <div class="dots" aria-label="판매 색상 ${d.colors.length}가지">${d.colors.map(k=>`<span class="dot" style="background:${k.body}" title="${esc(k.name)}"></span>`).join("")}<span>${d.colors.length}색</span></div>
         <div class="actions">
           <button class="btn" data-pick="${d.id}" aria-pressed="${picks.has(d.id)}">${picks.has(d.id)?"★ 찜함":"☆ 찜"}</button>
           <button class="btn" data-cmp="${d.id}" aria-pressed="${compare.includes(d.id)}">${compare.includes(d.id)?"비교 중":"비교 담기"}</button>
@@ -456,7 +483,7 @@ function renderTable(){
 function detail(d){
   const c = curColor(d);
   return `<button class="close" data-close aria-label="닫기">×</button>
-  <div class="dlg-top">${jacket(c.body, c.accent, d.zip)}
+  <div class="dlg-top"><div style="aspect-ratio:5/6;border-radius:10px;overflow:hidden;background:#fff;max-width:100%">${photo(d)}</div>
     <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
       <span class="brand-l" style="font-size:12px;color:var(--muted);font-weight:600">${esc(d.brand)}${d.model?` · ${esc(d.model)}`:""}</span>
       <h2 id="dlgTitle" style="font-size:20px">${esc(d.name)}</h2>
@@ -496,7 +523,7 @@ function openCompare(){
   const rows = [["가격",d=>`<b class="num">${won(d.price)}</b>`],["지퍼",d=>zipLabel(d.zip)],["보온",d=>"●".repeat(d.warmth)+"○".repeat(3-d.warmth)],["소재",d=>esc(d.material)],["핏",d=>esc(d.fit)],["로고",d=>esc(d.logoNote)],["단체",d=>esc(d.groupOrder)],["좋은 점",d=>d.pros.map(esc).join("<br>")],["아쉬운 점",d=>d.cons.map(esc).join("<br>")]];
   $("#cmpIn").innerHTML = `<button class="close" data-close aria-label="닫기">×</button>
   <div style="padding:20px 16px 16px"><h2 style="font-size:18px;margin-bottom:12px">나란히 비교</h2>
-  <div class="tablebox"><table style="min-width:${180*xs.length+90}px"><thead><tr><th></th>${xs.map(d=>{const c=curColor(d);return `<th style="cursor:default;text-align:center"><div style="width:90px;margin:0 auto">${jacket(c.body,c.accent,d.zip)}</div>${esc(d.brand)}<br><span style="color:var(--fg)">${esc(d.name)}</span></th>`}).join("")}</tr></thead>
+  <div class="tablebox"><table style="min-width:${180*xs.length+90}px"><thead><tr><th></th>${xs.map(d=>{return `<th style="cursor:default;text-align:center"><div style="width:100px;aspect-ratio:5/6;margin:0 auto 6px;border-radius:8px;overflow:hidden;background:#fff">${photo(d)}</div>${esc(d.brand)}<br><span style="color:var(--fg)">${esc(d.name)}</span></th>`}).join("")}</tr></thead>
   <tbody>${rows.map(([t,f])=>`<tr><td style="color:var(--muted);white-space:nowrap">${t}</td>${xs.map(d=>`<td>${f(d)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div>`;
   $("#cmp").showModal();
 }
@@ -564,8 +591,8 @@ function init(){
   $("#statCount").textContent = DATA.length + "개";
   $("#statRange").textContent = ps.length ? `${Math.round(Math.min(...ps)/1000)}~${Math.round(Math.max(...ps)/1000)}천원` : "–";
   $("#statLogo").textContent = DATA.filter(d=>d.warmth>=2).length + "개";
-  $("#heroArt").innerHTML = jacket("#1f6f4a", "#ffffff", "half");
-  $("#foot").innerHTML = `태평FC 회원 공유용 비교 페이지 · 가격·링크는 ${CHECKED} 확인 기준이며 쇼핑몰 사정에 따라 바뀔 수 있어요. 그림은 색·지퍼 길이를 보여 주는 단순 그림이고 실제 디자인과 다릅니다.`;
+  $("#heroArt").innerHTML = `<div class="collage">${["puma-teamgoal","kelme","galex","fcmm"].map(id=>DATA.find(d=>d.id===id)).map(d=>`<button data-open="${d.id}" aria-label="${esc(d.name)} 자세히">${photo(d)}</button>`).join("")}</div>`;
+  $("#foot").innerHTML = `태평FC 회원 공유용 비교 페이지 · 가격·링크는 ${CHECKED} 확인 기준이며 쇼핑몰 사정에 따라 바뀔 수 있어요. 상품 사진은 각 판매처 페이지의 사진이며, 사진 속 색이 판매 색상 전부는 아닙니다.`;
   renderAll(); renderOrder();
   const m = /^#c-(.+)$/.exec(location.hash); if(m && DATA.some(d=>d.id===m[1])){ document.getElementById("c-"+m[1])?.scrollIntoView(); openDetail(m[1]); }
 }
