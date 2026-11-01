@@ -798,7 +798,7 @@ document.addEventListener("click", e=>{
     inp.value = st.dataset.people ? st.dataset.people : Math.min(200, Math.max(1, (+inp.value||0) + (+st.dataset.step)));
     renderOrder(); return;
   }
-  const ga = e.target.closest("[data-gal]"); if(ga){ const g = ga.closest(".gal-wrap").querySelector(".gal"); g.scrollBy({left:g.clientWidth*(+ga.dataset.gal), behavior:"smooth"}); return; }
+  const ga = e.target.closest("[data-gal]"); if(ga){ const g = ga.closest(".gal-wrap").querySelector(".gal"); const w = g.clientWidth, cur = +(g.dataset.to ?? Math.round(g.scrollLeft/w)), to = Math.max(0, Math.min(g.children.length-1, cur + (+ga.dataset.gal))); g.dataset.to = to; g.scrollTo({left:to*w, behavior:"smooth"}); clearTimeout(g._t); g._t = setTimeout(()=>delete g.dataset.to, 600); return; }
   const sw = e.target.closest("[data-sw]"); if(sw){ pickColor(sw); return; }
   const ts = e.target.closest("[data-ts]"); if(ts){ const k = ts.dataset.ts; tsort = {k, dir: tsort.k===k ? -tsort.dir : (k==="warmth" ? -1 : 1)}; renderTable(); return; }
   const t = e.target.closest("[data-open],[data-pick],[data-cmp],[data-close],[data-share],.chip,#goCompare,thead th[data-k]");
