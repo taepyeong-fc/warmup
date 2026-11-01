@@ -105,7 +105,11 @@ select.sort{border:1px solid var(--line);background:var(--surface);color:var(--f
 .ph{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
 .ph-fallback{display:flex;align-items:center;justify-content:center;background:var(--surface-2);color:var(--muted);font-size:13px;text-align:center;padding:12px}
 .dots{display:flex;gap:4px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--muted)}
-.dot{width:12px;height:12px;border-radius:50%;border:1px solid var(--line)}
+.sw{width:20px;height:20px;border-radius:50%;border:1px solid var(--line);background:linear-gradient(135deg,var(--c) 0 62%,var(--a) 62%);cursor:pointer;padding:0;flex:none}
+.sw.big{width:30px;height:30px}
+.sw[aria-pressed="true"]{outline:2px solid var(--pitch);outline-offset:2px}
+.sw:hover{transform:scale(1.1)}
+.sw-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
 .card .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
 .card .brand-l{font-size:12px;color:var(--muted);font-weight:600}
 .card h3{font-size:16px;cursor:pointer}
@@ -166,8 +170,15 @@ tr.picked td:first-child{box-shadow:inset 3px 0 0 var(--flood)}
 .range-ends{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:var(--muted)}
 .step{width:40px;border:1px solid var(--line);background:var(--surface-2);border-radius:8px;font-size:18px;cursor:pointer}
 .presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
-.guide{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.guide{display:grid;grid-template-columns:1fr;gap:14px}
+.notice{border-left:4px solid var(--pitch)}
+.notice h3{display:flex;align-items:center;gap:8px}
+.notice-ic{width:20px;height:20px;border-radius:50%;background:var(--pitch);color:#fff;font-size:13px;display:grid;place-items:center;flex:none}
+.notice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px}
+.nt{display:flex;gap:10px;align-items:flex-start;background:var(--surface-2);border-radius:10px;padding:12px}
+.nt-k{flex:none;font-size:12px;font-weight:700;color:var(--pitch-ink);background:var(--pitch-soft);border-radius:999px;padding:3px 9px;margin-top:1px}
+.nt b{display:block;font-size:14px;margin-bottom:3px}
+.nt p{margin:0;font-size:13px;color:var(--muted)}
 .guide .size-panel{grid-column:1/-1}
 .bul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14px}
 .size-find{display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:start;margin-bottom:12px}
@@ -324,31 +335,15 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
         </table></div>
         <p class="note">한국 표기 숫자는 대략 가슴둘레(cm)입니다. 브랜드와 핏마다 다르니 주문 전 상품 페이지의 실측 사이즈를 확인하세요.</p>
       </div>
-      <div class="panel">
-        <h3>로고 마킹</h3>
-        <ul class="bul">
-          <li>후보 판매처 중 마킹 단가를 공개한 곳은 없습니다. 사커붐은 단체견적 게시판에서 마킹 포함 견적을 받습니다.</li>
-          <li>외부 마킹업체를 쓸 수도 있습니다(예: 팀메이커 — 1장부터, 시안 확정 후 2영업일).</li>
-          <li>로고 파일은 AI 또는 고해상도 PNG로 준비하고, 위치(왼가슴·등)와 방식(인쇄·자수)을 정해 견적을 요청하세요.</li>
-        </ul>
-      </div>
-      <div class="panel">
-        <h3>배송·교환</h3>
-        <ul class="bul">
-          <li>배송비와 교환·반품 조건은 각 판매처 상품 페이지의 안내를 따릅니다.</li>
-          <li>로고를 넣은 옷은 대부분 교환·반품이 어렵습니다. 마킹 전에 받아서 입어 보고 사이즈를 확정하세요.</li>
-          <li>할인가는 기간이 끝나면 오를 수 있으니 주문 당일 링크에서 다시 확인하세요.</li>
-        </ul>
-      </div>
-      <div class="panel">
-        <h3>주문 순서</h3>
-        <ol class="steps">
-          <li>단톡방에서 후보 1~2개로 좁히기</li>
-          <li>색상 정하고 회원별 사이즈 받기</li>
-          <li>판매처나 마킹업체에 수량·로고 견적 요청</li>
-          <li>회비 지원 금액 정하고 1인 부담 공지</li>
-          <li>주문 → 수령 후 사이즈 확인 → 마킹 → 나눠 주기</li>
-        </ol>
+      <div class="panel notice">
+        <h3><span class="notice-ic" aria-hidden="true">!</span>주문 전 확인 사항</h3>
+        <div class="notice-grid">
+          <div class="nt"><span class="nt-k">교환</span><div><b>로고를 넣으면 교환·반품이 어렵습니다</b><p>받은 옷을 먼저 입어 보고 사이즈를 확정한 뒤 마킹을 맡기세요.</p></div></div>
+          <div class="nt"><span class="nt-k">마킹</span><div><b>마킹 단가는 견적으로만 나옵니다</b><p>후보 판매처 모두 단가를 공개하지 않습니다. 사커붐은 단체견적 게시판, 외부 업체(예: 팀메이커, 1장부터·시안 확정 후 2영업일)도 가능합니다. 로고는 AI 파일이나 고해상도 PNG로 준비하세요.</p></div></div>
+          <div class="nt"><span class="nt-k">가격</span><div><b>표시 가격은 할인·쿠폰가입니다</b><p>네파는 무신사 쿠폰 적용가, 갈렉스는 타임특가입니다. 행사가 끝나면 오를 수 있으니 주문 당일 링크에서 다시 확인하세요.</p></div></div>
+          <div class="nt"><span class="nt-k">재고</span><div><b>사이즈가 일부만 남은 후보가 있습니다</b><p>푸마 팀라이즈는 L~2XL, 갈렉스는 M·L만 남았습니다. 회원 사이즈를 모은 뒤 전원 분이 있는지 확인하세요.</p></div></div>
+          <div class="nt"><span class="nt-k">배송</span><div><b>배송비·교환 조건은 판매처마다 다릅니다</b><p>사커붐과 무신사 상품 페이지의 배송·반품 안내를 따릅니다.</p></div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -394,7 +389,7 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
   <div class="wrap"><span style="font-size:13px;opacity:.8">비교</span><div class="slots" id="slots"></div><button class="go" id="goCompare">나란히 보기</button></div>
 </div>
 
-<dialog id="dlg" aria-labelledby="dlgTitle"><div style="position:relative" id="dlgIn"></div></dialog>
+<dialog id="dlg" aria-labelledby="dlgTitle"><div class="dlg-in" style="position:relative" id="dlgIn"></div></dialog>
 <dialog id="cmp" aria-label="나란히 비교"><div style="position:relative" id="cmpIn"></div></dialog>
 
 <script>
@@ -404,12 +399,12 @@ const DATA = [
  {"id": "adidas-squadra25", "brand": "아디다스", "name": "스쿼드라25 트레이닝 자켓", "model": "JD1630", "price": 35300, "priceNote": "정가 55,000원에서 할인", "seller": "사커붐", "url": "https://soccerboom.co.kr/product/detail.html?product_no=51868", "hood": false, "pockets": "지퍼 옆 주머니", "material": "폴리에스터 100%, AEROREADY", "warmth": 1, "warmthNote": "안감 없는 저지", "fit": "미확인", "colors": [{"name": "블랙/그레이/레드", "body": "#111111", "accent": "#8A8A8A"}], "sizes": "M(95)~2XL(110)", "logo": null, "logoNote": "사커붐 단체견적 게시판에서 마킹 포함 견적(공개 단가 없음)", "groupOrder": "단체 구매 시 추가 할인(견적제), 최소 수량 안내 없음", "pros": ["3만원대 아디다스 팀웨어", "지퍼 주머니"], "cons": ["S 이하 없음", "색이 검정 1종"], "image": "https://soccerboom.co.kr/web/product/big/202512/3a443566373142b2daecd2ba13d240ec.png"},
  {"id": "galex-hood-padding", "brand": "갈렉스", "name": "레트로 라이트 후드 패딩", "model": "GA5841 BK", "price": 39500, "priceNote": "정가 159,000원에서 75% 할인. 타임특가라 곧 끝날 수 있음", "seller": "무신사", "url": "https://www.musinsa.com/products/5468961", "hood": true, "pockets": "옆 주머니(지퍼 여부 미확인)", "material": "겉감 나일론 100%, 충전재 웰론 100%", "warmth": 3, "warmthNote": "웰론 충전 누빔 패딩, 투웨이 지퍼", "fit": "오버핏", "colors": [{"name": "블랙", "body": "#121212", "accent": "#2A2A2A"}], "sizes": "M, L", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["4만원 아래로 확실한 보온(충전재)", "후드·투웨이 지퍼로 벤치 대기에 좋음"], "cons": ["사이즈가 M·L뿐", "패션 패딩이라 팀 트레이닝복 느낌은 약함"], "image": "https://image.msscdn.net/images/goods_img/20250916/5468961/5468961_17580026171935_500.jpg"},
  {"id": "puma-teamliga-sideline", "brand": "푸마", "name": "팀리가 사이드라인 자켓", "model": "65725902", "price": 43800, "priceNote": "정가 73,000원에서 40% 할인", "seller": "무신사", "url": "https://www.musinsa.com/products/3771937", "hood": false, "pockets": "양옆 지퍼 주머니", "material": "우븐 겉감 폴리에스터 100%, 몸판·소매 안감 있음", "warmth": 1, "warmthNote": "안감 있는 우븐, 방풍·기모 표기는 없음", "fit": "미확인", "colors": [{"name": "블루/화이트", "body": "#1E6FE0", "accent": "#FFFFFF"}], "sizes": "90~110", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["안감 있는 우븐이라 저지보다 바람을 덜 탐", "양옆 지퍼 주머니"], "cons": ["파랑 1색뿐", "보온 기능 표기 없음"], "image": "https://image.msscdn.net/images/goods_img/20240102/3771937/3771937_17041812106820_500.jpg"},
- {"id": "nike-academy25-track", "brand": "나이키", "name": "드라이 핏 아카데미25 트랙 재킷", "model": "FZ9824", "price": 48000, "priceNote": "정가 75,000원에서 할인, 3색 같은 가격", "seller": "사커붐", "url": "https://soccerboom.co.kr/product/detail.html?product_no=51396", "hood": false, "pockets": "지퍼 옆 주머니", "material": "폴리에스터 100%, Dri-FIT", "warmth": 1, "warmthNote": "안감 없는 저지", "fit": "슬림핏", "colors": [{"name": "블랙/화이트", "body": "#111111", "accent": "#FFFFFF"}, {"name": "네이비", "body": "#1F2A44", "accent": "#2F7FD8"}, {"name": "로얄 블루", "body": "#1F6FD1", "accent": "#1F2A44"}], "sizes": "XS(90)~2XL(115), 로얄 블루는 S부터", "logo": null, "logoNote": "사커붐 단체견적 게시판에서 마킹 포함 견적(공개 단가 없음)", "groupOrder": "단체 구매 시 추가 할인(견적제), 최소 수량 안내 없음", "pros": ["3색 모두 사이즈가 고르게 있어 단체 구매에 유리", "지퍼 주머니"], "cons": ["슬림핏이라 안에 껴입기 불편할 수 있음", "보온 기능 없음"], "image": "https://soccerboom.co.kr/web/product/big/202509/1adae4f2ba1aa00c0efd9387c1c26f15.png"},
- {"id": "joma-champion4", "brand": "조마", "name": "챔피언 IV 트레이닝 자켓", "model": "100687", "price": 48950, "priceNote": "정가 89,000원에서 45% 할인", "seller": "무신사", "url": "https://www.musinsa.com/products/3767943", "hood": false, "pockets": "미확인", "material": "폴리에스터 100%", "warmth": 1, "warmthNote": "안감·기모 표기 없음", "fit": "미확인", "colors": [{"name": "블랙/화이트", "body": "#111111", "accent": "#FFFFFF"}, {"name": "로얄 블루", "body": "#1F6FD6", "accent": "#FFFFFF"}], "sizes": "S(95)~XL(110)", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["소매 배색이 뚜렷한 축구 웜업 디자인", "검정·로얄 2색"], "cons": ["2XL 이상 없음", "주머니·핏 정보 미확인"], "image": "https://image.msscdn.net/images/goods_img/20231227/3767943/3767943_17036420391965_500.jpg"},
+ {"id": "nike-academy25-track", "brand": "나이키", "name": "드라이 핏 아카데미25 트랙 재킷", "model": "FZ9824", "price": 48000, "priceNote": "정가 75,000원에서 할인, 3색 같은 가격", "seller": "사커붐", "url": "https://soccerboom.co.kr/product/detail.html?product_no=51396", "hood": false, "pockets": "지퍼 옆 주머니", "material": "폴리에스터 100%, Dri-FIT", "warmth": 1, "warmthNote": "안감 없는 저지", "fit": "슬림핏", "colors": [{"name": "블랙/화이트", "body": "#111111", "accent": "#FFFFFF", "image": "https://soccerboom.co.kr/web/product/big/202509/1adae4f2ba1aa00c0efd9387c1c26f15.png"}, {"name": "네이비", "body": "#1F2A44", "accent": "#2F7FD8", "image": "https://soccerboom.co.kr/web/product/big/202509/f8dc79692187d104511b4cca57f34a58.png", "url": "https://soccerboom.co.kr/product/detail.html?product_no=51397"}, {"name": "로얄 블루", "body": "#1F6FD1", "accent": "#1F2A44", "image": "https://soccerboom.co.kr/web/product/big/202509/6330cbd9755e07cdce493b7a3d8a1435.png", "url": "https://soccerboom.co.kr/product/detail.html?product_no=51398"}], "sizes": "XS(90)~2XL(115), 로얄 블루는 S부터", "logo": null, "logoNote": "사커붐 단체견적 게시판에서 마킹 포함 견적(공개 단가 없음)", "groupOrder": "단체 구매 시 추가 할인(견적제), 최소 수량 안내 없음", "pros": ["3색 모두 사이즈가 고르게 있어 단체 구매에 유리", "지퍼 주머니"], "cons": ["슬림핏이라 안에 껴입기 불편할 수 있음", "보온 기능 없음"], "image": "https://soccerboom.co.kr/web/product/big/202509/1adae4f2ba1aa00c0efd9387c1c26f15.png"},
+ {"id": "joma-champion4", "brand": "조마", "name": "챔피언 IV 트레이닝 자켓", "model": "100687", "price": 48950, "priceNote": "정가 89,000원에서 45% 할인", "seller": "무신사", "url": "https://www.musinsa.com/products/3767943", "hood": false, "pockets": "미확인", "material": "폴리에스터 100%", "warmth": 1, "warmthNote": "안감·기모 표기 없음", "fit": "미확인", "colors": [{"name": "블랙/화이트", "body": "#111111", "accent": "#FFFFFF", "image": "https://image.msscdn.net/images/goods_img/20231227/3767943/3767943_17036420391965_500.jpg"}, {"name": "로얄 블루", "body": "#1F6FD6", "accent": "#FFFFFF", "image": "https://image.msscdn.net/images/goods_img/20231227/3767931/3767931_17036417854892_500.jpg", "url": "https://www.musinsa.com/products/3767931"}], "sizes": "S(95)~XL(110)", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["소매 배색이 뚜렷한 축구 웜업 디자인", "검정·로얄 2색"], "cons": ["2XL 이상 없음", "주머니·핏 정보 미확인"], "image": "https://image.msscdn.net/images/goods_img/20231227/3767943/3767943_17036420391965_500.jpg"},
  {"id": "adidas-tiro24", "brand": "아디다스", "name": "티로24 컴페티션 트레이닝 자켓", "model": "JF4196", "price": 53000, "priceNote": "정가 85,000원에서 할인", "seller": "사커붐", "url": "https://soccerboom.co.kr/product/detail.html?product_no=51851", "hood": false, "pockets": "지퍼 주머니", "material": "폴리에스터 100%, AEROREADY", "warmth": 1, "warmthNote": "안감 없는 저지", "fit": "미확인", "colors": [{"name": "화이트/솔라 레드", "body": "#F5F5F5", "accent": "#FF5A1F"}], "sizes": "S(90)~4XL(120)", "logo": null, "logoNote": "사커붐 단체견적 게시판에서 마킹 포함 견적(공개 단가 없음)", "groupOrder": "단체 구매 시 추가 할인(견적제), 최소 수량 안내 없음", "pros": ["S~4XL로 사이즈 폭이 가장 넓음", "티로 라인, 지퍼 주머니"], "cons": ["흰색 몸판뿐이라 때가 잘 보임"], "image": "https://soccerboom.co.kr/web/product/big/202512/b59667637299e11f7eadfa751849556c.png"},
- {"id": "kelme-k077", "brand": "켈미", "name": "K077 트레이닝 자켓", "model": "K077", "price": 54450, "priceNote": "정가 99,000원에서 45% 할인, 4색 같은 가격", "seller": "무신사", "url": "https://www.musinsa.com/products/3587802", "hood": false, "pockets": "옆 주머니 2개(사진상 지퍼 있음)", "material": "폴리에스터 100%", "warmth": 1, "warmthNote": "안감·기모 표기 없음", "fit": "미확인", "colors": [{"name": "로얄 블루/화이트", "body": "#1F4FA8", "accent": "#FFFFFF"}, {"name": "블랙/화이트", "body": "#111111", "accent": "#FFFFFF"}, {"name": "다크 그레이/네온 오렌지", "body": "#3A3D42", "accent": "#FF6A1A"}, {"name": "블랙/네온 옐로우", "body": "#111111", "accent": "#D7F21C"}], "sizes": "S(90)~2XL(110)", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["4색이라 팀 색 맞추기 쉬움", "가슴 로고 자수, 래글런 소매"], "cons": ["보온 기능 없음", "2018년 출시 모델"], "image": "https://image.msscdn.net/images/goods_img/20230922/3587802/3587802_16953658812434_500.jpg"},
- {"id": "nepa-bonding", "brand": "네파", "name": "포레스타 트리코트 본딩 트레이닝자켓", "model": "7K56223", "price": 48000, "priceNote": "무신사 표시가(쿠폰 적용가). 쿠폰 없이 60,000원, 정가 169,000원", "seller": "무신사", "url": "https://www.musinsa.com/products/4447145", "hood": false, "pockets": "옆 주머니, 가슴 지퍼 주머니", "material": "나일론·폴리우레탄 겉감에 폴리에스터 본딩", "warmth": 2, "warmthNote": "본딩 원단, 판매처 '보온성이 우수'", "fit": "미확인", "colors": [{"name": "섀도 그레이", "body": "#5E625F", "accent": "#3FA9E0"}, {"name": "블랙", "body": "#151515", "accent": "#3FA9E0"}], "sizes": "95~110", "logo": null, "logoNote": "판매처 안내 없음. 무지 디자인이라 로고 넣기 좋음", "groupOrder": "판매처 안내 없음", "pros": ["본딩 원단이라 저지보다 따뜻함", "무지라 팀 로고 넣기 좋음"], "cons": ["축구 브랜드가 아닌 아웃도어 브랜드", "95 미만 없음"], "image": "https://image.msscdn.net/images/goods_img/20240920/4447145/4447145_17267974750877_500.jpg"},
- {"id": "lecoq-durotherm", "brand": "르꼬끄", "name": "듀라썸 기모 트랙탑", "model": "QP423EFTO4", "price": 63600, "priceNote": "정가 159,000원에서 할인(블랙 기준), 베이지 57,240원", "seller": "무신사", "url": "https://www.musinsa.com/products/4480866", "hood": false, "pockets": "옆 주머니 2개(지퍼 여부 미확인)", "material": "폴리에스터 96%·폴리우레탄 4%, 안쪽 기모", "warmth": 2, "warmthNote": "안쪽 기모, 판매처 '가볍고 보온성이 우수'", "fit": "레귤러핏", "colors": [{"name": "블랙", "body": "#141414", "accent": "#FFFFFF"}, {"name": "베이지", "body": "#E6E1D6", "accent": "#2B2B2B"}, {"name": "퍼플", "body": "#D9C3CF", "accent": "#4A4A4A"}], "sizes": "85~110", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["기모 안감이라 겨울에 맞음", "85~110로 사이즈 폭이 넓음"], "cons": ["후보 중 가장 비쌈", "팀복보다는 일상용 트랙탑 디자인"], "image": "https://image.msscdn.net/images/goods_img/20241002/4480866/4480866_17304318831601_500.jpg"}
+ {"id": "kelme-k077", "brand": "켈미", "name": "K077 트레이닝 자켓", "model": "K077", "price": 54450, "priceNote": "정가 99,000원에서 45% 할인, 4색 같은 가격", "seller": "무신사", "url": "https://www.musinsa.com/products/3587802", "hood": false, "pockets": "옆 주머니 2개(사진상 지퍼 있음)", "material": "폴리에스터 100%", "warmth": 1, "warmthNote": "안감·기모 표기 없음", "fit": "미확인", "colors": [{"name": "로얄 블루/화이트", "body": "#1F4FA8", "accent": "#FFFFFF", "image": "https://image.msscdn.net/images/goods_img/20230922/3587802/3587802_16953658812434_500.jpg"}, {"name": "블랙/화이트", "body": "#111111", "accent": "#FFFFFF", "image": "https://image.msscdn.net/images/goods_img/20230922/3588040/3588040_16953672412921_500.jpg", "url": "https://www.musinsa.com/products/3588040"}, {"name": "다크 그레이/네온 오렌지", "body": "#3A3D42", "accent": "#FF6A1A", "image": "https://image.msscdn.net/images/goods_img/20230922/3587732/3587732_16953652436671_500.jpg", "url": "https://www.musinsa.com/products/3587732"}, {"name": "블랙/네온 옐로우", "body": "#111111", "accent": "#D7F21C", "image": "https://image.msscdn.net/images/goods_img/20230922/3587866/3587866_16953662743164_500.jpg", "url": "https://www.musinsa.com/products/3587866"}], "sizes": "S(90)~2XL(110)", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["4색이라 팀 색 맞추기 쉬움", "가슴 로고 자수, 래글런 소매"], "cons": ["보온 기능 없음", "2018년 출시 모델"], "image": "https://image.msscdn.net/images/goods_img/20230922/3587802/3587802_16953658812434_500.jpg"},
+ {"id": "nepa-bonding", "brand": "네파", "name": "포레스타 트리코트 본딩 트레이닝자켓", "model": "7K56223", "price": 48000, "priceNote": "무신사 표시가(쿠폰 적용가). 쿠폰 없이 60,000원, 정가 169,000원", "seller": "무신사", "url": "https://www.musinsa.com/products/4447145", "hood": false, "pockets": "옆 주머니, 가슴 지퍼 주머니", "material": "나일론·폴리우레탄 겉감에 폴리에스터 본딩", "warmth": 2, "warmthNote": "본딩 원단, 판매처 '보온성이 우수'", "fit": "미확인", "colors": [{"name": "섀도 그레이", "body": "#5E625F", "accent": "#3FA9E0", "image": "https://image.msscdn.net/images/goods_img/20240920/4447145/4447145_17267974750877_500.jpg"}, {"name": "블랙", "body": "#151515", "accent": "#3FA9E0"}], "sizes": "95~110", "logo": null, "logoNote": "판매처 안내 없음. 무지 디자인이라 로고 넣기 좋음", "groupOrder": "판매처 안내 없음", "pros": ["본딩 원단이라 저지보다 따뜻함", "무지라 팀 로고 넣기 좋음"], "cons": ["축구 브랜드가 아닌 아웃도어 브랜드", "95 미만 없음"], "image": "https://image.msscdn.net/images/goods_img/20240920/4447145/4447145_17267974750877_500.jpg"},
+ {"id": "lecoq-durotherm", "brand": "르꼬끄", "name": "듀라썸 기모 트랙탑", "model": "QP423EFTO4", "price": 63600, "priceNote": "정가 159,000원에서 할인(블랙 기준), 베이지 57,240원", "seller": "무신사", "url": "https://www.musinsa.com/products/4480866", "hood": false, "pockets": "옆 주머니 2개(지퍼 여부 미확인)", "material": "폴리에스터 96%·폴리우레탄 4%, 안쪽 기모", "warmth": 2, "warmthNote": "안쪽 기모, 판매처 '가볍고 보온성이 우수'", "fit": "레귤러핏", "colors": [{"name": "블랙", "body": "#141414", "accent": "#FFFFFF", "image": "https://image.msscdn.net/images/goods_img/20241002/4480866/4480866_17304318831601_500.jpg"}, {"name": "베이지", "body": "#E6E1D6", "accent": "#2B2B2B", "image": "https://image.msscdn.net/images/goods_img/20241002/4480869/4480869_17304318931535_500.jpg", "url": "https://www.musinsa.com/products/4480869", "price": 57240}, {"name": "퍼플", "body": "#D9C3CF", "accent": "#4A4A4A", "image": "https://image.msscdn.net/images/goods_img/20241002/4480867/4480867_17304318886907_500.jpg", "url": "https://www.musinsa.com/products/4480867"}], "sizes": "85~110", "logo": null, "logoNote": "판매처 안내 없음", "groupOrder": "판매처 안내 없음", "pros": ["기모 안감이라 겨울에 맞음", "85~110로 사이즈 폭이 넓음"], "cons": ["후보 중 가장 비쌈", "팀복보다는 일상용 트랙탑 디자인"], "image": "https://image.msscdn.net/images/goods_img/20241002/4480866/4480866_17304318831601_500.jpg"}
 ];
 const CHECKED = "2026-11-01";
 /* 살 수 있는 사이즈 범위(한국 표기). 갈렉스 M·L은 95·100으로 봄 */
@@ -463,7 +458,7 @@ function renderGrid(){
         <div class="price">${won(d.price)}<small>${esc(d.seller)}</small></div>
         <div class="tags"><span class="tag">${hoodLabel(d)}</span>${d.warmth>=2?'<span class="tag logo">겨울용</span>':""}<span class="tag">${esc(d.sizes.split(" ")[0])}</span></div>
         ${warmBar(d.warmth)}
-        <div class="dots" aria-label="판매 색상 ${d.colors.length}가지">${d.colors.map(k=>`<span class="dot" style="background:${k.body}" title="${esc(k.name)}"></span>`).join("")}<span>${d.colors.length}색</span></div>
+        <div class="dots" role="group" aria-label="판매 색상 ${d.colors.length}가지">${swatches(d)}<span class="sw-name">${d.colors.length>1?`${d.colors.length}색 · 눌러서 보기`:esc(d.colors[0].name)}</span></div>
         <div class="actions">
           <button class="btn" data-pick="${d.id}" aria-pressed="${picks.has(d.id)}">${picks.has(d.id)?"★ 찜함":"☆ 찜"}</button>
           <button class="btn" data-cmp="${d.id}" aria-pressed="${compare.includes(d.id)}">${compare.includes(d.id)?"비교 중":"비교 담기"}</button>
@@ -491,6 +486,19 @@ function renderTable(){
   <tbody>${xs.map(d=>`<tr class="${picks.has(d.id)?"picked":""}">${COLS.map(c=>`<td class="col-${c.k} ${c.r?"r ":""}${c.nw?"nw":""}">${c.h(d)}</td>`).join("")}</tr>`).join("")}</tbody>`;
 }
 
+/* 색 견본: 누르면 그 색 사진(판매처 사진이 있을 때)으로 바꿈 */
+function swatches(d, big){
+  return d.colors.map((k,i)=>`<button type="button" class="sw${big?" big":""}" data-sw="${d.id}:${i}" aria-pressed="${i===0}" style="--c:${k.body};--a:${k.accent}" title="${esc(k.name)}" aria-label="${esc(k.name)}"></button>`).join("");
+}
+function pickColor(btn){
+  const [id, i] = btn.dataset.sw.split(":"), d = DATA.find(x=>x.id===id), k = d && d.colors[+i]; if(!k) return;
+  const box = btn.closest(".card,.dlg-in"); if(!box) return;
+  box.querySelectorAll("[data-sw]").forEach(b=>b.setAttribute("aria-pressed", b===btn));
+  const img = box.querySelector("img.ph"), src = k.image || d.image;
+  if(img && img.getAttribute("src") !== src){ img.src = src; }
+  const nm = box.querySelector(".sw-name"); if(nm) nm.textContent = k.name + (k.price && k.price !== d.price ? ` · 이 색은 ${won(k.price)}` : "") + (k.image || d.colors.length===1 ? "" : " · 판매처에 이 색 사진이 없어 다른 색 사진이에요");
+  const a = box.querySelector("a.btn.primary"); if(a) a.href = k.url || d.url;
+}
 function detail(d){
   return `<button class="close" data-close aria-label="닫기">×</button>
   <div class="dlg-top"><div style="aspect-ratio:5/6;border-radius:10px;overflow:hidden;background:#fff;max-width:100%">${photo(d)}</div>
@@ -499,7 +507,8 @@ function detail(d){
       <h2 id="dlgTitle" style="font-size:20px">${esc(d.name)}</h2>
       <div class="price">${won(d.price)}<small>${esc(d.priceNote||"")}</small></div>
       <div class="tags"><span class="tag">${hoodLabel(d)}</span>${warmBar(d.warmth)}</div>
-      <span style="font-size:13px;color:var(--muted)">색: ${d.colors.map(k=>esc(k.name)).join(" · ")}</span>
+      <div class="sw-row">${swatches(d, true)}</div>
+      <span class="sw-name" style="font-size:13px;color:var(--muted)">${esc(d.colors[0].name)}</span>
     </div>
   </div>
   <div class="dlg-body">
@@ -592,6 +601,7 @@ document.addEventListener("click", e=>{
     inp.value = st.dataset.people ? st.dataset.people : Math.min(200, Math.max(1, (+inp.value||0) + (+st.dataset.step)));
     renderOrder(); return;
   }
+  const sw = e.target.closest("[data-sw]"); if(sw){ pickColor(sw); return; }
   const t = e.target.closest("[data-open],[data-pick],[data-cmp],[data-close],[data-share],.chip,#goCompare,thead th[data-k]");
   if(!t) return;
   if(t.dataset.open){ e.preventDefault(); openDetail(t.dataset.open); }
