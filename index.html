@@ -23,7 +23,7 @@
 :root{
   --bg:#f4f4f5; --surface:#ffffff; --surface-2:#efeff1; --line:#dcdce0;
   --fg:#151517; --muted:#5f6067;
-  --pitch:#c8102e; --pitch-soft:#fbe4e7; --pitch-ink:#8e0a20;
+  --pitch:#c8102e; --pitch-soft:#fbe4e7; --pitch-ink:#8e0a20; --pitch-fill:#c8102e; --star:#b5730a;
   --night:#121214; --night-fg:#eaf2f7;
   --flood:#e8a317; --flood-soft:#fbefd2;
   --warn:#b4461f;
@@ -35,13 +35,13 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0e0e10; --surface:#18181b; --surface-2:#222226; --line:#323238;
   --fg:#ececee; --muted:#a3a3ab;
-  --pitch:#ff4b5c; --pitch-soft:#3b1218; --pitch-ink:#ffb2b9;
+  --pitch:#ff4b5c; --pitch-soft:#3b1218; --pitch-ink:#ffb2b9; --pitch-fill:#c8102e; --star:#f0b429;
   --night:#0b0b0c; --night-fg:#eaf2f7;
   --flood:#f2b84a; --flood-soft:#3a2d12; --warn:#f08a62; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0e0e10; --surface:#18181b; --surface-2:#222226; --line:#323238;
   --fg:#ececee; --muted:#a3a3ab;
-  --pitch:#ff4b5c; --pitch-soft:#3b1218; --pitch-ink:#ffb2b9;
+  --pitch:#ff4b5c; --pitch-soft:#3b1218; --pitch-ink:#ffb2b9; --pitch-fill:#c8102e; --star:#f0b429;
   --night:#0b0b0c; --night-fg:#eaf2f7;
   --flood:#f2b84a; --flood-soft:#3a2d12; --warn:#f08a62; color-scheme:dark}
 
@@ -71,7 +71,7 @@ nav.tabs a.on{color:var(--fg);border-bottom-color:var(--pitch)}
 .bgphoto{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,10,12,.35) 0%,rgba(10,10,12,.72) 45%,rgba(10,10,12,.86) 100%),url("assets/hero.webp") 70% center/cover no-repeat,var(--night)}
 .hero{color:var(--night-fg);position:relative;min-height:clamp(320px,52vh,520px);display:flex;align-items:center}
 .hero-in{position:relative;max-width:520px;padding-block:40px 48px;text-shadow:0 2px 12px rgba(0,0,0,.45)}
-.pill{display:inline-block;background:var(--pitch);color:#fff;font-weight:700;font-size:12px;border-radius:999px;padding:3px 10px;letter-spacing:.3px}
+.pill{display:inline-block;background:var(--pitch-fill);color:#fff;font-weight:700;font-size:12px;border-radius:999px;padding:3px 10px;letter-spacing:.3px}
 .hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,5vw,44px);margin:12px 0 8px;letter-spacing:.5px}
 .hero p{margin:0;opacity:.85;max-width:34em}
 .hero-stats{display:flex;flex-wrap:wrap;gap:18px;margin-top:18px}
@@ -94,7 +94,7 @@ section{padding-block:36px 8px;scroll-margin-top:110px}
 .fgroup{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .fgroup > span{font-size:12px;color:var(--muted);margin-right:2px}
 .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--pitch);border-color:var(--pitch);color:#fff}
+.chip[aria-pressed="true"]{background:var(--pitch-fill);border-color:var(--pitch-fill);color:#fff}
 select.sort{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;padding:5px 8px;font:inherit;font-size:13px}
 .count{margin-left:auto;font-size:13px;color:var(--muted)}
 
@@ -125,7 +125,7 @@ select.sort{border:1px solid var(--line);background:var(--surface);color:var(--f
 .warm i.on{background:var(--pitch)}
 .card .actions{display:flex;gap:6px;margin-top:auto;padding-top:8px}
 .btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 10px;font-size:13px;font-weight:600;cursor:pointer;flex:1;text-align:center;text-decoration:none;color:var(--fg)}
-.btn.primary{background:var(--pitch);border-color:var(--pitch);color:#fff}
+.btn.primary{background:var(--pitch-fill);border-color:var(--pitch-fill);color:#fff}
 .btn[aria-pressed="true"]{background:var(--flood-soft);border-color:var(--flood)}
 .empty{padding:30px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:var(--r)}
 
@@ -136,13 +136,13 @@ select.sort{border:1px solid var(--line);background:var(--surface);color:var(--f
 .tray .slot{background:rgba(255,255,255,.1);border-radius:8px;padding:4px 8px;font-size:13px;display:flex;gap:6px;align-items:center;min-width:0}
 .tray .slot span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:min(220px,34vw)}
 .tray .slot button{background:none;border:0;color:inherit;cursor:pointer;opacity:.7;padding:0 2px}
-.tray .go{background:var(--pitch);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer}
+.tray .go{background:var(--pitch-fill);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer}
 
 /* 처음 보는 분을 위한 누르기 안내 */
-.hint{display:flex;align-items:center;gap:8px;position:relative;width:fit-content;max-width:100%;background:var(--pitch);color:#fff;font-size:14px;line-height:1.45;border-radius:12px;padding:8px 10px 8px 12px;margin:0 0 14px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
-.hint::after{content:"";position:absolute;left:22px;bottom:-7px;border:7px solid transparent;border-bottom:0;border-top-color:var(--pitch)}
+.hint{display:flex;align-items:center;gap:8px;position:relative;width:fit-content;max-width:100%;background:var(--pitch-fill);color:#fff;font-size:14px;line-height:1.45;border-radius:12px;padding:8px 10px 8px 12px;margin:0 0 14px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.hint::after{content:"";position:absolute;left:22px;bottom:-7px;border:7px solid transparent;border-bottom:0;border-top-color:var(--pitch-fill)}
 .hint.tight{margin:12px 0 0}
-.hint.tight::after{bottom:auto;top:-7px;border:7px solid transparent;border-top:0;border-bottom-color:var(--pitch)}
+.hint.tight::after{bottom:auto;top:-7px;border:7px solid transparent;border-top:0;border-bottom-color:var(--pitch-fill)}
 .hint.below{margin:0 0 12px}
 .hint b{font-weight:700}
 .hint-hand{font-size:18px;flex:none}
@@ -181,13 +181,13 @@ tr.picked td:first-child{box-shadow:inset 3px 0 0 var(--flood)}
 .people{display:flex;gap:6px;align-items:stretch}
 .people input{flex:1;min-width:0;text-align:center;font-family:var(--f-num);font-size:16px}
 .range{width:100%;margin:10px 0 0;accent-color:var(--pitch);height:28px;cursor:pointer}
-.range-ends{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:var(--muted)}
+.range-ends{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted)}
 .step{width:40px;border:1px solid var(--line);background:var(--surface-2);border-radius:8px;font-size:18px;cursor:pointer}
 .presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .guide{display:grid;grid-template-columns:1fr;gap:14px}
 .notice{border-left:4px solid var(--pitch)}
 .notice h3{display:flex;align-items:center;gap:8px}
-.notice-ic{width:20px;height:20px;border-radius:50%;background:var(--pitch);color:#fff;font-size:13px;display:grid;place-items:center;flex:none}
+.notice-ic{width:20px;height:20px;border-radius:50%;background:var(--pitch-fill);color:#fff;font-size:13px;display:grid;place-items:center;flex:none}
 .notice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px}
 .nt{background:var(--surface-2);border-radius:10px;padding:0}
 .nt summary{display:flex;gap:10px;align-items:center;padding:14px 12px;cursor:pointer;list-style:none}
@@ -233,7 +233,7 @@ dialog{border:0;border-radius:16px;padding:0;max-width:640px;width:calc(100% - 3
 .gal-arrow.prev{left:10px}
 .gal-arrow.next{right:10px}
 .gal-n{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.6);color:#fff;font-size:13px;border-radius:999px;padding:3px 10px}
-.gal-tip{position:absolute;left:12px;bottom:12px;background:var(--pitch);color:#fff;font-size:13px;font-weight:600;border-radius:999px;padding:3px 10px}
+.gal-tip{position:absolute;left:12px;bottom:12px;background:var(--pitch-fill);color:#fff;font-size:13px;font-weight:600;border-radius:999px;padding:3px 10px}
 .dlg-info{padding:16px 20px 4px;display:flex;flex-direction:column;gap:6px}
 .dlg-info .brand-l{font-size:13px;color:var(--muted);font-weight:600}
 .dlg-info h2{font-size:21px}
@@ -254,7 +254,7 @@ dialog{border:0;border-radius:16px;padding:0;max-width:640px;width:calc(100% - 3
 .dlg-price .pr-off{font-size:18px}
 .seller{font-size:12px;color:var(--muted)}
 .rt{font-size:13px;color:var(--fg)}
-.rt-star{color:var(--flood)}
+.rt-star{color:var(--star)}
 .rt small{color:var(--muted)}
 .rt.none{color:var(--muted)}
 .rv{background:var(--surface-2);border-radius:10px;padding:12px 14px}
@@ -322,6 +322,8 @@ dialog::backdrop{background:rgba(5,12,18,.55)}
   .card .actions .btn{min-height:40px;font-size:14px}
   .sw{width:28px;height:28px}
   .sw.th{width:40px;height:46px}
+  .sw:not(.th){width:40px;height:40px}
+  .hit{min-height:44px;font-size:14px;padding:6px 12px}
   #dlg{max-width:none;width:100%;max-height:none;height:100dvh;margin:0;border-radius:0}
   .slide{max-height:none}
   .tablebox:has(#tbl){overflow:visible;background:transparent;border:0}
@@ -553,7 +555,7 @@ function photo(d, cls){
   return `<img class="${cls||"ph"}" src="${esc(d.image)}" alt="${esc(d.brand)} ${esc(d.name)} 상품 사진" loading="lazy" referrerpolicy="no-referrer" onerror="photoFail(this,'${d.id}')">`;
 }
 function photoFail(img, id){
-  const w = document.createElement("div"); w.className = img.className + " ph-fallback"; w.textContent = "사진을 불러오지 못했어요";
+  const w = document.createElement("div"); w.className = img.className + " ph-fallback"; w.textContent = "사진을 불러오지 못했습니다";
   img.replaceWith(w);
 }
 
@@ -606,7 +608,7 @@ function renderGrid(){
         </div>
       </div>
     </article>`;
-  }).join("") : `<div class="empty">조건에 맞는 후보가 없어요. 필터를 ‘전체’로 바꿔 보세요.</div>`;
+  }).join("") : `<div class="empty">조건에 맞는 후보가 없습니다. 필터를 ‘전체’로 바꿔 주십시오.</div>`;
 }
 
 const COLS = [
@@ -655,11 +657,11 @@ function swatches(d, big){
 function pickColor(btn){
   const [id, i] = btn.dataset.sw.split(":"), d = DATA.find(x=>x.id===id), k = d && d.colors[+i]; if(!k) return;
   const box = btn.closest(".card,.dlg-in"); if(!box) return;
-  if(box.classList.contains("dlg-in")){ const s = box.querySelector(`.gal [data-ci="${i}"]`) || box.querySelector(".gal .slide"); if(s) box.querySelector(".gal").scrollTo({left:s.offsetLeft, behavior:"smooth"}); setColor(box, d, +i); return; }
+  if(box.classList.contains("dlg-in")){ const g = box.querySelector(".gal"), s = g.querySelector(`[data-ci="${i}"]`); if(s){ const n = [...g.children].indexOf(s); g.scrollTo({left:s.offsetLeft, behavior:"smooth"}); const c = box.querySelector(".gal-n b"); if(c) c.textContent = n+1; box.dataset.ci = i; } setColor(box, d, +i); return; }
   box.querySelectorAll("[data-sw]").forEach(b=>b.setAttribute("aria-pressed", b===btn));
   const img = box.querySelector("img.ph"), src = k.image || d.image;
   if(img && img.getAttribute("src") !== src){ img.src = src; }
-  const nm = box.querySelector(".sw-name"); if(nm) nm.textContent = k.name + (k.price && k.price !== d.price ? ` · 이 색은 ${won(k.price)}` : "") + (k.image || d.colors.length===1 ? "" : " · 판매처에 이 색 사진이 없어 다른 색 사진이에요");
+  const nm = box.querySelector(".sw-name"); if(nm) nm.textContent = k.name + (k.price && k.price !== d.price ? ` · 이 색은 ${won(k.price)}` : "") + (k.image || d.colors.length===1 ? "" : " · 판매처에 이 색 사진이 없어 다른 색 사진입니다");
   const a = box.querySelector("a.btn.primary"); if(a) a.href = k.url || d.url;
 }
 function setColor(box, d, i){
@@ -703,7 +705,7 @@ function detail(d){
       <div class="pro"><h4>좋은 점</h4><ul>${d.pros.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>
       <div class="con"><h4>아쉬운 점</h4><ul>${d.cons.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>
     </div>
-    <button class="btn ghost" data-share="${d.id}">이 후보 링크 복사</button>
+    <button class="btn ghost" data-share="${d.id}">이 후보 링크 공유</button>
   </div>
   <div class="dlg-bar">
     <button class="btn pick" data-pick="${d.id}" aria-pressed="${picks.has(d.id)}">${picks.has(d.id)?"★ 찜함":"☆ 찜"}</button>
@@ -759,7 +761,8 @@ function renderOrder(){
   const n = Math.min(200, Math.max(1, Math.round(+$("#oPeople").value)||1)), lg = Math.max(0, +$("#oLogo").value||0), sp = Math.max(0, +$("#oSupport").value||0);
   const cloth = d.price*n, logo = lg*n, total = Math.max(0, cloth+logo-sp);
   $("#tCloth").textContent = won(cloth); $("#tLogo").textContent = won(logo);
-  $("#tSupport").textContent = sp ? "−"+won(sp) : won(0);
+  const used = Math.min(sp, cloth+logo);
+  $("#tSupport").textContent = used ? "−"+won(used) + (sp > used ? " (입력액이 총액보다 많아 총액까지만 반영)" : "") : won(0);
   $("#tTotal").textContent = won(total); $("#tPer").textContent = won(Math.ceil(total/n/100)*100);
   $("#oLogoNote").textContent = "이 후보의 로고 안내: " + (d.logoNote || "미확인");
 }
@@ -819,9 +822,11 @@ document.addEventListener("click", e=>{
   else if(t.dataset.cmp) toggleCmp(t.dataset.cmp);
   else if(t.hasAttribute("data-close")) t.closest("dialog").close();
   else if(t.dataset.share){
-    const url = location.href.split("#")[0] + "#c-" + t.dataset.share;
-    const done = ()=>toast("링크가 복사되었습니다");
-    try{ navigator.clipboard.writeText(url).then(done, ()=>toast(url)); }catch(err){ toast(url); }
+    const d = DATA.find(x=>x.id===t.dataset.share), url = location.origin + location.pathname + "#c-" + t.dataset.share;
+    const fail = ()=>toast("복사하지 못했습니다. 주소: " + url);
+    const copy = ()=>{ try{ navigator.clipboard.writeText(url).then(()=>toast("링크가 복사되었습니다"), fail); }catch(err){ fail(); } };
+    if(navigator.share && matchMedia("(pointer:coarse)").matches) navigator.share({title:`태평FC 웜업 후보 · ${d.brand} ${d.name}`, url}).catch(err=>{ if(err && err.name!=="AbortError") copy(); });
+    else copy();
   }
   else if(t.classList.contains("chip")){
     const g = t.closest(".fgroup"); filt[g.dataset.key] = t.dataset.v;
@@ -844,6 +849,8 @@ const smooth = matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" :
 $("#toTop").addEventListener("click", ()=>scrollTo({top:0, behavior:smooth}));
 $("#toBottom").addEventListener("click", ()=>scrollTo({top:document.documentElement.scrollHeight, behavior:smooth}));
 ["#oItem","#oPeople","#oLogo","#oSupport"].forEach(s=>$(s).addEventListener("input", renderOrder));
+$("#oLogo").addEventListener("change", ()=>{ const v = $("#oLogo"); if(+v.value < 0) v.value = 0; renderOrder(); });
+$("#oSupport").addEventListener("change", ()=>{ const v = $("#oSupport"); if(+v.value < 0) v.value = 0; renderOrder(); });
 $("#oPeople").addEventListener("change", ()=>{ const v = $("#oPeople"); v.value = Math.min(200, Math.max(1, Math.round(+v.value)||1)); renderOrder(); });
 
 /* 현재 섹션 탭 표시 */
