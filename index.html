@@ -712,13 +712,15 @@ function detail(d){
 }
 let lastFocus = null;
 /* 휴대폰 뒤로가기: 열린 창(상세·비교·필터)만 닫고 페이지에 머무름 */
-function pushLayer(name){ if(!(history.state && history.state.layer===name)) history.pushState({layer:name}, ""); }
-function popLayer(name){ if(history.state && history.state.layer===name) history.back(); }
+const layers = []; let ownBack = 0;
+function pushLayer(name){ if(layers[layers.length-1]===name) return; layers.push(name); history.pushState({depth:layers.length}, ""); }
+function popLayer(name){ const i = layers.lastIndexOf(name); if(i<0) return; layers.splice(i,1); ownBack++; history.back(); }
+function closeLayer(name){ if(name==="sheet") sheet(false); else if($("#"+name).open) $("#"+name).close(); }
 addEventListener("popstate", ()=>{
-  const s = history.state && history.state.layer;
-  if(s!=="dlg" && $("#dlg").open) $("#dlg").close();
-  if(s!=="dlg" && s!=="cmp" && $("#cmp").open) $("#cmp").close();
-  if(s!=="sheet" && $("#filters").classList.contains("open")) sheet(false);
+  const d = (history.state && history.state.depth) || 0;
+  if(ownBack) ownBack--;                                    /* 창을 닫으며 우리가 부른 뒤로가기 */
+  else while(layers.length > d) closeLayer(layers.pop());   /* 사용자가 누른 뒤로가기: 위에 열린 창만 닫기 */
+  for(let i = d; i < layers.length; i++) history.pushState({depth:i+1}, "");  /* 빠르게 다시 연 창의 기록 보충 */
 });
 function openDetail(id){
   if(!$("#dlg").open){ lastFocus = document.activeElement; pushLayer("dlg"); }
@@ -785,7 +787,7 @@ document.addEventListener("click", e=>{
   for(const [k, sel] of Object.entries(HINT_GROUPS)) if(!seenHints.has(k) && e.target.closest(sel)) hideHint(k);
 }, true);
 document.addEventListener("input", e=>{ for(const [k, sel] of Object.entries(HINT_GROUPS)) if(!seenHints.has(k) && e.target.closest(sel)) hideHint(k); }, true);
-function sheet(open){ if(open) pushLayer("sheet"); else popLayer("sheet"); $("#filters").classList.toggle("open", open); document.querySelector(".fsheet-bg").hidden = !open; document.querySelector(".fopen").setAttribute("aria-expanded", open); document.body.classList.toggle("sheet-open", open); }
+function sheet(open){ const was = $("#filters").classList.contains("open"); if(open && !was) pushLayer("sheet"); if(!open && was) popLayer("sheet"); $("#filters").classList.toggle("open", open); document.querySelector(".fsheet-bg").hidden = !open; document.querySelector(".fopen").setAttribute("aria-expanded", open); document.body.classList.toggle("sheet-open", open); }
 document.addEventListener("click", e=>{
   if(e.target.closest(".fopen")) sheet(true);
   else if(e.target.closest(".fclose,.fdone,.fsheet-bg")) sheet(false);
